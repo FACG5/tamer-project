@@ -30,7 +30,7 @@
  ---------------------------
  
  ### Database Schema
- ![DB_SCHEMA](https://www.dbdesigner.net/designer/schema/202523)
+ ![DB_SCHEMA](https://files.gitter.im/lubnaabd/Osl5/db.png)
 
 
 ### How to run tests
