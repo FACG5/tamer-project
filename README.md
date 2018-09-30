@@ -8,7 +8,7 @@
 
 #### Our Solution 
 
-* create a control Panel for the tamer foundation that inclue view/add/delete/update (CRUD) of the books/users/borrowing ssection
+* create a control Panel for the tamer foundation that inclue view/add/delete/update (CRUD) of the books/users/borrowing section
 
  ---------------------------
  
