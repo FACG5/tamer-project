@@ -13,31 +13,33 @@
  ---------------------------
  
  ### user stories
- **AS AN ADMIN**
+**AS AN ADMIN**
  
-* I want to login and logout to/form the admin panel.
-* I want to view dashboard statistics. 
-* I want to view the current books data. 
-* I want to view the borrowed books data. 
-* I want to serach for borrowed books.
-* I want to serach for book.
-* I want view book information.
-* I want to edit/delete the current books data.
-* I want to add new books.
-* I want to view users.
-* I want to serach for user.
-* I want to view borrowers.
-* I want to serach for borrower.
-* I want to serach for user by mobile number in the borrowing section.
-* I want to add new user when doesnt exists in the seraching process.
-* I want to delete book to the user borrowing list.
-* I want to add book to the user borrowing list.
+* I can login to the admin panel.
+* I can logout from the admin panel.
+* I can view dashboard statistics. 
+* I can view the current books data. 
+* I can view the borrowed books data. 
+* I can search for borrowed books.
+* I can  search for book.
+* I can view book information.
+* I can edit/delete the current books data.
+* I  can add new books.
+* I can view users.
+* I can search for user.
+* I can view borrowers.
+* I can search for borrower.
+* I can search for user by mobile number in the borrowing section.
+* I can add new user when doesn't exists in the searching process.
+* I can delete book to the user borrowing list.
+* I can add book to the user borrowing list.
 
 **AS A GUEST**
 
-* I want to serach books tamer library.
-* I want to know from the result if the book avilabale or not .
-* I want to view most borrowed books home page .
+* I can search books tamer library.
+* I can know from the result if the book available or not .
+* I can view most borrowed books home page .
+
 
 
  --------------------------- 
