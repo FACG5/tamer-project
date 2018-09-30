@@ -52,7 +52,7 @@
  ---------------------------
  
  ### Database Schema
- ![DB_SCHEMA](https://files.gitter.im/lubnaabd/Osl5/db.png)
+ ![DB_SCHEMA](https://files.gitter.im/lubnaabd/et3f/db2.png)
 
 
 ### How to run tests
