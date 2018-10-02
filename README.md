@@ -13,7 +13,7 @@ TAMER Institute for Community Education is an educational non-governmental non f
 * Create management system for TAMER Institute's library that content of :
 
   * A control Panel for TAMER Institute that include view/add/delete/update (CRUD) of the books/users/borrowing section
-  * Landing page for library users.
+  * Landing page for library users to search for books in it.
 
  ---------------------------
  
