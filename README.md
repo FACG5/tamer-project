@@ -1,14 +1,19 @@
-# tamer-project
+# TAMER Institute Library Project 
+
+TAMER Institute for Community Education is an educational non-governmental non for profit organization established in 1989 as a natural and necessary response to the urgent needs of the Palestinian community during the first intifada (uprising). The most important of these is the need to acquire means to help people learn and become productive. Focusing principally on the rights to education, identity, freedom of expression, and access to information.
 
  ---------------------------
 ### Problem Statement
 
-* Tamer Foundation follows the traditional systems of its library management.
+* TAMER Institute follows the traditional manual way for managing its library.
 
 
 #### Our Solution 
 
-* create a control Panel for the tamer foundation that inclue view/add/delete/update (CRUD) of the books/users/borrowing section
+* Create management system for TAMER Institute's library that content of :
+
+  * A control Panel for TAMER Institute that include view/add/delete/update (CRUD) of the books/users/borrowing section
+  * Landing page for library users.
 
  ---------------------------
  
