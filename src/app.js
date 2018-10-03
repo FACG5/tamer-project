@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const handlebars = require('express-handlebars');
+const controllers = require('./controllers');
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,5 +24,7 @@ app.engine(
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.use(controllers);
 
 module.exports = app;
