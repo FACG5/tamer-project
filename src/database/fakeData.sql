@@ -1,4 +1,3 @@
-
 INSERT INTO admin(user_name, password) VALUES ('user','000');
 
 INSERT INTO category(name, category_serial) VALUES ('أطفال','501');

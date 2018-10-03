@@ -37,7 +37,6 @@ CREATE TABLE store (
     copy_id integer NOT NULL
 );
 
-
 CREATE TABLE users (
     id serial PRIMARY KEY,
     name varchar NOT NULL,
