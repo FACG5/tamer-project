@@ -49,7 +49,7 @@ CREATE TABLE borrow (
     id serial PRIMARY KEY,
     user_id integer NOT NULL REFERENCES users(id) ON UPDATE CASCADE,
     book_library_id integer NOT NULL REFERENCES library(id) ON UPDATE CASCADE,
-    start_date DATE NOT NULL,
+    start_date DATE NOT NULL DEFAULT CURRENT_DATE,
     end_date DATE NOT NULL
 );
 
