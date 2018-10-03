@@ -1,0 +1,75 @@
+.main__header--nav {
+  padding-left: 0;
+  margin-bottom: 10px;
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+  width: 80%;
+}
+
+.main__header--nav > li {
+  float: right;
+  cursor: pointer;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  margin-right: 1px;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  background-color: #364150;
+}
+.main__header--nav > li > a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.main__header--nav > li:hover {
+  background-color: #0878b0;
+}
+
+.main__conten--user-search > input {
+  font-family: Cairo;
+  background: #fff;
+  text-align: right;
+  color: #525865;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border: 1px solid #d1d1d1;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  font-size: 1em;
+  line-height: 1.45;
+  outline: none;
+  margin: 0px;
+  padding: 8px;
+  margin-left: -5px;
+}
+
+.main__conten--user-search {
+  margin-bottom: 2rem;
+  margin-left: 20rem;
+}
+
+.main__conten--user-search > input:hover {
+  font-family: Cairo;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.main__conten--user-search > input:focus {
+  font-family: Cairo;
+  color: #4b515d;
+  border: 1px solid #b8b6b6;
+  box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01),
+    0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main__conten--user-search button {
+  border: 1px solid #d1d1d1;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  background-color: #0878b0;
+  height: 42px;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.main__conten--user-search > button > img {
+  padding: 8px;
+}
