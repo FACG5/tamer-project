@@ -1,32 +1,32 @@
 BEGIN ;
 
-DROP TABLE IF EXISTS book, library, store, category, admin, users,  brorow CASCADE;
+DROP TABLE IF EXISTS book, library, store, category, admin, users, borrow CASCADE;
 
 CREATE TABLE admin (
     id serial PRIMARY KEY,
-    user_name TEXT NOT NULL,
-    password TEXT NOT NULL
+    user_name varchar UNIQUE NOT NULL ,
+    password varchar NOT NULL
 );
 
 CREATE TABLE category (
     id serial PRIMARY KEY,
-    Name TEXT NOT NULL,
-    category_serial TEXT NOT NULL UNIQUE
+    name varchar NOT NULL UNIQUE,
+    category_serial varchar NOT NULL UNIQUE
 );
 
 CREATE TABLE book (
     id serial PRIMARY KEY,
-    name serial NOT NULL,
-    image_url serial NOT NULL,
-    description serial NOT NULL,
-    category_serial integer NOT NULL REFERENCES category(id) ON UPDATE CASCADE,
-    author TEXT NOT NULL
+    name_book varchar  NOT NULL,
+    name_author varchar NOT NULL,
+    image_url TEXT NOT NULL,
+    description TEXT NOT NULL,
+    category_serial varchar NOT NULL REFERENCES category(category_serial) ON UPDATE CASCADE
 );
 
 CREATE TABLE store (
     id serial PRIMARY KEY,
-    id_book integer NOT NULL REFERENCES book(id) ON UPDATE CASCADE,
-    copy_id integer NOT NULL
+    book_id integer NOT NULL REFERENCES book(id) ON UPDATE CASCADE,
+    copy_number integer NOT NULL
 );
 
   CREATE TABLE library (
@@ -40,9 +40,9 @@ CREATE TABLE store (
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
-    name serial NOT NULL,
-    address serial NOT NULL,
-    mobile_number serial NOT NULL
+    name varchar NOT NULL,
+    address TEXT NOT NULL,
+    mobile_number varchar NOT NULL
 );
 
 CREATE TABLE borrow (
