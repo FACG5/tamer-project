@@ -1,0 +1,45 @@
+{
+  "name": "tamer-project",
+  "version": "1.0.0",
+  "description": "TAMER Institute for Community Education is an educational non-governmental non for profit organization established in 1989 as a natural and necessary response to the urgent needs of the Palestinian community during the first intifada (uprising). The most important of these is the need to acquire means to help people learn and become productive. Focusing principally on the rights to education, identity, freedom of expression, and access to information.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js | tap-spec",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG5/tamer-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG5/tamer-project/issues"
+  },
+  "homepage": "https://github.com/FACG5/tamer-project#readme",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cookie": "^0.3.1",
+    "env2": "^2.2.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "pg": "^7.4.3",
+    "serve-favicon": "^2.5.0"
+  }
+}
