@@ -1,4 +1,5 @@
-INSERT INTO admin(user_name, password) VALUES ('user','000');
+INSERT INTO admin(user_name, password) VALUES ('admin',
+'$2y$12$yhE8ruRCa7kJ9P8z.CqOEe4A6U1P9E8dfF1S1aRonYn6d9VWjrz1C');
 
 INSERT INTO category(name, category_serial) VALUES ('أطفال','501');
 INSERT INTO category(name, category_serial) VALUES ('علوم','502');
