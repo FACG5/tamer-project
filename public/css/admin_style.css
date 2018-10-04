@@ -53,17 +53,17 @@ body {
   padding-top: 2rem;
 }
 
-.main__sidebar--ul a {
+.main__sidebar--ul > a {
   display: block;
   text-decoration: none;
   border-bottom: 0.09rem solid #3d4957;
   color: white;
 }
-.main__sidebar--ul a:hover {
+.main__sidebar--ul > a:hover {
   background: #2c3542;
 }
 
-.main__sidebar--ul a li {
+.main__sidebar--ul a > li {
   padding: 0.5rem;
 }
 
