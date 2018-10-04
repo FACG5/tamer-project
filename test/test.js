@@ -15,3 +15,45 @@ test('Home route with get method returns a status code of 200 ', (t) => {
       t.end();
     });
 });
+
+test('test for home page route ', (t) => {
+  supertest(app)
+    .get('/admin/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.end();
+    });
+});
+
+test('test for user page route ', (t) => {
+  supertest(app)
+    .get('/admin/users')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'اﻷعضاء\'');
+      t.end();
+    });
+});
+
+test('test for user page route ', (t) => {
+  supertest(app)
+    .get('/admin/borrowedUsers')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'اﻷعضاء\'');
+      t.end();
+    });
+});

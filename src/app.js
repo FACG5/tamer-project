@@ -25,6 +25,7 @@ app.engine(
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(router);
 
 app.use(router);
 
