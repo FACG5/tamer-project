@@ -1,76 +1,76 @@
 * {
-    padding: 0%;
-    margin: 0;
+  padding: 0%;
+  margin: 0;
 }
 
 body {
-    font-family: Cairo;
-    font-weight: bold;
-    background-color: #364150;
+  font-family: Cairo;
+  font-weight: bold;
+  background-color: #364150;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
 }
 
 .content {
-    font-family: Cairo;
-    background-color: #eceef1;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -ms-border-radius: 7px;
-    -o-border-radius: 7px;
-    border-radius: 7px;
-    width: 400px;
-    margin: 40px auto 10px auto;
-    padding: 30px;
-    padding-top: 10px;
-    text-decoration: none;
-    overflow: hidden;
-    position: relative;
+  font-family: Cairo;
+  background-color: #eceef1;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  width: 400px;
+  margin: 40px auto 10px auto;
+  padding: 30px;
+  padding-top: 10px;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
 }
 
 .content__h3 {
-    color: #fe001f;
-    text-align: center;
-    font-size: 28px;
-    margin: 1%;
-    font-family: Cairo;
-    font-weight: 400 !important;
+  color: #fe001f;
+  text-align: center;
+  font-size: 28px;
+  margin: 1%;
+  font-family: Cairo;
+  font-weight: 400 !important;
 }
 
 .content__input {
-    border: none;
-    background-color: #dde3ec;
-    height: 43px;
-    color: #8290a3;
-    margin: 15px 15px 15px 0px;
-    width: 23rem;
-    text-align: right;
-    padding-right: 2%;
-    font-family: Cairo;
-    border: 1px solid #dde3ec;
+  border: none;
+  background-color: #dde3ec;
+  height: 43px;
+  color: #8290a3;
+  margin: 15px 15px 15px 0px;
+  width: 23rem;
+  text-align: right;
+  padding-right: 2%;
+  font-family: Cairo;
+  border: 1px solid #dde3ec;
 }
 
 .content a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .content__button {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    padding: 5px 20px;
-    margin: 0 auto;
-    border-radius: 10px;
-    color: #fff;
-    font-family: Cairo;
-    background-color: #fe001f;
-    outline: none;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 5px 20px;
+  margin: 0 auto;
+  border-radius: 10px;
+  color: #fff;
+  font-family: Cairo;
+  background-color: #fe001f;
+  outline: none;
 }
 
 .content__button:hover {
-    background-color: #fe001f;
+  background-color: #fe001f;
 }
