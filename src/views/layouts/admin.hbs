@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  {{>admin_head}}
+</head>
+
+<body>
+  {{>admin_header}}
+  <main class="main">
+    {{>admin_sidebar}}
+    {{{body}}}
+  </main>
+  {{#if js}}
+    <script src="/js/{{js}}.js"></script>
+  {{/if}}
+</body>
+
+</html>
