@@ -22,9 +22,9 @@ INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (4, 1, 10, 2);
 INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (5, 3, 6, 5);
 INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (6, 4, 8, 1);
 
-INSERT INTO users(name, address, mobile_number) VALUES ('أسماء', 'غزة - النصر', '0599112233');
-INSERT INTO users(name, address, mobile_number) VALUES ('لبنى', 'الوسطى', '0599558899');
-INSERT INTO users(name, address, mobile_number) VALUES ('علي', 'غزة', '0599778899');
+INSERT INTO "user"(name, address, mobile_number) VALUES ('أسماء', 'غزة - النصر', '0599112233');
+INSERT INTO "user"(name, address, mobile_number) VALUES ('لبنى', 'الوسطى', '0599558899');
+INSERT INTO "user"(name, address, mobile_number) VALUES ('علي', 'غزة', '0599778899');
 
 INSERT INTO borrow(user_id, book_library_id, start_date, end_date) VALUES (1, 1, '2018-09-15', '2018-09-25');
 INSERT INTO borrow(user_id, book_library_id, start_date, end_date) VALUES (1, 2, '2018-09-20', '2018-09-30');

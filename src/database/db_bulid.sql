@@ -1,6 +1,6 @@
 BEGIN ;
 
-DROP TABLE IF EXISTS book, library, store, category, admin, users, borrow CASCADE;
+DROP TABLE IF EXISTS book, library, store, category, admin, "user", borrow CASCADE;
 
 CREATE TABLE admin (
     id serial PRIMARY KEY,
@@ -37,7 +37,7 @@ CREATE TABLE store (
     copy_id integer NOT NULL
 );
 
-CREATE TABLE users (
+CREATE TABLE "user" (
     id serial PRIMARY KEY,
     name varchar NOT NULL,
     address TEXT NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE users (
 
 CREATE TABLE borrow (
     id serial PRIMARY KEY,
-    user_id integer NOT NULL REFERENCES users(id) ON UPDATE CASCADE,
+    user_id integer NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE,
     book_library_id integer NOT NULL REFERENCES library(id) ON UPDATE CASCADE,
     start_date DATE NOT NULL DEFAULT CURRENT_DATE,
     end_date DATE NOT NULL
