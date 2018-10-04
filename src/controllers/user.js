@@ -10,7 +10,6 @@ exports.getViewUser = (request, response) => {
     });
 };
 
-
 exports.getBorrowedUser = (request, response) => {
   response.render('view_user',
     {

@@ -8,5 +8,4 @@ router.get('/admin/', adminHomePage.get);
 router.get('/admin/users', user.getViewUser);
 router.get('/admin/borrowedUsers', user.getBorrowedUser);
 
-
 module.exports = router;
