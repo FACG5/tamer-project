@@ -1,17 +1,19 @@
 <section class="main__header">
   <ul class="main__header--nav">
-    <li onclick="viewUser(event,'user')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false" href="/admin/users">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/users">
+      <li onclick="viewUser(event,'user')" class="main__header--nav-tablink">
         الأعضاء
-      </a>
-    </li>
-    <li onclick="viewUser(event,'borower')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false" href="/admin/borrowedUsers">المستعريين</a>
-    </li>
+      </li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/borrowedUsers">
+      <li onclick="viewUser(event,'borower')" class="main__header--nav-tablink">
+        المستعريين
+      </li>
+    </a>
   </ul>
 </section>
 <section class="main__content">
-  <div id="user" class="main__conten--user"{{#if borrowed_user}} style="display: none" {{/if}}>
+  <div id="user" class="main__conten--user" {{#if borrowedUser}} style="display: none" {{/if}}>
     <div class="main__conten--user-search">
       <input type="text" placeholder="بحث" name="search">
       <button type="submit">
@@ -31,7 +33,7 @@
       </tr>
     </table>
   </div>
-  <div id="borower" class="main__conten--user"{{#if view_user}} style="display: none" {{/if}} >
+  <div id="borower" class="main__conten--user" {{#if viewUser}} style="display: none" {{/if}}>
     <div class="main__conten--user-search">
       <input type="text" placeholder="بحث" name="search">
       <button type="submit">
