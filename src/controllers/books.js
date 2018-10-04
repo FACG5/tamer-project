@@ -1,4 +1,4 @@
-exports.get = (request, response) => {
+exports.getLibraryBooks = (request, response) => {
   response.render('view_books',
     {
       viewBooks: 'active',
