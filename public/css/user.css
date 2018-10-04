@@ -6,13 +6,14 @@
   width: 80%;
 }
 
-.main__header--nav > li {
+.main__header--nav a {
   float: right;
   cursor: pointer;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   margin-right: 1px;
   color: #fff;
+  text-decoration: none;
   padding: 0.5rem 2rem;
   background-color: #364150;
 }

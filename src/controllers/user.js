@@ -1,7 +1,7 @@
-exports.get = (request, response) => {
+exports.getViewUser = (request, response) => {
   response.render('view_user',
     {
-      view_user: 'active',
+      viewUser: 'active',
       user: 'active',
       layout: 'admin',
       title: 'اﻷعضاء',
@@ -11,11 +11,10 @@ exports.get = (request, response) => {
 };
 
 
-
-exports.get = (request, response) => {
+exports.getBorrowedUser = (request, response) => {
   response.render('view_user',
     {
-      borrowed_user: 'active',
+      borrowedUser: 'active',
       user: 'active',
       layout: 'admin',
       title: 'اﻷعضاء',
