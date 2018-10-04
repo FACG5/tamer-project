@@ -29,31 +29,3 @@ test('test for home page route ', (t) => {
       t.end();
     });
 });
-
-test('test for user page route ', (t) => {
-  supertest(app)
-    .get('/admin/users')
-    .expect(200)
-    .expect('Content-Type', /html/)
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'اﻷعضاء\'');
-      t.end();
-    });
-});
-
-test('test for user page route ', (t) => {
-  supertest(app)
-    .get('/admin/borrowedUsers')
-    .expect(200)
-    .expect('Content-Type', /html/)
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'اﻷعضاء\'');
-      t.end();
-    });
-});
