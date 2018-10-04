@@ -6,8 +6,9 @@
   width: 80%;
 }
 
-.main__header--nav > li {
+.main__header--nav a {
   float: right;
+  text-decoration: none;
   cursor: pointer;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -21,18 +22,6 @@
 }
 .main__header--nav > li:hover {
   background-color: #0878b0;
-}
-
-.main__conten--book:nth-child(2) {
-  display: none;
-}
-
-.main__conten--book:nth-child(3) {
-  display: none;
-}
-
-.main__conten--book:nth-child(4) {
-  display: none;
 }
 
 .main__conten--book-search > input {

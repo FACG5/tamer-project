@@ -9,17 +9,10 @@ const router = express.Router();
 router.get('/admin/login', login.get);
 router.get('/admin/', adminHomePage.get);
 router.get('/admin/users', user.getViewUser);
-router.get('/admin/borrowedUsers', user.getBorrowedUser);
+router.get('/admin/users/borrower', user.getBorrowedUser);
 router.get('/admin/books/library', books.getLibraryBooks);
 router.get('/admin/books/store', books.getStoreBooks);
-router.get('/admin/books/borrowedBooks', books.getBorrowedBooks);
-router.get('/admin/books/addBook', books.getAddBookTab);
+router.get('/admin/books/borrowed', books.getBorrowedBooks);
+router.get('/admin/books/add', books.getAddBookTab);
 
 module.exports = router;
-
-/* 
-/admin/books/library
-/admin/books/store
-/admin/books/borrowedBooks
-/admin/books/addBook
-*/

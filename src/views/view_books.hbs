@@ -6,16 +6,21 @@
     <a data-toggle="tab" aria-expanded="false" href="/admin/books/store">
       <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">المخزن</li>
     </a>
-    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowedBooks">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowed">
       <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">الكتب المستعارة</li>
       </a>
-      <a data-toggle="tab" aria-expanded="false" href="/admin/books/addBook">
+      <a data-toggle="tab" aria-expanded="false" href="/admin/books/add">
         <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
       </a>
   </ul>
 </section>
 <section class="main__content">
-  <div class="main__conten--book" id="library">
+  <div class="main__conten--book" id="library" {{#if addBookTab }} style="display: none" 
+  {{/if}}
+  {{#if storeBooks}} style="display: none" 
+  {{/if}}
+  {{#if borrowedBooks}} style="display: none"
+  {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
       <button type="submit">
@@ -57,11 +62,16 @@
       </tr>
     </table>
   </div>
-  <div class="main__conten--book" id="store">
+  <div class="main__conten--book" id="store" {{#if addBookTab }} style="display: none" 
+  {{/if}}
+  {{#if libraryBooks}} style="display: none" 
+  {{/if}}
+  {{#if borrowedBooks}} style="display: none"
+  {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
       <button type="submit">
-        <img src="img/search.png">
+        <img src="/img/search.png">
       </button>
     </div>
     <table id="table-view-books" class="main__content--table">
@@ -88,11 +98,16 @@
       </tr>
     </table>
   </div>
-  <div class="main__conten--book" id="borrow">
+  <div class="main__conten--book" id="borrow" {{#if addBookTab }} style="display: none" 
+  {{/if}}
+  {{#if storeBooks}} style="display: none" 
+  {{/if}}
+  {{#if libraryBooks}} style="display: none"
+  {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
       <button type="submit">
-        <img src="img/search.png">
+        <img src="/img/search.png">
       </button>
     </div>
     <table id="table-borrow-book" class="main__content--table">
@@ -126,7 +141,12 @@
       </tr>
     </table>
   </div>
-  <div class="main__conten--book" id="add">
+  <div class="main__conten--book" id="add" {{#if libraryBooks }} style="display: none" 
+  {{/if}}
+  {{#if storeBooks}} style="display: none" 
+  {{/if}}
+  {{#if borrowedBooks}} style="display: none"
+  {{/if}}>
     <div class="form-container">
       <input id='step2' type='checkbox'>
       <input id='step3' type='checkbox'>
