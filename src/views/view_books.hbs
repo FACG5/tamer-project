@@ -1,17 +1,17 @@
 <section class="main__header">
   <ul class="main__header--nav">
-    <li onclick="viewUser(event,'library')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false">المكتبة</a>
-    </li>
-    <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false">المخزن</a>
-    </li>
-    <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false">الكتب المستعارة</a>
-    </li>
-    <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">
-      <a data-toggle="tab" aria-expanded="false">إضافة كتاب</a>
-    </li>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/library">
+       <li onclick="viewUser(event,'library')" class="main__header--nav-tablink">المكتبة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/store">
+      <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">المخزن</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowedBooks">
+      <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">الكتب المستعارة</li>
+      </a>
+      <a data-toggle="tab" aria-expanded="false" href="/admin/books/addBook">
+        <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
+      </a>
   </ul>
 </section>
 <section class="main__content">
