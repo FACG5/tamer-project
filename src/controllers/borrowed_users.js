@@ -1,7 +1,7 @@
 exports.get = (request, response) => {
   response.render('view_user',
     {
-      borrowed_user: 'active',
+      borrowedUser: 'active',
       user: 'active',
       layout: 'admin',
       title: 'اﻷعضاء',
