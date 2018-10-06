@@ -1,0 +1,62 @@
+<section class="main__header">
+  <ul class="main__header--nav">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/users">
+      <li onclick="viewUser(event,'user')" class="main__header--nav-tablink">
+        الأعضاء
+      </li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/users/borrower">
+      <li onclick="viewUser(event,'borower')" class="main__header--nav-tablink">
+      المستعيرين
+      </li>
+    </a>
+  </ul>
+</section>
+<section class="main__content">
+  <div id="user" class="main__conten--user" {{#if borrowedUser}} style="display: none" {{/if}}>
+    <div class="main__conten--user-search">
+      <input type="text" placeholder="بحث" name="search">
+      <button type="submit">
+        <img src="/img/search.png">
+      </button>
+    </div>
+    <table class="main__content--table">
+      <tr>
+        <th>اسم العضو </th>
+        <th>رقم الجوال</th>
+        <th>العنوان</th>
+      </tr>
+      <tr>
+        <td> عنوان عنوان عنوان</td>
+        <td>0597346023</td>
+        <td>لبنى عبد الجواد</td>
+      </tr>
+    </table>
+  </div>
+  <div id="borower" class="main__conten--user" {{#if viewUser}} style="display: none" {{/if}}>
+    <div class="main__conten--user-search">
+      <input type="text" placeholder="بحث" name="search">
+      <button type="submit">
+        <img src="/img/search.png">
+      </button>
+    </div>
+    <table class="main__content--table">
+      <tr>
+        <th>اسم المستعير </th>
+        <th>رقم الجوال</th>
+        <th>العنوان</th>
+        <th>اسم الكتاب</th>
+        <th>تاريخ البداية</th>
+        <th>تاريخ النهاية</th>
+      </tr>
+      <tr>
+        <td>لبنى عبد الجواد</td>
+        <td>0597346023</td>
+        <td> عنوان عنوان عنوان</td>
+        <td>ليلى الحمقاء</td>
+        <td>20/9/2018</td>
+        <td>1/10/2018</td>
+      </tr>
+    </table>
+  </div>
+</section>
