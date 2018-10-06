@@ -3,8 +3,11 @@ const user = require('./user.js');
 const login = require('./login');
 const books = require('./books');
 const adminHomePage = require('./admin_homePage.js');
+const websiteHomePage = require('./website_homepage');
 
 const router = express.Router();
+
+router.get('/', websiteHomePage.get);
 
 router.get('/admin/login', login.get);
 router.get('/admin/', adminHomePage.get);
