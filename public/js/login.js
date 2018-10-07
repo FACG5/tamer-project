@@ -2,7 +2,7 @@ const username = document.getElementById('username');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
 
-loginButton.addEventListener('submit', (e) => {
+loginButton.addEventListener('click', (e) => {
   e.preventDefault();
   const usernameValue = username.value;
   const passwordValue = password.value;
