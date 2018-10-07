@@ -28,9 +28,9 @@ test('Test for the setBook function', (t) => {
       setBook(data)
         .then((response) => {
           t.equal(typeof response, 'object', 'setBook returns data successfully ');
+          t.end();
         })
         .catch(error => t.error(error));
-      t.end();
     });
   });
 });
@@ -39,13 +39,13 @@ test('Test for the setCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
-      const data = { nameCategoryVal: 'تاريخ', serialNumberVal: '507' };
+      const data = { nameCategoryVal: 'جغرافتتتjhgjhتيا', serialNumberVal: '511' };
       setCategory(data)
-        .then((response) => {
-          t.equal(typeof response, 'object', 'setCategory returns data successfully ');
+        .then((results) => {
+          t.equal(typeof results, 'object', 'setCategory returns data successfully ');
+          t.end();
         })
         .catch(error => t.error(error));
-      t.end();
     });
   });
 });
