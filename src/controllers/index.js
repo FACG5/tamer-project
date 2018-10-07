@@ -5,6 +5,7 @@ const books = require('./books');
 const borrow = require('./borrow');
 const adminHomePage = require('./admin_homePage.js');
 const websiteHomePage = require('./website_homepage');
+const error = require('./error');
 
 const router = express.Router();
 
@@ -19,5 +20,8 @@ router.get('/admin/books/store', books.getStoreBooks);
 router.get('/admin/books/borrowed', books.getBorrowedBooks);
 router.get('/admin/books/add', books.getAddBookTab);
 router.get('/admin/borrow', borrow.get);
+
+router.use(error.client);
+router.use(error.server);
 
 module.exports = router;

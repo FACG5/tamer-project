@@ -45,6 +45,21 @@ test('test for borrowing section route ', (t) => {
     });
 });
 
+// error pages tests
+test('error page of status code of 404 ', (t) => {
+  supertest(app)
+    .get('/shsfgsgfh')
+    .expect(404)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) t.error(err);
+      t.equal(res.res.statusMessage, 'Not Found', 'statusMessage should return Not Found');
+      t.equal(res.clientError, true, 'should use clientError function and return true');
+      t.equal(res.text.includes('<title>Error | 404</title>'), true, 'the page should have title \'Error | 404\'');
+      t.end();
+    });
+});
+
 test('test for website landing page route ', (t) => {
   supertest(app)
     .get('/')
