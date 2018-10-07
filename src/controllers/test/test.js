@@ -16,25 +16,58 @@ test('Home route with get method returns a status code of 200 ', (t) => {
     });
 });
 
-test('test for home page route ', (t) => {
+test('test for home page route - without cookie and auth', (t) => {
   supertest(app)
     .get('/admin/')
-    .expect(200)
-    .expect('Content-Type', /html/)
+    .expect(302)
+    .expect('Content-Type', /text/)
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for home page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
       t.end();
     });
 });
 
-test('test for borrowing section route ', (t) => {
+test('test for borrowing section route - without cookie and auth', (t) => {
+  supertest(app)
+    .get('/admin/borrow')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for borrowing section route - with cookie and auth ', (t) => {
   supertest(app)
     .get('/admin/borrow')
     .expect(200)
     .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
         t.error(err);
@@ -75,3 +108,34 @@ test('test for website landing page route ', (t) => {
       t.end();
     });
 });
+
+// // tests for login page
+test('test login post with correct password  ', (t) => {
+  supertest(app)
+    .post('/admin/login')
+    .expect(200)
+    .send({ passwordValue: 'password', usernameValue: 'admin' })
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('"message":"Welcome"'), true, 'should return a welcome massage');
+      t.end();
+    });
+});
+
+test('test login post wrong password to login ', (t) => {
+  supertest(app)
+    .post('/admin/login')
+    .expect(302)
+    .send({ passwordValue: 'passw55ord', usernameValue: 'admin' })
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('"Wrong Password !"'), true, 'should return a wrong password massage');
+      t.end();
+    });
+});
+
+test.onFinish(() => { process.exit(0); });
