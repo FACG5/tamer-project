@@ -10,7 +10,10 @@ test('Test for the getCategory function', (t) => {
     return runDbBuild('fake_data.sql', () => {
       getCategory()
         .then((response) => {
+          t.equal(response.length === 3, true, 'getCategory returns  successfully ');
           t.equal(response.length > 0, true, 'getCategory returns data successfully ');
+          t.equal(response[0].name === 'أطفال', true, 'getCategory returns name أطفال ');
+          t.equal(response[0].categorySerial === '501', true, 'getCategory returns categorySerial 501 ');
           t.end();
         })
         .catch(error => t.error(error));
@@ -27,7 +30,9 @@ test('Test for the setBook function', (t) => {
       };
       setBook(data)
         .then((response) => {
-          t.equal( response.length > 0, true, 'setBook returns data successfully ');
+          t.equal(response[0].id === 7, true, 'setBook returns data successfully ');
+          t.equal(response[0].categorySerial === '503', true, 'setBook returns data successfully ');
+          t.equal(response.length > 0, true, 'setBook returns data successfully ');
           t.equal(typeof response, 'object', 'setBook returns data successfully ');
           t.end();
         })
@@ -41,12 +46,20 @@ test('Test for the setCategory function', (t) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
       const data = { nameCategoryVal: 'جغرافتتتjhgjhتيا', serialNumberVal: '511' };
-      setCategory(data)
-        .then((results) => {
-          t.equal(typeof results, 'object', 'setCategory returns data successfully ');
-          t.end();
-        })
-        .catch(error => t.error(error));
+      getCategory()
+        .then((oldResponse) => {
+          const oldCategoriesNumber = oldResponse.length;
+          setCategory(data)
+            .then((results) => {
+              getCategory()
+                .then((newResponse) => {
+                  const newCategoriesNumber = newResponse.length;
+                  t.equal(newCategoriesNumber - oldCategoriesNumber, 1, 'setCategory returns data successfully ');
+                  t.end();
+                });
+            })
+            .catch(error => t.error(error));
+        });
     });
   });
 });

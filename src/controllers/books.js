@@ -56,7 +56,7 @@ exports.getAddBookTab = (request, response, next) => {
     });
 };
 
-exports.addCategory = (req, response) => {
+exports.addCategory = (req, response, next) => {
   const categoryData = req.body;
   setCategory(categoryData)
     .then((results) => {
@@ -69,8 +69,7 @@ exports.addCategory = (req, response) => {
         const result = { errorMessage: 'This category is Already Exists' };
         return response.send(JSON.stringify(result));
       }
-      const result = { errorMessage };
-      return response.send(JSON.stringify(result));
+      next(err);
     });
 };
 
@@ -79,8 +78,8 @@ exports.addBook = (req, response, next) => {
   setBook(bookData)
     .then((results) => {
       const bookId = results[0].id;
-      const categorySerial = results[0].category_serial;
-      const result = { message: 'Book Added !', bookId, categorySerial };
+      const categorySerials = results[0].categorySerial;
+      const result = { message: 'Book Added !', bookId, categorySerials };
       response.send(JSON.stringify(result));
     })
     .catch((err) => {

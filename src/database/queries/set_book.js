@@ -10,10 +10,10 @@ const setBook = bookData => new Promise((resolve, reject) => {
   } = bookData;
   const sql = {
     text: `INSERT INTO book
-       (name_book, name_author, image_url, description, category_serial)
+       (name_book, name_author, image_url, description, category_serial )
        VALUES
        ($1, $2, $3, $4, $5)
-       RETURNING id,category_serial;`,
+       RETURNING id,category_serial AS "categorySerial";`,
     values: [nameBookVal, nameAuthorVal, imageBookVal, descriptionVal, categorySerial],
   };
   dbConnection.query(sql, (err, res) => {
