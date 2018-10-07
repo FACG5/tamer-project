@@ -23,7 +23,6 @@ const addBookForUser = () => {
   addBookUser.classList.add('main__content--addBookForUser-visible');
 };
 
-
 const addBook = () => {
   addBookUser.classList.remove('main__content--addBookForUser-visible');
 };
