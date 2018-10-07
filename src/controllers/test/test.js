@@ -1,6 +1,6 @@
 const test = require('tape');
 const supertest = require('supertest');
-const app = require('../src/app');
+const app = require('../../app');
 
 // Admin login
 test('Home route with get method returns a status code of 200 ', (t) => {
