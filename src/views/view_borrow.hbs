@@ -1,0 +1,77 @@
+<section class="main__content">
+  <div class="main__content--borrow-div">
+    <div class="main__conten--borrow-search">
+      <label>رقم الجوال :</label>
+      <input type="text" placeholder=" بحث" name="search">
+      <button type="submit" onclick="searchUser()">
+        <img src="/img/search.png">
+      </button>
+    </div>
+    <div class="main__content--result" id="search">
+      <label>العضو غير موجود معنا</label>
+      <button class="addbtn" type="submit" onclick="addUser()"> إضافة عضو</button>
+    </div>
+    <div class="main__content--addUser" id="addNewUser">
+      <h1>إضافة عضو جديد</h1>
+      <div>
+        <label>اسم العضو</label>
+        <input type="text" placeholder="اسم العضو" />
+      </div>
+      <div>
+        <label>رقم الجوال</label>
+        <input type="text" placeholder="رقم الجوال" />
+      </div>
+      <div>
+        <label>عنوان العضو</label>
+        <input type="text" placeholder="العنوان " />
+      </div>
+      <button class="main__content--addUser-btn addbtn" type="submit" onclick="viewUser()"> إضافة </button>
+    </div>
+    <div class="main__content--viewUser" id="viewUser">
+      <table class="main__content--table">
+        <tr>
+          <th>اسم العضو </th>
+          <th>رقم الجوال</th>
+          <th>العنوان</th>
+        </tr>
+        <tr>
+          <td> عنوان عنوان عنوان</td>
+          <td>0597346023</td>
+          <td>لبنى عبد الجواد</td>
+        </tr>
+      </table>
+      <div class="main__content--viewUser-borrowing">
+        <div>
+          <h3>الكتب المعارة
+            <button class="main__content--addUser-btn addbtn" type="submit" onclick="addBookForUser()"> إضافة كتاب
+            </button>
+          </h3>
+        </div>
+        <table class="main__content--table">
+          <tr>
+            <th>اسم الكتاب </th>
+            <th>الرقم التسلسلى</th>
+            <th>تاريخ الانتهاء</th>
+            <th> الحذف</th>
+          </tr>
+          <tr>
+            <td>لبنى عبد الجواد</td>
+            <td>500.1.23.3</td>
+            <td> 20/10/2018</td>
+            <td>
+              <button class="btnDelete">حذف</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="main__content--addBookForUser" id="addBookUser">
+        <h3>إضافة كتاب جديد</h3>
+        <label>الرقم التسلسلى</label>
+        <input type="text" placeholder="الرقم التسلسلى " />
+        <button class="main__content--addUser-btn addbtn" type="submit" onclick="addBook()"> إضافة </button>
+      </div>
+    </div>
+  </div>
+</section>
