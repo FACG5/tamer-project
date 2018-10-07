@@ -60,6 +60,7 @@ test('error page of status code of 404 ', (t) => {
     });
 });
 
+// test website homepage
 test('test for website landing page route ', (t) => {
   supertest(app)
     .get('/')
