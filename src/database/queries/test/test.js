@@ -45,7 +45,7 @@ test('Test for the setCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
-      const data = { nameCategoryVal: 'جغرافتتتjhgjhتيا', serialNumberVal: '511' };
+      const data = { nameCategoryVal: 'جغرافيا', serialNumberVal: '511' };
       getCategory()
         .then((oldResponse) => {
           const oldCategoriesNumber = oldResponse.length;
