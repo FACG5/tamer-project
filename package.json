@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node test/test.js | tap-spec",
+    "test-routes": "node src/controllers/test/test.js | tap-spec",
+    "test-db": "node src/database/queries/test/test.js | tap-spec",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
