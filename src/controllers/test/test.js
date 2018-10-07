@@ -59,3 +59,19 @@ test('error page of status code of 404 ', (t) => {
       t.end();
     });
 });
+
+// test website homepage
+test('test for website landing page route ', (t) => {
+  supertest(app)
+    .get('/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.end();
+    });
+});

@@ -4,9 +4,12 @@ const login = require('./login');
 const books = require('./books');
 const borrow = require('./borrow');
 const adminHomePage = require('./admin_homePage.js');
+const websiteHomePage = require('./website_homepage');
 const error = require('./error');
 
 const router = express.Router();
+
+router.get('/', websiteHomePage.get);
 
 router.get('/admin/login', login.get);
 router.get('/admin/', adminHomePage.get);
