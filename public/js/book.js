@@ -75,7 +75,7 @@ addBook.addEventListener('click', (e) => {
       descriptionVal,
       categorySerial,
     };
-    fetch('/admin/books/add', {
+    fetch('/admin/books/', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
@@ -103,7 +103,7 @@ addCategory.addEventListener('click', (e) => {
       nameCategoryVal,
       serialNumberVal,
     };
-    fetch('/admin/books/add/category', {
+    fetch('/admin/books/category', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },

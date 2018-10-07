@@ -20,8 +20,8 @@ router.get('/admin/books/store', books.getStoreBooks);
 router.get('/admin/books/borrowed', books.getBorrowedBooks);
 router.get('/admin/borrow', borrow.get);
 router.get('/admin/books/add', books.getAddBookTab);
-router.post('/admin/books/add/category', books.addCategory);
-router.post('/admin/books/add', books.addBook);
+router.post('/admin/books/category', books.addCategory);
+router.post('/admin/books/', books.addBook);
 
 router.use(error.client);
 router.use(error.server);
