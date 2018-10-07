@@ -27,6 +27,7 @@ test('Test for the setBook function', (t) => {
       };
       setBook(data)
         .then((response) => {
+          t.equal( response.length > 0, true, 'setBook returns data successfully ');
           t.equal(typeof response, 'object', 'setBook returns data successfully ');
           t.end();
         })
