@@ -30,6 +30,21 @@ test('test for home page route ', (t) => {
     });
 });
 
+test('test for borrowing section route ', (t) => {
+  supertest(app)
+    .get('/admin/borrow')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(res.text.includes('<title>اﻹعارة</title>'), true, 'the page should have title \'اﻹعارة\'');
+      t.end();
+    });
+});
+
 test('test for website landing page route ', (t) => {
   supertest(app)
     .get('/')
