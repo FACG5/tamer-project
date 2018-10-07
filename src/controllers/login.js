@@ -11,26 +11,23 @@ exports.get = (request, response) => {
 exports.post = (request, response) => {
   const { usernameValue } = request.body;
   const { passwordValue } = request.body;
+
   getAdmin(usernameValue, (error, result) => {
-    console.log(result);
-    if (error) return response.send(JSON.stringify({ err: 'UserName Not Found !' }));
+    if (error) return response.status(500).send(JSON.stringify({ err: 'UserName Not Found !' }));
     if (result[0]) {
       return bcrypt.compare(passwordValue, result[0].password, (err, res) => {
         if (err) return response.send(JSON.stringify({ err: 'Error!' }));
-        if (res === false) return response.send(JSON.stringify({ err: 'Wrong Password !' }));
+        if (res === false) return response.status(302).send(JSON.stringify({ err: 'Wrong Password !' }));
         const data = {
           admin: 'admin',
         };
         return sign(data, process.env.SECRET, (signError, cookie) => {
           if (signError) return response.send(JSON.stringify({ err: 'Error!' }));
-          response.setHeader(
-            'set-cookie',
-            `data=${cookie};httpOnly;Max-Age=999999`,
-          );
+          response.cookie('data', cookie, { maxAge: 900000, httpOnly: true });
           return response.send(JSON.stringify({ err: null, message: 'Welcome' }));
         });
       });
     }
-    return response.send(JSON.stringify({ err: 'Wrong username/password' }));
+    return response.status(302).send(JSON.stringify({ err: 'Wrong username/password' }));
   });
 };

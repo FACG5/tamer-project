@@ -1,4 +1,4 @@
 exports.get = (request, response) => {
-  response.setHeader('Set-Cookie', 'data=0;httpOnly;Max-Age=0');
+  response.cookie('data', '0', { maxAge: 0, httpOnly: true });
   response.redirect('/admin/login');
 };
