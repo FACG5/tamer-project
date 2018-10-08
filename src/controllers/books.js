@@ -1,18 +1,25 @@
 const { getCategory } = require('../database/queries/get_category');
 const { setCategory } = require('../database/queries/set_category');
 const { setBook } = require('../database/queries/set_book');
-const { setLibraryBook } = require('../database/queries/set_libraryBook');
+const { getLibraryBooks } = require('../database/queries/view_book');
+const { status } = require('../views/helpers/index');
 
-exports.getLibraryBooks = (request, response) => {
-  response.render('view_books',
-    {
-      libraryBooks: 'active',
-      book: 'active',
-      layout: 'admin',
-      title: 'الكتب',
-      style: 'book',
-      js: ['book'],
-    });
+exports.getLibraryBooks = (request, response, next) => {
+  getLibraryBooks()
+    .then((resLibraryBooks) => {
+      response.render('view_books',
+        {
+          libraryBooks: 'active',
+          book: 'active',
+          layout: 'admin',
+          title: 'عرض المكتبة',
+          style: 'book',
+          js: ['book'],
+          resLibraryBooks,
+          status,
+        });
+    })
+    .catch(err => next(err));
 };
 
 exports.getStoreBooks = (request, response) => {
