@@ -2,7 +2,7 @@ const { getLibraryBooks } = require('../database/queries/book');
 const { status } = require('../views/helpers/index');
 
 
-exports.getLibraryBooks = (request, response) => {
+exports.getLibraryBooks = (request, response, next) => {
   getLibraryBooks()
     .then((resLibraryBooks) => {
       response.render('view_books',
@@ -18,7 +18,7 @@ exports.getLibraryBooks = (request, response) => {
           status,
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => next(err));
 };
 
 exports.getStoreBooks = (request, response) => {
