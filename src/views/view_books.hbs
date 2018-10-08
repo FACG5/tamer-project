@@ -15,9 +15,9 @@
   </ul>
 </section>
 <section class="main__content">
-  <div class="main__conten--book" id="library" {{#if addBookTab }} style="display: none" 
+  <div class="main__conten--book" id="library" {{#if addBookTab }} style="display: none"
   {{/if}}
-  {{#if storeBooks}} style="display: none" 
+  {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
   {{/if}}>
@@ -27,7 +27,7 @@
         <img src="/img/search.png">
       </button>
     </div>
-    <table class="main__content--table">
+    <table class="main__content--table" id="table-library">
       <tr>
         <th>اسم الكاتب</th>
         <th>اسم الكاتب</th>
@@ -36,35 +36,29 @@
         <th>الوصف</th>
         <th>حذف</th>
       </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>
-          <button id="button-view" class="button button--view">تفاصيل</button>
-        </td>
-        <td>
-          <button id="button-delete" class="button button--delete">تذكير</button>
-        </td>
-      </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>
-          <button id="button-view" class="button button--view">تفاصيل</button>
-        </td>
-        <td>
-          <button id="button-delete" class="button button--delete">تذكير</button>
-        </td>
-      </tr>
+        {{#each resLibraryBooks}}
+          <tr id="{{idLibrary}}">
+            <td id="td-name-book">{{nameBook}}</td>
+            <td id="td-name-author">{{nameAuthor}}</td>
+            <td>{{category}}.{{bookShelf}}.{{section}}.{{copyId}}</td>
+            <td>{{status caseBook}}</td>
+            <td>
+              <button id="button-view" class="button button--view">
+                 <a href="/admin/books/library/book/:{{idLibrary}}">تفاصيل</a>
+              </button>
+            </td>
+            <td>
+              <button id="button-delete" class="button button--delete">
+                <a href="/admin/books/delete/:{{idLibrary}}">حذف</a>
+              </button>
+            </td>
+          </tr>
+        {{/each}}
     </table>
   </div>
-  <div class="main__conten--book" id="store" {{#if addBookTab }} style="display: none" 
+  <div class="main__conten--book" id="store" {{#if addBookTab }} style="display: none"
   {{/if}}
-  {{#if libraryBooks}} style="display: none" 
+  {{#if libraryBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
   {{/if}}>
@@ -98,9 +92,9 @@
       </tr>
     </table>
   </div>
-  <div class="main__conten--book" id="borrow" {{#if addBookTab }} style="display: none" 
+  <div class="main__conten--book" id="borrow" {{#if addBookTab }} style="display: none"
   {{/if}}
-  {{#if storeBooks}} style="display: none" 
+  {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if libraryBooks}} style="display: none"
   {{/if}}>
@@ -141,9 +135,9 @@
       </tr>
     </table>
   </div>
-  <div class="main__conten--book" id="add" {{#if libraryBooks }} style="display: none" 
+  <div class="main__conten--book" id="add" {{#if libraryBooks }} style="display: none"
   {{/if}}
-  {{#if storeBooks}} style="display: none" 
+  {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
   {{/if}}>
