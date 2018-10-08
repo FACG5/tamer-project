@@ -14,6 +14,9 @@ body {
   position: fixed;
   width: 100%;
 }
+.errorValid {
+  color: red;
+}
 
 .header--theme {
   background-color: #2b3643;

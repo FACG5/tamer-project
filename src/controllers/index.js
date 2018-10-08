@@ -27,6 +27,8 @@ router.get('/admin/books/library', isLoggedIn, books.getLibraryBooks);
 router.get('/admin/books/store', isLoggedIn, books.getStoreBooks);
 router.get('/admin/books/borrowed', isLoggedIn, books.getBorrowedBooks);
 router.get('/admin/books/add', isLoggedIn, books.getAddBookTab);
+router.post('/admin/books/category', books.addCategory);
+router.post('/admin/books/', books.addBook);
 router.get('/admin/borrow', isLoggedIn, borrow.get);
 
 router.use(error.client);
