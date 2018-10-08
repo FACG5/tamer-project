@@ -3,7 +3,7 @@ const runDbBuild = require('../../db_build');
 const { setBook } = require('../set_book');
 const { setCategory } = require('../set_category');
 const { getCategory } = require('../get_category');
-const { getLibraryBooks, getStoreBooks } = require('../view_book');
+const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
 
@@ -133,6 +133,24 @@ test('Test getStoreBooks', (t) => {
           t.equal(response[1].copyNumber, 20, 'StoreBooks returns 20 ');
           t.equal(response[2].copyNumber, 30, 'StoreBooks returns 30 ');
           t.equal(response[3].copyNumber, 40, 'StoreBooks returns 40 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getBorrowBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrowBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'successfully');
+          t.equal(response[0].nameUser, 'علي', 'StoreBooks returns \'علي\' ');
+          t.equal(response[1].nameBook, 'قلبي غابة', 'StoreBooks returns \'قلبي غابة\' ');
+          t.equal(response[2].startDate, '2018-09-20', 'StoreBooks returns 2018-09-20');
+          t.equal(response[3].endDate, '2018-09-25', 'StoreBooks returns 2018-09-25 ');
           t.end();
         })
         .catch(error => t.error(error));
