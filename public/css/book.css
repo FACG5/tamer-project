@@ -17,9 +17,11 @@
   padding: 0.5rem 2rem;
   background-color: #364150;
 }
+
 .btn-group {
   padding-top: 10rem;
 }
+
 .main__header--nav > li:hover {
   background-color: #0878b0;
 }
@@ -143,6 +145,7 @@
 .button--delete {
   background-color: red;
 }
+
 .link--view {
   background-color: #00c0ef;
 }
