@@ -95,40 +95,30 @@
   {{#if libraryBooks}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
-      <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
+      <input type="search" id="input-search-borrow" class="input--seach" placeholder="بحث">
       <button type="submit">
         <img src="/img/search.png">
       </button>
     </div>
-    <table id="table-borrow-book" class="main__content--table">
+    <table id="table-borrow" class="main__content--table">
       <tr>
         <th>اسم الكاتب</th>
         <th>اسم المستعير</th>
         <th>تاريخ البداية</th>
         <th>تاريخ النهاية</th>
-        <th>عدد الاستعارات</th>
         <th>تذكير</th>
       </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>
-          <button id="button-remind" class="button button--remind">تذكير</button>
-        </td>
-      </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>
-          <button id="button-remind" class="button button--remind">تذكير</button>
-        </td>
-      </tr>
+        {{#each resBorrowBooks}}
+          <tr id="{{idBorrow}}">
+            <td>{{nameBook}}</td>
+            <td>{{nameUser}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+            <td>
+              <button id="button-remind" class="button button--remind">تذكير</button>
+            </td>
+        </tr>
+        {{/each}}
     </table>
   </div>
   <div class="main__conten--book" id="add" {{#if libraryBooks }} style="display: none"
