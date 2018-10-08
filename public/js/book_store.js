@@ -28,6 +28,6 @@ addBookStore.addEventListener('click', (e) => {
           JSON.stringify(response);
         });
       })
-      .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
+      .catch(error => swal('Error while adding book in store !', error.errorMessage, 'error'));
   }
 });

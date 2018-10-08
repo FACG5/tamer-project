@@ -324,7 +324,7 @@ test('test for add bookStore page route  - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(JSON.parse(res.text).message, 'storeBook Added !', 'Message should return storeBook Added !');
       t.end();
     });
 });
