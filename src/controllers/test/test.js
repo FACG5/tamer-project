@@ -75,3 +75,21 @@ test('test for website landing page route ', (t) => {
       t.end();
     });
 });
+
+test('test for library view page route ', (t) => {
+  supertest(app)
+    .get('/admin/books/library')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>عرض المكتبة</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.end();
+    });
+});
+
+test.onFinish(() => {
+  process.exit(0);
+});
