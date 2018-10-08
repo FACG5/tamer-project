@@ -245,18 +245,23 @@ test('test for add categery page route - with cookie and auth ', (t) => {
 });
 
 // library view page
-test('test for library view page route ', (t) => {
+
+test('test for add library view page route - with cookie and auth ', (t) => {
   supertest(app)
     .get('/admin/books/library')
     .expect(200)
     .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(typeof res.body, 'object', 'add categery returns data successfully ');
       t.equal(res.text.includes('<title>عرض المكتبة</title>'), true, 'the page should have title \'الرئيسية\'');
       t.end();
     });
 });
+
 
 test.onFinish(() => { process.exit(0); });
