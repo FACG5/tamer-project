@@ -1,6 +1,7 @@
 const { getCategory } = require('../database/queries/get_category');
 const { setCategory } = require('../database/queries/set_category');
 const { setBook } = require('../database/queries/set_book');
+const { setLibraryBook } = require('../database/queries/set_libraryBook');
 
 exports.getLibraryBooks = (request, response) => {
   response.render('view_books',
@@ -10,7 +11,7 @@ exports.getLibraryBooks = (request, response) => {
       layout: 'admin',
       title: 'الكتب',
       style: 'book',
-      js: 'book',
+      js: ['book'],
     });
 };
 
@@ -22,7 +23,7 @@ exports.getStoreBooks = (request, response) => {
       layout: 'admin',
       title: 'الكتب',
       style: 'book',
-      js: 'book',
+      js: ['book'],
     });
 };
 
@@ -34,7 +35,7 @@ exports.getBorrowedBooks = (request, response) => {
       layout: 'admin',
       title: 'الكتب',
       style: 'book',
-      js: 'book',
+      js: ['book'],
     });
 };
 
@@ -49,7 +50,7 @@ exports.getAddBookTab = (request, response, next) => {
           layout: 'admin',
           title: 'الكتب',
           style: 'book',
-          js: 'book',
+          js: ['book', 'book_library'],
         });
     }).catch((err) => {
       next(err);
@@ -80,6 +81,17 @@ exports.addBook = (req, response, next) => {
       const bookId = results[0].id;
       const categorySerials = results[0].categorySerial;
       const result = { message: 'Book Added !', bookId, categorySerials };
+      response.send(JSON.stringify(result));
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+exports.addLibraryBook = (req, response, next) => {
+  const libraryBookData = req.body;
+  setLibraryBook(libraryBookData)
+    .then((results) => {
+      const result = { message: 'LibraryBook Added !' };
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
