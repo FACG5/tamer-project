@@ -92,8 +92,6 @@ exports.addBook = (req, response, next) => {
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
-      console.log(err);
-      
       next(err);
     });
 };
