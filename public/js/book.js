@@ -18,6 +18,8 @@ const serialNumber = document.getElementById('serialNumber');
 const addCategory = document.getElementById('addCategory');
 const serialNumberCategoryError = document.getElementById('serialNumberCategoryError');
 const nameCategoryError = document.getElementById('nameCategoryError');
+const searchStore = document.getElementById('input-search-store');
+const store = document.getElementById('table-store');
 
 const viewUser = (event, idUser) => {
   for (let i = 0; i < mainBook.length; i += 1) {
@@ -126,9 +128,6 @@ addCategory.addEventListener('click', (e) => {
       .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
   }
 });
-
-const searchStore = document.getElementById('input-search-store');
-const store = document.getElementById('table-store');
 
 search(searchLibrary, library);
 search(searchStore, store);
