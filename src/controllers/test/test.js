@@ -139,23 +139,59 @@ test('test login post wrong password to login ', (t) => {
 });
 
 // test book page
-test('test for book page route ', (t) => {
+
+test('test for book page route - without cookie and auth', (t) => {
   supertest(app)
     .get('/admin/books/add/')
-    .expect(200)
-    .expect('Content-Type', /html/)
+    .expect(302)
+    .expect('Content-Type', /text/)
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for book page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/books/add/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(res.text.includes('<title>الكتب</title>'), true, 'the page should have title \'الكتب\'');
       t.end();
     });
 });
 
-test('test for add book page route ', (t) => {
+test('test for add book page route - without cookie and auth', (t) => {
   supertest(app)
     .post('/admin/books/')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add book page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/books/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .send({
       nameBookVal: 'يوسف يامريم',
       nameAuthorVal: 'يامى أحمد',
@@ -163,30 +199,47 @@ test('test for add book page route ', (t) => {
       descriptionVal: 'يوسف يامريم',
       categorySerial: '503',
     })
-    .expect(200)
-    .expect('Content-Type', /html/)
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(typeof res.body, 'object', 'setBook returns data successfully ');
       t.end();
     });
 });
 
-test('test for add categery page route ', (t) => {
+
+test('test for add categery page route - without cookie and auth', (t) => {
   supertest(app)
     .post('/admin/books/category')
-    .send({
-      nameCategoryVal: 'تاريخ',
-      serialNumberVal: '507',
-    })
-    .expect(200)
-    .expect('Content-Type', /html/)
+    .expect(302)
+    .expect('Content-Type', /text/)
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add categery page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/books/category')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      nameCategoryVal: 'تاريخ',
+      serialNumberVal: '507',
+    })
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(typeof res.body, 'object', 'add categery returns data successfully ');
       t.end();
     });
