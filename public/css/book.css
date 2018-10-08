@@ -120,7 +120,7 @@
   color: white;
 }
 
-.link {
+.button, .link {
   color: white;
   border: 0px;
   padding-left: 0.5rem;
@@ -131,6 +131,7 @@
   text-decoration: none;
   display: inline-block;
 }
+
 .button--add {
   padding: 0.3rem;
   float: left;
@@ -139,7 +140,6 @@
 .link--view {
   background-color: #00c0ef;
 }
-
 
 .link--delete {
   background-color: red;
