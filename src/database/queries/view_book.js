@@ -8,6 +8,15 @@ const getLibraryBooks = () => new Promise((resolve, reject) => {
   });
 });
 
+const getStoreBooks = () => new Promise((resolve, reject) => {
+  const sql = 'SELECT store.id AS "idStore", book.name_book AS "nameBook", book.name_author AS "nameAuthor", book.category_serial AS "category", store.copy_number AS "copyNumber" FROM store JOIN book on store.book_id = book.id;';
+  dbConnection.query(sql, (error, res) => {
+    if (error) return reject(error);
+    return resolve(res.rows);
+  });
+});
+
 module.exports = {
   getLibraryBooks,
+  getStoreBooks,
 };
