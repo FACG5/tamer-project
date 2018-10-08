@@ -1,4 +1,4 @@
-const dbConnection = require('../../db_connection');
+const dbConnection = require('../db_connection');
 
 const getUsers = () => new Promise((resolve, reject) => {
   const sql = 'SELECT name AS "nameUser", address, mobile_number As "mobileNumber" FROM "user";';
