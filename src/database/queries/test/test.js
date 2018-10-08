@@ -3,7 +3,7 @@ const runDbBuild = require('../../db_build');
 const { setBook } = require('../set_book');
 const { setCategory } = require('../set_category');
 const { getCategory } = require('../get_category');
-const { getLibraryBooks } = require('../view_book');
+const { getLibraryBooks, getStoreBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
 
@@ -36,7 +36,6 @@ test('Test for the setBook function', (t) => {
           t.equal(response[0].id === 7, true, 'setBook returns data successfully ');
           t.equal(response[0].categorySerial === '503', true, 'setBook returns data successfully ');
           t.equal(response.length > 0, true, 'setBook returns data successfully ');
-          t.equal(typeof response, 'object', 'setBook returns data successfully ');
           t.end();
         })
         .catch(error => t.error(error));
@@ -114,7 +113,26 @@ test('Test for the setLibraryBook function', (t) => {
           t.equal(response[0].bookshelf === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response[0].bookId === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response.length > 0, true, 'setLibraryBook returns data successfully ');
-          t.equal(typeof response, 'object', 'setLibraryBook returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStoreBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getStoreBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'successfully');
+          t.equal(response[0].idStore, 1, 'StoreBooks returns 1 ');
+          t.equal(response[1].nameBook, 'مذكرات أطفال البحر', 'StoreBooks returns \'مذكرات أطفال البحر\' ');
+          t.equal(response[0].copyNumber, 10, 'StoreBooks returns 10 ');
+          t.equal(response[1].copyNumber, 20, 'StoreBooks returns 20 ');
+          t.equal(response[2].copyNumber, 30, 'StoreBooks returns 30 ');
+          t.equal(response[3].copyNumber, 40, 'StoreBooks returns 40 ');
           t.end();
         })
         .catch(error => t.error(error));

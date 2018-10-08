@@ -59,33 +59,34 @@
   {{#if borrowedBooks}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
-      <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
+      <input type="search" id="input-search-store" class="input--seach" placeholder="بحث">
       <button type="submit">
         <img src="/img/search.png">
       </button>
     </div>
-    <table id="table-view-books" class="main__content--table">
+    <table id="table-store" class="main__content--table">
       <tr>
         <th>اسم الكاتب</th>
         <th>اسم الكاتب</th>
-        <th>الوصف</th>
         <th>التصنيف</th>
         <th>عدد النسخ</th>
+        <th>الوصف</th>
+        <th>حذف</th>
       </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-      </tr>
-      <tr>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-        <td>lable</td>
-      </tr>
+        {{#each resStoreBooks}}
+          <tr id="{{idStore}}">
+            <td>{{nameBook}}</td>
+            <td>{{nameAuthor}}</td>
+            <td>{{category}}</td>
+            <td>{{copyNumber}}</td>
+            <td>
+              <a href="/admin/books/store/book/{{idStore}}" class="link link--view">تفاصيل</a>
+            </td>
+            <td>
+              <a href="/admin/books/delete/{{idStore}}" class="link link--delete">حذف</a>
+            </td>
+          </tr>
+        {{/each}}
     </table>
   </div>
   <div class="main__conten--book" id="borrow" {{#if addBookTab }} style="display: none"

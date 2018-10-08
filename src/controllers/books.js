@@ -1,7 +1,7 @@
 const { getCategory } = require('../database/queries/get_category');
 const { setCategory } = require('../database/queries/set_category');
 const { setBook } = require('../database/queries/set_book');
-const { getLibraryBooks } = require('../database/queries/view_book');
+const { getLibraryBooks, getStoreBooks } = require('../database/queries/view_book');
 const { status } = require('../views/helpers/index');
 
 exports.getLibraryBooks = (request, response, next) => {
@@ -22,16 +22,22 @@ exports.getLibraryBooks = (request, response, next) => {
     .catch(err => next(err));
 };
 
-exports.getStoreBooks = (request, response) => {
-  response.render('view_books',
-    {
-      storeBooks: 'active',
-      book: 'active',
-      layout: 'admin',
-      title: 'الكتب',
-      style: 'book',
-      js: ['book'],
-    });
+exports.getStoreBooks = (request, response, next) => {
+  getStoreBooks()
+    .then((resStoreBooks) => {
+      response.render('view_books',
+        {
+          storeBooks: 'active',
+          book: 'active',
+          layout: 'admin',
+          title: 'عرض المخزن',
+          style: 'book',
+          js: ['book'],
+          admin: 'admin',
+          resStoreBooks,
+        });
+    })
+    .catch(err => next(err));
 };
 
 exports.getBorrowedBooks = (request, response) => {
