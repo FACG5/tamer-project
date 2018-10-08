@@ -127,4 +127,8 @@ addCategory.addEventListener('click', (e) => {
   }
 });
 
+const searchStore = document.getElementById('input-search-store');
+const store = document.getElementById('table-store');
+
 search(searchLibrary, library);
+search(searchStore, store);
