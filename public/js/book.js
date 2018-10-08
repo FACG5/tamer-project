@@ -4,9 +4,6 @@ const next = document.getElementById('next');
 const AddCategory = document.getElementById('button-add-category');
 const searchLibrary = document.getElementById('input-search-library');
 const library = document.getElementById('table-library');
-
-search(searchLibrary, library);
-
 const nameBook = document.getElementById('nameBook');
 const imageBook = document.getElementById('image');
 const description = document.getElementById('description');
@@ -129,3 +126,5 @@ addCategory.addEventListener('click', (e) => {
       .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
   }
 });
+
+search(searchLibrary, library);
