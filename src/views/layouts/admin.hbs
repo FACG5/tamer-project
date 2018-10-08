@@ -11,6 +11,9 @@
     {{>admin_sidebar}}
     {{{body}}}
   </main>
+  {{#if admin}}
+      <script src="/js/{{admin}}.js"></script>
+  {{/if}}
   {{#if js}}
     <script src="/js/{{js}}.js"></script>
   {{/if}}
