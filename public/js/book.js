@@ -18,6 +18,8 @@ const serialNumber = document.getElementById('serialNumber');
 const addCategory = document.getElementById('addCategory');
 const serialNumberCategoryError = document.getElementById('serialNumberCategoryError');
 const nameCategoryError = document.getElementById('nameCategoryError');
+const searchBorrow = document.getElementById('input-search-borrow');
+const borrow = document.getElementById('table-borrow');
 
 const viewUser = (event, idUser) => {
   for (let i = 0; i < mainBook.length; i += 1) {
@@ -128,3 +130,4 @@ addCategory.addEventListener('click', (e) => {
 });
 
 search(searchLibrary, library);
+search(searchBorrow, borrow);
