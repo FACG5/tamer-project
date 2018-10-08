@@ -24,30 +24,28 @@ addLibraryBook.addEventListener('click', (e) => {
   const checkBookshelf = check(bookshelf, bookshelfError, 'هذا الحقل مطلوب');
   const checkSection = check(section, sectionError, 'هذا الحقل مطلوب');
   if (checkNumberCopies && checkBookshelf && checkSection) {
-    for (let copyId = 1; copyId <= numberCopies.value; copyId += 1) {
-      const copyIdVal = copyId;
-      const bookshelfVal = bookshelf.value;
-      const sectionVal = section.value;
-      const bookId = next.value;
-      const data = {
-        bookId,
-        bookshelfVal,
-        sectionVal,
-        copyIdVal,
-      };
-      fetch(`/admin/books/${bookId}/library`, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body: JSON.stringify(data),
+    const copyIdVal = numberCopies.value;
+    const bookshelfVal = bookshelf.value;
+    const sectionVal = section.value;
+    const bookId = next.value;
+    const data = {
+      bookId,
+      bookshelfVal,
+      sectionVal,
+      copyIdVal,
+    };
+    fetch(`/admin/books/${bookId}/library`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(data),
+    })
+      .then(result => result.json())
+      .then((response) => {
+        swal('Good job!', response.message, 'success').then(() => {
+          JSON.stringify(response);
+        });
       })
-        .then(result => result.json())
-        .then((response) => {
-          swal('Good job!', response.message, 'success').then(() => {
-            JSON.stringify(response);
-          });
-        })
-        .catch(error => swal('Error while adding category !', error, 'error'));
-    }
+      .catch(error => swal('Error while adding library !', error, 'error'));
   }
 });

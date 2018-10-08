@@ -84,19 +84,28 @@ exports.addBook = (req, response, next) => {
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
-      console.log(err);
-      
       next(err);
     });
 };
+
 exports.addLibraryBook = (req, response, next) => {
   const libraryBookData = req.body;
-  setLibraryBook(libraryBookData)
-    .then((results) => {
-      const result = { message: 'LibraryBook Added !' };
-      response.send(JSON.stringify(result));
-    })
-    .catch((err) => {
-      next(err);
-    });
+  const array = [];
+  const {
+    bookId, bookshelfVal, sectionVal, copyIdVal,
+  } = libraryBookData;
+  for (let copyId = 1; copyId <= copyIdVal; copyId += 1) {
+    const dataLibrary = {
+      bookId, bookshelfVal, sectionVal, copyId,
+    };
+    setLibraryBook(dataLibrary)
+      .then((results) => {
+        array.push(results);
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+  const result = { message: 'Book Library Added !' };
+  response.send(JSON.stringify(result));
 };

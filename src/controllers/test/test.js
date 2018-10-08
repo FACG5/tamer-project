@@ -260,7 +260,6 @@ test('test for add bookLibrary page route  - without cookie and auth', (t) => {
     });
 });
 
-
 test('test for add bookLibrary page route  - with cookie and auth ', (t) => {
   supertest(app)
     .post('/admin/books/1/library')
@@ -278,8 +277,8 @@ test('test for add bookLibrary page route  - with cookie and auth ', (t) => {
         t.error(err);
       }
       t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
-      t.equal(typeof res.body, 'object', 'add bookLibrary returns data successfully ');
       t.end();
     });
 });
+
 test.onFinish(() => { process.exit(0); });
