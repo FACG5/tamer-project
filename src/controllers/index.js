@@ -12,15 +12,12 @@ const error = require('./error');
 const router = express.Router();
 
 // unsecure routes
-// website homepage route
 router.get('/', websiteHomePage.get);
-
-// admin login routes
 router.get('/admin/login', login.get);
 router.post('/admin/login', login.post);
 
 // secure routes
-router.use(isLoggedIn);
+router.use('/admin', isLoggedIn);
 
 // admin control panel routes
 router.get('/admin/logout', logout.get);
