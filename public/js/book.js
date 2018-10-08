@@ -2,6 +2,8 @@ const mainBook = document.getElementsByClassName('main__conten--book');
 const tabLinks = document.getElementsByClassName('main__header--nav-tablink');
 const next = document.getElementById('next');
 const AddCategory = document.getElementById('button-add-category');
+const searchLibrary = document.getElementById('input-search-library');
+const library = document.getElementById('table-library');
 const nameBook = document.getElementById('nameBook');
 const imageBook = document.getElementById('image');
 const description = document.getElementById('description');
@@ -28,6 +30,10 @@ const viewUser = (event, idUser) => {
 
 const AddNewCategory = () => {
   AddCategory.classList.add('panel-content--category-visible');
+};
+
+const AddNewCategoryBook = () => {
+  AddCategory.classList.remove('panel-content--category-visible');
 };
 
 nameBook.addEventListener('focusout', (e) => {
@@ -85,7 +91,7 @@ addBook.addEventListener('click', (e) => {
       .then((response) => {
         swal('Good job!', response.message, 'success').then((value) => {
           next.classList.add('btn__next--visible');
-          next.value=response.bookId;
+          next.value = response.bookId;
           JSON.stringify(response);
         });
       })
@@ -120,3 +126,5 @@ addCategory.addEventListener('click', (e) => {
       .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
   }
 });
+
+search(searchLibrary, library);
