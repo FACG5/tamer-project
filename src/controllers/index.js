@@ -34,7 +34,6 @@ router.post('/admin/books/', books.addBook);
 router.post('/admin/books/:bookId/library', books.addLibraryBook);
 router.post('/admin/books/:bookId/store', books.addStoreBook);
 
-
 router.use(error.client);
 router.use(error.server);
 
