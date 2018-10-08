@@ -36,7 +36,6 @@ test('Test for the setBook function', (t) => {
           t.equal(response[0].id === 7, true, 'setBook returns data successfully ');
           t.equal(response[0].categorySerial === '503', true, 'setBook returns data successfully ');
           t.equal(response.length > 0, true, 'setBook returns data successfully ');
-          t.equal(typeof response, 'object', 'setBook returns data successfully ');
           t.end();
         })
         .catch(error => t.error(error));
@@ -114,7 +113,6 @@ test('Test for the setLibraryBook function', (t) => {
           t.equal(response[0].bookshelf === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response[0].bookId === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response.length > 0, true, 'setLibraryBook returns data successfully ');
-          t.equal(typeof response, 'object', 'setLibraryBook returns data successfully ');
           t.end();
         })
         .catch(error => t.error(error));
