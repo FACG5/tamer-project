@@ -307,6 +307,7 @@ test('test for borrowed view page route ', (t) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(res.text.includes('<title>عرض المستعار</title>'), true, 'the page should have title \'الرئيسية\'');
       t.end();
     });
