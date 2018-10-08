@@ -18,7 +18,6 @@ section.addEventListener('focusout', (e) => {
   check(section, sectionError, 'هذا الحقل مطلوب');
 });
 
-
 addLibraryBook.addEventListener('click', (e) => {
   const checkNumberCopies = check(numberCopies, numberCopiesError, 'هذا الحقل مطلوب');
   const checkBookshelf = check(bookshelf, bookshelfError, 'هذا الحقل مطلوب');
