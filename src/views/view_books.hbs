@@ -201,22 +201,29 @@
           </div>
         </div>
       </div>
-      <div id="part2" class="form-group">
+     <div id="part2" class="form-group">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">إضافة للمكتبة</h3>
           </div>
           <div class="panel-content">
             <label for="section">القسم : </label>
-            <input type="number" id="section" class="form-control" placeholder="القسم">
-            <label for="shelf">الرف : </label>
-            <input type="number" id="shelf" class="form-control" placeholder="الرف">
-            <label for="shelf">عدد النسخ : </label>
-            <input type="number" id="shelf" class="form-control" placeholder="عدد النسخ">
-            <label for="serial-number">الرقم التسلسلي : </label>
-            <input type="text" value="501.2.3.1" id="serial-number" class="form-control" placeholder="الرقم التسلسلي ">
+            <div>
+              <input type="number" id="section" class="form-control" placeholder="القسم">
+              <p id="sectionError" class="errorValid"></p>
+            </div>
+            <label for="bookshelf">الرف : </label>
+            <div>
+              <input type="number" id="bookshelf" class="form-control" placeholder="الرف">
+              <p id="bookshelfError" class="errorValid"></p>
+            </div>
+            <label for="numberCopies">عدد النسخ : </label>
+            <div>
+              <input type="number" id="numberCopies" class="form-control" placeholder="عدد النسخ">
+              <p id="numberCopiesError" class="errorValid"></p>
+            </div>
           </div>
-          <button class="button button--remind button--add button--margin"> اضافة الى المكتبة</button>
+          <button class="button button--remind button--add button--margin" id="addLibraryBook"> اضافة الى المكتبة</button>
           <div class="btn-group btn-group-lg btn-group-justified" role="group" aria-label="...">
             <label for='step2' id="back-step2" class="back">
               <div class="button button--delete" role="button">السابق</div>

@@ -243,6 +243,42 @@ test('test for add categery page route - with cookie and auth ', (t) => {
     });
 });
 
+test('test for add bookLibrary page route  - without cookie and auth', (t) => {
+  supertest(app)
+    .post('/admin/books/1/library')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add bookLibrary page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/books/1/library')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      bookId: 1,
+      bookshelfVal: 5,
+      sectionVal: 3,
+      copyId: 1,
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
 // library view page
 test('test for add library view page route - with cookie and auth ', (t) => {
   supertest(app)
@@ -250,7 +286,7 @@ test('test for add library view page route - with cookie and auth ', (t) => {
     .expect(200)
     .expect('Content-Type', /html/)
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
-    .end((err, res) => {
+   .end((err, res) => {
       if (err) {
         t.error(err);
       }

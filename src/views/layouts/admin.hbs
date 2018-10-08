@@ -11,9 +11,11 @@
     {{>admin_sidebar}}
     {{{body}}}
   </main>
-  <script src="/js/{{admin}}.js"></script>
+  <script src="/js/admin.js"></script>
   {{#if js}}
-    <script src="/js/{{js}}.js"></script>
+     {{#each js}}
+    <script src="/js/{{this}}.js"></script>
+    {{/each}}
   {{/if}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>

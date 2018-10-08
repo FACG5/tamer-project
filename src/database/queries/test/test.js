@@ -5,6 +5,7 @@ const { setCategory } = require('../set_category');
 const { getCategory } = require('../get_category');
 const { getLibraryBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
+const { setLibraryBook } = require('../set_libraryBook');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -96,6 +97,29 @@ test('Test for the getAdmin function', (t) => {
       t.end();
     });
   }));
+});
+
+test('Test for the setLibraryBook function', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        bookId: 2,
+        bookshelfVal: 2,
+        sectionVal: 2,
+        copyId: 3,
+      };
+      setLibraryBook(data)
+        .then((response) => {
+          t.equal(response[0].bookshelf === 2, true, 'setLibraryBook returns data successfully ');
+          t.equal(response[0].bookId === 2, true, 'setLibraryBook returns data successfully ');
+          t.equal(response.length > 0, true, 'setLibraryBook returns data successfully ');
+          t.equal(typeof response, 'object', 'setLibraryBook returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
 });
 
 test.onFinish(() => { process.exit(0); });

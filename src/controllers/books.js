@@ -14,8 +14,7 @@ exports.getLibraryBooks = (request, response, next) => {
           layout: 'admin',
           title: 'عرض المكتبة',
           style: 'book',
-          js: 'book',
-          admin: 'admin',
+          js: ['book'],
           resLibraryBooks,
           status,
         });
@@ -31,7 +30,7 @@ exports.getStoreBooks = (request, response) => {
       layout: 'admin',
       title: 'الكتب',
       style: 'book',
-      js: 'book',
+      js: ['book'],
     });
 };
 
@@ -43,7 +42,7 @@ exports.getBorrowedBooks = (request, response) => {
       layout: 'admin',
       title: 'الكتب',
       style: 'book',
-      js: 'book',
+      js: ['book'],
     });
 };
 
@@ -58,7 +57,7 @@ exports.getAddBookTab = (request, response, next) => {
           layout: 'admin',
           title: 'الكتب',
           style: 'book',
-          js: 'book',
+          js: ['book', 'book_library'],
         });
     }).catch((err) => {
       next(err);
@@ -94,4 +93,26 @@ exports.addBook = (req, response, next) => {
     .catch((err) => {
       next(err);
     });
+};
+
+exports.addLibraryBook = (req, response, next) => {
+  const libraryBookData = req.body;
+  const array = [];
+  const {
+    bookId, bookshelfVal, sectionVal, copyIdVal,
+  } = libraryBookData;
+  for (let copyId = 1; copyId <= copyIdVal; copyId += 1) {
+    const dataLibrary = {
+      bookId, bookshelfVal, sectionVal, copyId,
+    };
+    setLibraryBook(dataLibrary)
+      .then((results) => {
+        array.push(results);
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+  const result = { message: 'Book Library Added !' };
+  response.send(JSON.stringify(result));
 };

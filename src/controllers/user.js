@@ -6,7 +6,7 @@ exports.getViewUser = (request, response) => {
       layout: 'admin',
       title: 'اﻷعضاء',
       style: 'user',
-      js: 'user',
+      js: ['user'],
     });
 };
 
@@ -18,6 +18,6 @@ exports.getBorrowedUser = (request, response) => {
       layout: 'admin',
       title: 'اﻷعضاء',
       style: 'user',
-      js: 'user',
+      js: ['user'],
     });
 };

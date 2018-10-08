@@ -6,6 +6,6 @@ exports.get = (request, response) => {
       layout: 'admin',
       title: 'اﻹعارة',
       style: 'borrow',
-      js: 'borrow',
+      js: ['borrow'],
     });
 };
