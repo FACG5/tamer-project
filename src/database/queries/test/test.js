@@ -165,10 +165,10 @@ test('Test getUsers', (t) => {
     return runDbBuild('fake_data.sql', () => {
       getUsers()
         .then((response) => {
-          t.equal(response.length, 3, 'successfully');
-          t.equal(response[0].nameUser, 'أسماء', 'successfully');
-          t.equal(response[1].address, 'الوسطى', 'successfully');
-          t.equal(response[2].mobileNumber, '0599778899', 'successfully');
+          t.equal(response.length, 3, 'getUsers length returns 3 ');
+          t.equal(response[0].nameUser, 'أسماء', 'getUsers returns \'أسماء\' ');
+          t.equal(response[1].address, 'الوسطى', 'getUsers returns \'الوسطى\'');
+          t.equal(response[2].mobileNumber, '0599778899', 'getUsers returns \'0599778899\'');
           t.end();
         })
         .catch(error => t.error(error));
