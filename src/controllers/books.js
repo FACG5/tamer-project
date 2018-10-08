@@ -32,7 +32,7 @@ exports.getStoreBooks = (request, response, next) => {
           layout: 'admin',
           title: 'عرض المخزن',
           style: 'book',
-          js: 'book',
+          js: ['book'],
           admin: 'admin',
           resStoreBooks,
         });
