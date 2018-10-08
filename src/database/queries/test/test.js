@@ -72,11 +72,12 @@ test('Test getLibraryBooks', (t) => {
     return runDbBuild('fake_data.sql', () => {
       getLibraryBooks()
         .then((response) => {
-          t.equal(response.length, 4, 'successfully');
+          t.equal(response.length, 6, 'successfully');
           t.equal(response[0].idLibrary, 1, 'LibraryBooks returns 1 ');
           t.equal(response[0].nameBook, 'ليلى الحمقاء', 'LibraryBooks returns \'ليلى الحمقاء\' ');
           t.equal(response[1].nameAuthor, 'أحلام كمال', 'LibraryBooks returns 1 ');
           t.equal(response[2].category, '503', 'LibraryBooks returns \'503\' ');
+          t.equal(response[5].caseBook, 0, 'LibraryBooks returns 0 ');
           t.end();
         })
         .catch(error => t.error(error));
