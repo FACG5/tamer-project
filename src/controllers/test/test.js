@@ -109,7 +109,7 @@ test('test for website landing page route ', (t) => {
     });
 });
 
-// // tests for login page
+// tests for login page
 test('test login post with correct password  ', (t) => {
   supertest(app)
     .post('/admin/login')
