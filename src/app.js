@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const handlebars = require('express-handlebars');
+const helpers = require('./views/helpers/index');
 
 const router = require('./controllers');
 
@@ -20,6 +21,7 @@ app.engine(
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     defaultLayout: 'admin',
+    helpers,
   }),
 );
 

@@ -3,6 +3,7 @@ const runDbBuild = require('../../db_build');
 const { setBook } = require('../set_book');
 const { setCategory } = require('../set_category');
 const { getCategory } = require('../get_category');
+const { getLibraryBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 
 test('Test for the getCategory function', (t) => {
@@ -61,6 +62,25 @@ test('Test for the setCategory function', (t) => {
             })
             .catch(error => t.error(error));
         });
+    });
+  });
+});
+
+test('Test getLibraryBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getLibraryBooks()
+        .then((response) => {
+          t.equal(response.length, 6, 'successfully');
+          t.equal(response[0].idLibrary, 1, 'LibraryBooks returns 1 ');
+          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'LibraryBooks returns \'ليلى الحمقاء\' ');
+          t.equal(response[1].nameAuthor, 'أحلام كمال', 'LibraryBooks returns 1 ');
+          t.equal(response[2].category, '503', 'LibraryBooks returns \'503\' ');
+          t.equal(response[5].caseBook, 0, 'LibraryBooks returns 0 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
     });
   });
 });

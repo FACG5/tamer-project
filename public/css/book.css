@@ -120,7 +120,7 @@
   color: white;
 }
 
-.button {
+.button, .link {
   color: white;
   border: 0px;
   padding-left: 0.5rem;
@@ -128,18 +128,25 @@
   font-family: cairo;
   border-radius: 5px;
   box-shadow: 1px 28px 35px -20px rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+  display: inline-block;
 }
+
 .button--add {
   padding: 0.3rem;
   float: left;
 }
 
-.button--view {
+.link--view {
   background-color: #00c0ef;
 }
 
-.button--delete {
+.link--delete {
   background-color: red;
+}
+
+.link--view:hover, .link--delete:hover {
+  background-color: #4b515d;
 }
 
 .button--margin {

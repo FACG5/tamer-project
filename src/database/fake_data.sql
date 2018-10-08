@@ -21,6 +21,8 @@ INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (1, 1, 5, 2);
 INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (4, 1, 10, 2);
 INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (5, 3, 6, 5);
 INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (6, 4, 8, 1);
+INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (2, 1, 3, 1);
+INSERT INTO library(book_id, bookshelf, section, copy_id) VALUES (3, 2, 4, 1);
 
 INSERT INTO "user"(name, address, mobile_number) VALUES ('أسماء', 'غزة - النصر', '0599112233');
 INSERT INTO "user"(name, address, mobile_number) VALUES ('لبنى', 'الوسطى', '0599558899');
