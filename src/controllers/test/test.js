@@ -129,3 +129,24 @@ test('test for add categery page route ', (t) => {
       t.end();
     });
 });
+
+test('test for add categery page route ', (t) => {
+  supertest(app)
+    .post('/admin/books/1/library')
+    .send({
+      bookId: 1,
+      bookshelfVal: 5,
+      sectionVal: 3,
+      copyIdVal: 1,
+
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(typeof res.body, 'object', 'add categery returns data successfully ');
+      t.end();
+    });
+});
