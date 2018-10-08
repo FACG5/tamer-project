@@ -32,6 +32,7 @@ const search = (input, table1) => {
       }
     }
   });
+};
 
 const displayErr = (errElem, errMsg) => {
   errElem.textContent = errMsg;
@@ -44,5 +45,4 @@ const check = (input, errorMessageElement, errMessage) => {
     displayErr(errorMessageElement, '');
     return true;
   }
->>>>>>> 0140ecb70bb74a3a3134c3e58d5570d9de0420b1
 };

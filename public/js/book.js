@@ -21,7 +21,6 @@ const serialNumber = document.getElementById('serialNumber');
 const addCategory = document.getElementById('addCategory');
 const serialNumberCategoryError = document.getElementById('serialNumberCategoryError');
 const nameCategoryError = document.getElementById('nameCategoryError');
->>>>>>> 0140ecb70bb74a3a3134c3e58d5570d9de0420b1
 
 const viewUser = (event, idUser) => {
   for (let i = 0; i < mainBook.length; i += 1) {
@@ -36,12 +35,10 @@ const AddNewCategory = () => {
   AddCategory.classList.add('panel-content--category-visible');
 };
 
-<<<<<<< HEAD
 const AddNewCategoryBook = () => {
   AddCategory.classList.remove('panel-content--category-visible');
 };
 
-=======
 nameBook.addEventListener('focusout', (e) => {
   check(nameBook, nameBookError, 'هذا الحقل مطلوب');
 });
@@ -97,7 +94,7 @@ addBook.addEventListener('click', (e) => {
       .then((response) => {
         swal('Good job!', response.message, 'success').then((value) => {
           next.classList.add('btn__next--visible');
-          next.value=response.bookId;
+          next.value = response.bookId;
           JSON.stringify(response);
         });
       })
@@ -132,4 +129,3 @@ addCategory.addEventListener('click', (e) => {
       .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
   }
 });
->>>>>>> 0140ecb70bb74a3a3134c3e58d5570d9de0420b1
