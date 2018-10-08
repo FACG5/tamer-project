@@ -208,7 +208,6 @@ test('test for add book page route - with cookie and auth ', (t) => {
     });
 });
 
-
 test('test for add categery page route - without cookie and auth', (t) => {
   supertest(app)
     .post('/admin/books/category')
@@ -245,7 +244,6 @@ test('test for add categery page route - with cookie and auth ', (t) => {
 });
 
 // library view page
-
 test('test for add library view page route - with cookie and auth ', (t) => {
   supertest(app)
     .get('/admin/books/library')
@@ -262,6 +260,5 @@ test('test for add library view page route - with cookie and auth ', (t) => {
       t.end();
     });
 });
-
 
 test.onFinish(() => { process.exit(0); });
