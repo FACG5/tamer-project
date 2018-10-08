@@ -144,29 +144,37 @@
     <div class="form-container">
       <input id='step2' type='checkbox'>
       <input id='step3' type='checkbox'>
-      <div id="part1" class="form-group">
+     <div id="part1" class="form-group">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">اضافة كتاب</h3>
           </div>
           <div class="panel-content">
-            <label for="name-book">اسم الكاتب : </label>
-            <input type="text" id="name-book" class="form-control" placeholder="اسم الكاتب">
+            <label for="nameBook">اسم الكاتب : </label>
+            <div>
+              <input type="text" id="nameBook" class="form-control" placeholder="اسم الكاتب">
+              <p id="nameBookError" class="errorValid"></p>
+            </div>
             <label for="image">صورة الكتاب : </label>
             <input type="text" id="image" class="form-control" placeholder="صورة الكتاب">
-            <label for="describe">تفاصيل الكتاب : </label>
-            <input type="text" id="describe" class="form-control" placeholder="تفاصيل الكتاب">
+            <label for="description">تفاصيل الكتاب : </label>
+            <input type="text" id="description" class="form-control" placeholder="تفاصيل الكتاب">
             <label for="name-author">اسم المؤلف : </label>
-            <input type="text" id="name-author" class="form-control" placeholder="اسم المؤلف">
+            <div>
+              <input type="text" id="name-author" class="form-control" placeholder="اسم المؤلف">
+              <p id="nameAuthorError" class="errorValid"></p>
+            </div>
             <div>
               <label for="category">التصنيف :
             </div>
             <div>
               <select class="styled" name="category" id="category">
                 <option value="">إختر التصنيف</option>
-                <option value="sciences">علوم</option>
-                <option value="children">أطفال</option>
+                {{#each res}}
+                <option value="{{categorySerial}}">{{name}}</option>
+                {{/each}}
               </select>
+              <p id="categoryError" class="errorValid"></p>
               <button class="button button--remind button--add" onclick="AddNewCategory()">إضافة تصنيف</button>
               </label>
             </div>
@@ -176,14 +184,20 @@
               <h3>اضافة تصنيف</h3>
             </div>
             <div class="panel-content--category-content">
-              <label for="serial-number"> اسم التصنيف : </label>
-              <input type="text" value="501.2.3.1" id="serial-number" class="form-control" placeholder=" اسم التصنيف ">
-              <label for="serial-number">الرقم التسلسلي : </label>
-              <input type="text" value="501.2.3.1" id="serial-number" class="form-control" placeholder="الرقم التسلسلي ">
-              <button class="button button--remind button--add button--margin" onclick="AddNewCategoryBook()"> اضافة</button>
+              <label for="nameCategory"> اسم التصنيف : </label>
+              <div>
+                <input type="text" id="nameCategory" class="form-control" placeholder=" اسم التصنيف ">
+                <p id="nameCategoryError" class="errorValid"></p>
+              </div>
+              <label for="serialNumber">الرقم التسلسلي : </label>
+              <div>
+                <input type="number" id="serialNumber" class="form-control" placeholder="الرقم التسلسلي ">
+                <p id="serialNumberCategoryError" class="errorValid"></p>
+              </div>
+              <button class="button button--remind button--add button--margin" id="addCategory"> اضافة</button>
             </div>
           </div>
-          <button class="button button--remind button--add button--margin" onclick="AddNewBook()"> اضافة كتاب جديد</button>
+          <button class="button button--remind button--add button--margin" id="addBook"> اضافة كتاب جديد</button>
           <div class="btn-group btn-group-lg" role="group" aria-label="...">
             <label for='step2' id="continue-step2" class="continue">
               <div class="button button--view btn__next" id="next">التالي</div>

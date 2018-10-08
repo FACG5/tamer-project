@@ -75,3 +75,57 @@ test('test for website landing page route ', (t) => {
       t.end();
     });
 });
+
+// test book page
+test('test for book page route ', (t) => {
+  supertest(app)
+    .get('/admin/books/add/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>الكتب</title>'), true, 'the page should have title \'الكتب\'');
+      t.end();
+    });
+});
+
+test('test for add book page route ', (t) => {
+  supertest(app)
+    .post('/admin/books/')
+    .send({
+      nameBookVal: 'يوسف يامريم',
+      nameAuthorVal: 'يامى أحمد',
+      imageBookVal: '',
+      descriptionVal: 'يوسف يامريم',
+      categorySerial: '503',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(typeof res.body, 'object', 'setBook returns data successfully ');
+      t.end();
+    });
+});
+
+test('test for add categery page route ', (t) => {
+  supertest(app)
+    .post('/admin/books/category')
+    .send({
+      nameCategoryVal: 'تاريخ',
+      serialNumberVal: '507',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(typeof res.body, 'object', 'add categery returns data successfully ');
+      t.end();
+    });
+});
