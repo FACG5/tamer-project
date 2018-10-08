@@ -22,7 +22,7 @@
   {{#if borrowedBooks}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
-      <input type="search" id="input-search-books" class="input--seach" placeholder="بحث">
+      <input type="search" id="input-search-library" class="input--seach" placeholder="بحث">
       <button type="submit">
         <img src="/img/search.png">
       </button>
@@ -43,14 +43,10 @@
             <td>{{category}}.{{bookShelf}}.{{section}}.{{copyId}}</td>
             <td>{{status caseBook}}</td>
             <td>
-              <button id="button-view" class="button button--view">
-                 <a href="/admin/books/library/book/:{{idLibrary}}">تفاصيل</a>
-              </button>
+              <a href="/admin/books/library/book/:{{idLibrary}}" class="link link--view">تفاصيل</a>
             </td>
             <td>
-              <button id="button-delete" class="button button--delete">
-                <a href="/admin/books/delete/:{{idLibrary}}">حذف</a>
-              </button>
+              <a href="/admin/books/delete/:{{idLibrary}}" class="link link--delete">حذف</a>
             </td>
           </tr>
         {{/each}}
