@@ -71,7 +71,7 @@ test('Test getLibraryBooks', (t) => {
     return runDbBuild('fake_data.sql', () => {
       getLibraryBooks()
         .then((response) => {
-          t.equal(response.length > 0, true, 'successfully');
+          t.equal(response.length >= 4, true, 'successfully');
           t.equal(response[0].idLibrary, 1, 'LibraryBooks returns 1 ');
           t.end();
         })

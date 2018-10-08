@@ -1,9 +1,1 @@
-module.exports = (num) => {
-  let statusString = '';
-  if (num === 0) {
-    statusString = 'متاح';
-  } else {
-    statusString = 'مستعار';
-  }
-  return statusString;
-};
+module.exports = num => ((num === 0) ? 'متاح' : 'مستعار');
