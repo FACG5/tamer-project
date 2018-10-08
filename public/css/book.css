@@ -136,7 +136,13 @@
   padding: 0.3rem;
   float: left;
 }
+.button--view {
+  background-color: #00c0ef;
+}
 
+.button--delete {
+  background-color: red;
+}
 .link--view {
   background-color: #00c0ef;
 }

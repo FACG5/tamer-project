@@ -32,6 +32,8 @@ router.get('/admin/borrow', borrow.get);
 router.post('/admin/books/category', books.addCategory);
 router.post('/admin/books/', books.addBook);
 router.post('/admin/books/:bookId/library', books.addLibraryBook);
+router.post('/admin/books/:bookId/store', books.addStoreBook);
+
 
 router.use(error.client);
 router.use(error.server);
