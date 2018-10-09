@@ -6,6 +6,7 @@ const { getCategory } = require('../get_category');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
+const { setStoreBook } = require('../set_storeBook');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -113,6 +114,25 @@ test('Test for the setLibraryBook function', (t) => {
           t.equal(response[0].bookshelf === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response[0].bookId === 2, true, 'setLibraryBook returns data successfully ');
           t.equal(response.length > 0, true, 'setLibraryBook returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test for the setStoreBook function', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        bookId: 4,
+        copyNumberVal: 10,
+      };
+      setStoreBook(data)
+        .then((response) => {
+          t.equal(response[0].copyNumber === 10, true, 'setStoreBook returns data successfully ');
+          t.equal(response[0].bookId === 4, true, 'setStoreBook returns data successfully ');
           t.end();
         })
         .catch(error => t.error(error));
