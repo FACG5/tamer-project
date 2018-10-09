@@ -7,6 +7,8 @@ const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
+const { getUsers } = require('../view_user');
+const { setStoreBook } = require('../set_storeBook');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -121,6 +123,25 @@ test('Test for the setLibraryBook function', (t) => {
   });
 });
 
+test('Test for the setStoreBook function', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        bookId: 4,
+        copyNumberVal: 10,
+      };
+      setStoreBook(data)
+        .then((response) => {
+          t.equal(response[0].copyNumber === 10, true, 'setStoreBook returns data successfully ');
+          t.equal(response[0].bookId === 4, true, 'setStoreBook returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
 test('Test getStoreBooks', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
@@ -158,6 +179,24 @@ test('Test getBorrowBooks', (t) => {
     });
   });
 });
+
+test('Test getUsers', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getUsers()
+        .then((response) => {
+          t.equal(response.length, 3, 'getUsers length returns 3 ');
+          t.equal(response[0].nameUser, 'أسماء', 'getUsers returns \'أسماء\' ');
+          t.equal(response[1].address, 'الوسطى', 'getUsers returns \'الوسطى\'');
+          t.equal(response[2].mobileNumber, '0599778899', 'getUsers returns \'0599778899\'');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
 
 test('Test getSingleBookByLibraryId', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {

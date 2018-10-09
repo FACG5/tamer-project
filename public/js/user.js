@@ -1,5 +1,7 @@
 const mainUser = document.getElementsByClassName('main__conten--user');
 const tabLinks = document.getElementsByClassName('main__header--nav-tablink');
+const searchUser= document.getElementById('input-search-user');
+const user = document.getElementById('table-user');
 
 const viewUser = (event, idUser) => {
   for (let i = 0; i < mainUser.length; i += 1) {
@@ -9,3 +11,5 @@ const viewUser = (event, idUser) => {
   document.getElementById(idUser).style.display = 'block';
   event.currentTarget.classList.toggle('active');
 };
+
+search(searchUser, user);
