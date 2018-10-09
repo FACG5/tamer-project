@@ -197,7 +197,6 @@ test('Test getUsers', (t) => {
   });
 });
 
-
 test('Test getBorrower', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
