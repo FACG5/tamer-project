@@ -15,22 +15,24 @@
 <section class="main__content">
   <div id="user" class="main__conten--user" {{#if borrowedUser}} style="display: none" {{/if}}>
     <div class="main__conten--user-search">
-      <input type="text" placeholder="بحث" name="search">
+      <input type="text" placeholder="بحث" name="search" id="input-search-user">
       <button type="submit">
         <img src="/img/search.png">
       </button>
     </div>
-    <table class="main__content--table">
+    <table class="main__content--table" id="table-user">
       <tr>
         <th>اسم العضو </th>
         <th>رقم الجوال</th>
         <th>العنوان</th>
       </tr>
-      <tr>
-        <td> عنوان عنوان عنوان</td>
-        <td>0597346023</td>
-        <td>لبنى عبد الجواد</td>
-      </tr>
+      {{#each res}}
+        <tr id="{{idUser}}">
+          <td>{{nameUser}}</td>
+          <td>{{mobileNumber}}</td>
+          <td>{{address}}</td>
+        </tr>
+      {{/each}}
     </table>
   </div>
   <div id="borower" class="main__conten--user" {{#if viewUser}} style="display: none" {{/if}}>
