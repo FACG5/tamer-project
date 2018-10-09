@@ -295,7 +295,7 @@ test('test for add library view page route - with cookie and auth ', (t) => {
     });
 });
 
-test('test for add bookLibrary page route  - without cookie and auth', (t) => {
+test('test for add bookstorpage route  - without cookie and auth', (t) => {
   supertest(app)
     .post('/admin/books/4/store')
     .expect(302)
