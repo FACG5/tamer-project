@@ -35,6 +35,7 @@ router.post('/admin/books/', books.addBook);
 router.post('/admin/books/:bookId/library', books.addLibraryBook);
 router.post('/admin/books/:bookId/store', books.addStoreBook);
 router.get('/admin/books/library/book/:libraryId', singleBook.getSingleLibraryBook);
+router.get('/admin/books/store/book/:storeId', singleBook.getSingleStoreBook);
 
 router.use(error.client);
 router.use(error.server);
