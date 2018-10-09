@@ -6,7 +6,7 @@ const { getCategory } = require('../get_category');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
-const { getUsers } = require('../view_user');
+const { getUsers, getBorrower } = require('../view_user');
 const { setStoreBook } = require('../set_storeBook');
 
 test('Test for the getCategory function', (t) => {
@@ -189,6 +189,22 @@ test('Test getUsers', (t) => {
           t.equal(response[0].nameUser, 'أسماء', 'getUsers returns \'أسماء\' ');
           t.equal(response[1].address, 'الوسطى', 'getUsers returns \'الوسطى\'');
           t.equal(response[2].mobileNumber, '0599778899', 'getUsers returns \'0599778899\'');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getBorrower', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrower()
+        .then((response) => {
+          t.equal(response.length, 4, 'getBorrower length returns 3 ');
+          t.equal(response[0].nameUser, 'أسماء', 'getBorrower returns \'أسماء\' ');
+          t.equal(response[3].mobileNumber, '0599778899', 'getBorrower returns \'0599778899\' ');
           t.end();
         })
         .catch(error => t.error(error));
