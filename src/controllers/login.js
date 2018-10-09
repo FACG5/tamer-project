@@ -23,7 +23,7 @@ exports.post = (request, response) => {
         };
         return sign(data, process.env.SECRET, (signError, cookie) => {
           if (signError) return response.send(JSON.stringify({ err: 'Error!' }));
-          response.cookie('data', cookie, { maxAge: 900000, httpOnly: true });
+          response.cookie('data', cookie, { maxAge: 6048000000, httpOnly: true });
           return response.send(JSON.stringify({ err: null, message: 'Welcome' }));
         });
       });
