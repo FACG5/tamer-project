@@ -228,8 +228,6 @@ test('Test getSingleBookByStoreId', (t) => {
       };
       getSingleBookByStoreId(data)
         .then((response) => {
-          console.log(response);
-          
           t.equal(response[0].nameBook, 'مذكرات أطفال البحر', 'nameBook returns \'مذكرات أطفال البحر\' ');
           t.equal(response[0].nameAuthor, 'لبنى طه', 'nameAuthor returns \'لبنى طه\' ');
           t.equal(response[0].categorySerial, '501', 'category returns \'501\' ');
