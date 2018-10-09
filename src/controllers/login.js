@@ -4,7 +4,7 @@ const getAdmin = require('../database/queries/checkAdmin');
 
 exports.get = (request, response) => {
   response.render('login', {
-    layout: 'login', style: 'login', js: 'login', title: 'تسجيل الدخول',
+    layout: 'login', style: ['login'], js: 'login', title: 'تسجيل الدخول',
   });
 };
 

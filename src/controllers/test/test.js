@@ -395,4 +395,20 @@ test('test for users view page route - with cookie and auth ', (t) => {
     });
 });
 
+// test for single library book
+test('test for single library book - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/books/library/book/1')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>عرض كتاب</title>'), true, 'the page should have title \'عرض كتاب\'');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
