@@ -330,4 +330,21 @@ test('test for store view page route - with cookie and auth ', (t) => {
     });
 });
 
+// users view page
+test('test for users view page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/users')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'الأعضاء\'');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
