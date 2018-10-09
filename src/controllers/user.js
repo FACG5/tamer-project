@@ -17,9 +17,9 @@ exports.getViewUser = (request, response, next) => {
     .catch(error => next(error));
 };
 
-exports.getBorrowedUser = (request, response) => {
+exports.getBorrowedUser = (request, response, next) => {
   getBorrower()
-    .then(res => {
+    .then((res) => {
       response.render('view_user',
         {
           borrowedUser: 'active',
@@ -31,6 +31,5 @@ exports.getBorrowedUser = (request, response) => {
           res,
         });
     })
-    .catch(error => console.log(error));
-
+    .catch(error => next(error));
 };
