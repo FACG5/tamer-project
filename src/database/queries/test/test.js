@@ -3,7 +3,7 @@ const runDbBuild = require('../../db_build');
 const { setBook } = require('../set_book');
 const { setCategory } = require('../set_category');
 const { getCategory } = require('../get_category');
-const { getLibraryBooks } = require('../view_book');
+const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
 const { setStoreBook } = require('../set_storeBook');
@@ -133,6 +133,44 @@ test('Test for the setStoreBook function', (t) => {
         .then((response) => {
           t.equal(response[0].copyNumber === 10, true, 'setStoreBook returns data successfully ');
           t.equal(response[0].bookId === 4, true, 'setStoreBook returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStoreBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getStoreBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'successfully');
+          t.equal(response[0].idStore, 1, 'StoreBooks returns 1 ');
+          t.equal(response[1].nameBook, 'مذكرات أطفال البحر', 'StoreBooks returns \'مذكرات أطفال البحر\' ');
+          t.equal(response[0].copyNumber, 10, 'StoreBooks returns 10 ');
+          t.equal(response[1].copyNumber, 20, 'StoreBooks returns 20 ');
+          t.equal(response[2].copyNumber, 30, 'StoreBooks returns 30 ');
+          t.equal(response[3].copyNumber, 40, 'StoreBooks returns 40 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getBorrowBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrowBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'successfully');
+          t.equal(response[0].nameUser, 'علي', 'StoreBooks returns \'علي\' ');
+          t.equal(response[1].nameBook, 'قلبي غابة', 'StoreBooks returns \'قلبي غابة\' ');
+          t.equal(response[2].startDate, '2018-09-20', 'StoreBooks returns 2018-09-20');
+          t.equal(response[3].endDate, '2018-09-25', 'StoreBooks returns 2018-09-25 ');
           t.end();
         })
         .catch(error => t.error(error));
