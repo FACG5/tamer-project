@@ -7,6 +7,7 @@ const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
+const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { getUsers } = require('../view_user');
 const { setStoreBook } = require('../set_storeBook');
 
@@ -211,6 +212,27 @@ test('Test getSingleBookByLibraryId', (t) => {
           t.equal(response[0].nameAuthor, 'أحلام كمال', 'nameAuthor returns \'أحلام كمال\' ');
           t.equal(response[0].categorySerial, '502', 'category returns \'502\' ');
           t.equal(response[0].section, 10, 'section returns 10 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getSingleBookByStoreId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        storeId: 2,
+      };
+      getSingleBookByStoreId(data)
+        .then((response) => {
+          t.equal(response[0].nameBook, 'مذكرات أطفال البحر', 'nameBook returns \'مذكرات أطفال البحر\' ');
+          t.equal(response[0].nameAuthor, 'لبنى طه', 'nameAuthor returns \'لبنى طه\' ');
+          t.equal(response[0].categorySerial, '501', 'category returns \'501\' ');
+          t.equal(response[0].copyNumber, 20, 'section returns 20 ');
+          t.equal(response[0].categoryName, 'أطفال', 'nameAuthor returns \'أطفال\' ');
           t.end();
         })
         .catch(error => t.error(error));
