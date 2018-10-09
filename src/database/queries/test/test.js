@@ -209,7 +209,7 @@ test('Test getSingleBookByLibraryId', (t) => {
         .then((response) => {
           t.equal(response[0].nameBook, 'سرير جدي', 'nameBook returns \'سرير جدي\' ');
           t.equal(response[0].nameAuthor, 'أحلام كمال', 'nameAuthor returns \'أحلام كمال\' ');
-          t.equal(response[0].category, '502', 'category returns \'502\' ');
+          t.equal(response[0].categorySerial, '502', 'category returns \'502\' ');
           t.equal(response[0].section, 10, 'section returns 10 ');
           t.end();
         })
