@@ -25,7 +25,7 @@ exports.getBorrowedUser = (request, response) => {
           borrowedUser: 'active',
           user: 'active',
           layout: 'admin',
-          title: 'اﻷعضاء',
+          title: 'المستعيرين',
           style: 'user',
           js: ['user'],
           res,

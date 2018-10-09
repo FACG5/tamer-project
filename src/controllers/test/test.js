@@ -379,4 +379,20 @@ test('test for users view page route - with cookie and auth ', (t) => {
     });
 });
 
+// borrower view page
+test('test for users view page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/users/borrower')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>المستعيرين</title>'), true, 'the page should have title \'المستعيرين\'');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
