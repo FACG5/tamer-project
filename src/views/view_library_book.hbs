@@ -1,0 +1,44 @@
+<section class="main__header">
+  <ul class="main__header--nav">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/library">
+      <li onclick="viewUser(event,'library')" class="main__header--nav-tablink">المكتبة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/store">
+      <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">المخزن</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowed">
+      <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">الكتب المستعارة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/add">
+      <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
+    </a>
+  </ul>
+</section>
+
+<h1 class="viewBook">عرض الكتاب</h1>
+<section class="main__content">
+  <div class="main__content__viewBook">
+    {{#each results}}
+    <div class="main__content__viewBook--img">
+      <img src="{{img}}">
+      <button class="editbtn">تعديل الكتاب</button>
+    </div>
+    <div class="main__content__viewBook--information">
+      <h3>اسم الكتاب</h3>
+      <p>{{nameBook}}</p>
+      <h3>اسم الكاتب</h3>
+      <p>{{nameAuthor}}</p>
+      <h3>الوصف</h3>
+      <p>{{description}}</p>
+        <h3>التصنيف</h3>
+        <p>{{categoryName}}</p>
+        <h3>الرف</h3>
+        <p>{{bookShelf}}</p>
+        <h3> القسم</h3>
+        <p>{{section}}</p>
+        <h3> الرقم التسلسلي  </h3>
+        <p>{{categorySerial}}.{{bookShelf}}.{{section}}.{{copyId}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
