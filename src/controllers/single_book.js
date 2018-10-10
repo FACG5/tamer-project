@@ -1,5 +1,6 @@
 const { getSingleBookByLibraryId } = require('../database/queries/get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../database/queries/get_single_book_by_store_id');
+const { deleteLibraryBook } = require('../database/queries/delete_library_book');
 
 exports.getSingleLibraryBook = (request, response, next) => {
   const id = request.params;
@@ -38,5 +39,17 @@ exports.getSingleStoreBook = (request, response, next) => {
     })
     .catch((err) => {
       next(err);
+    });
+};
+
+exports.deleteBookFromLibrary = (request, response) => {
+  const id = request.body;
+  deleteLibraryBook(id)
+    .then(() => {
+      const result = { message: 'Book is Deleted !' };
+      response.send(JSON.stringify(result));
+    })
+    .catch((err) => {
+      response.send(JSON.stringify({ err }));
     });
 };

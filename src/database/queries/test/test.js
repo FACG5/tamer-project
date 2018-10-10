@@ -10,6 +10,7 @@ const { getUsers, getBorrower } = require('../view_user');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
+const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 
@@ -286,6 +287,23 @@ test('Test getBorrowedBooksByUserId', (t) => {
           t.equal(response[0].category, '501', 'category returns \'501\' ');
           t.equal(response[0].bookshelf, 1, 'bookshelf returns 1 ');
           t.equal(response[0].section, 5, 'bookshelf returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test deleteLibraryBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idLibrary: 2,
+      };
+      deleteLibraryBook(id)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, becouase its empty array');
           t.end();
         })
         .catch(error => t.error(error));
