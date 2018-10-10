@@ -9,7 +9,6 @@ const viewAddUser = document.getElementById('viewAddUser');
 const tableBorrowedBook = document.getElementById('ViewBorrowedBook');
 const result = document.getElementById('result');
 
-
 mobileNumber.addEventListener('focusout', (e) => {
   check(mobileNumber, mobileNumberError, 'الرجاء ادخال رقم الجوال');
 });

@@ -314,5 +314,4 @@ test('Test for the setUser function', (t) => {
   });
 });
 
-
 test.onFinish(() => { process.exit(0); });
