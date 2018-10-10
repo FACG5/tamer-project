@@ -427,4 +427,43 @@ test('test for single store book - with cookie and auth ', (t) => {
     });
 });
 
+test('test for add borrowpage route  - without cookie and auth', (t) => {
+  supertest(app)
+    .post('/admin/borrow/')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add borrowpage page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/borrow/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      mobileNumberVal: '0599112233',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      const response = JSON.parse(res.text);
+      t.equal(response.resultUser[0].userId, 1, 'id should return 1');
+      t.equal(response.resultUser[0].name, 'أسماء', 'name should return أسماء');
+      t.equal(response.resultUser[0].address, 'غزة - النصر', 'address returns \' غزة - النصر\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].nameBook, 'ليلى الحمقاء', 'name returns \'ليلى الحمقاء\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].endDate, '2018-09-25', 'endDate returns \'2018-09-25\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].serialNumber, '501.1.5.2', 'serialNumber returns \'501.1.5.2\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].idBorrow, 1, 'section returns idBorrow ');
+      t.end();
+    });
+});
 test.onFinish(() => { process.exit(0); });
