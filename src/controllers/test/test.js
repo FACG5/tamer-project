@@ -203,7 +203,6 @@ test('test for add book page route - with cookie and auth ', (t) => {
         t.error(err);
       }
       t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
-      t.equal(typeof res.body, 'object', 'setBook returns data successfully ');
       t.end();
     });
 });
@@ -291,8 +290,41 @@ test('test for add library view page route - with cookie and auth ', (t) => {
         t.error(err);
       }
       t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
-      t.equal(typeof res.body, 'object', 'add categery returns data successfully ');
       t.equal(res.text.includes('<title>عرض المكتبة</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.end();
+    });
+});
+
+test('test for add bookstorpage route  - without cookie and auth', (t) => {
+  supertest(app)
+    .post('/admin/books/4/store')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add bookStore page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/books/4/store')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      bookId: 4,
+      copyNumberVal: 10,
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(JSON.parse(res.text).message, 'storeBook Added !', 'Message should return storeBook Added !');
       t.end();
     });
 });
@@ -326,6 +358,55 @@ test('test for store view page route - with cookie and auth ', (t) => {
       }
       t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.equal(res.text.includes('<title>عرض المخزن</title>'), true, 'the page should have title \'عرض المخزن\'');
+      t.end();
+    });
+});
+
+// users view page
+test('test for users view page route - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/users')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.equal(res.text.includes('<title>اﻷعضاء</title>'), true, 'the page should have title \'الأعضاء\'');
+      t.end();
+    });
+});
+
+// test for single library book
+test('test for single library book - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/books/library/book/1')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>عرض كتاب</title>'), true, 'the page should have title \'عرض كتاب\'');
+      t.end();
+    });
+});
+
+// test for single store book
+test('test for single store book - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/books/store/book/4')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>عرض كتاب</title>'), true, 'the page should have title \'عرض كتاب\'');
       t.end();
     });
 });

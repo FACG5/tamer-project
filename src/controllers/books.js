@@ -1,8 +1,10 @@
 const { getCategory } = require('../database/queries/get_category');
 const { setCategory } = require('../database/queries/set_category');
+const { setLibraryBook } = require('../database/queries/set_libraryBook');
 const { setBook } = require('../database/queries/set_book');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../database/queries/view_book');
 const { status } = require('../views/helpers/index');
+const { setStoreBook } = require('../database/queries/set_storeBook');
 
 exports.getLibraryBooks = (request, response, next) => {
   getLibraryBooks()
@@ -13,7 +15,7 @@ exports.getLibraryBooks = (request, response, next) => {
           book: 'active',
           layout: 'admin',
           title: 'عرض المكتبة',
-          style: 'book',
+          style: ['book'],
           js: ['book'],
           resLibraryBooks,
           status,
@@ -31,7 +33,7 @@ exports.getStoreBooks = (request, response, next) => {
           book: 'active',
           layout: 'admin',
           title: 'عرض المخزن',
-          style: 'book',
+          style: ['book'],
           js: ['book'],
           admin: 'admin',
           resStoreBooks,
@@ -49,7 +51,7 @@ exports.getBorrowedBooks = (request, response, next) => {
           book: 'active',
           layout: 'admin',
           title: 'عرض المستعار',
-          style: 'book',
+          style: ['book'],
           js: ['book'],
           admin: 'admin',
           resBorrowBooks,
@@ -68,8 +70,8 @@ exports.getAddBookTab = (request, response, next) => {
           book: 'active',
           layout: 'admin',
           title: 'الكتب',
-          style: 'book',
-          js: ['book', 'book_library'],
+          style: ['book'],
+          js: ['book', 'book_library', 'book_store'],
         });
     }).catch((err) => {
       next(err);
@@ -127,4 +129,16 @@ exports.addLibraryBook = (req, response, next) => {
   }
   const result = { message: 'Book Library Added !' };
   response.send(JSON.stringify(result));
+};
+
+exports.addStoreBook = (req, response, next) => {
+  const storeBookData = req.body;
+  setStoreBook(storeBookData)
+    .then((results) => {
+      const result = { message: 'storeBook Added !' };
+      response.send(JSON.stringify(result));
+    })
+    .catch((err) => {
+      next(err);
+    });
 };

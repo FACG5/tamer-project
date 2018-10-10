@@ -1,13 +1,20 @@
-exports.getViewUser = (request, response) => {
-  response.render('view_user',
-    {
-      viewUser: 'active',
-      user: 'active',
-      layout: 'admin',
-      title: 'اﻷعضاء',
-      style: 'user',
-      js: ['user'],
-    });
+const { getUsers } = require('../database/queries/view_user');
+
+exports.getViewUser = (request, response, next) => {
+  getUsers()
+    .then((res) => {
+      response.render('view_user',
+        {
+          viewUser: 'active',
+          user: 'active',
+          layout: 'admin',
+          title: 'اﻷعضاء',
+          style: ['user'],
+          js: ['user'],
+          res,
+        });
+    })
+    .catch(error => next(error));
 };
 
 exports.getBorrowedUser = (request, response) => {
@@ -17,7 +24,7 @@ exports.getBorrowedUser = (request, response) => {
       user: 'active',
       layout: 'admin',
       title: 'اﻷعضاء',
-      style: 'user',
+      style: ['user'],
       js: ['user'],
     });
 };

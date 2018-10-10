@@ -8,7 +8,7 @@ exports.get = (request, response) => {
       borrow: 'active',
       layout: 'admin',
       title: 'اﻹعارة',
-      style: 'borrow',
+      style: ['borrow'],
       js: ['borrow'],
     });
 };

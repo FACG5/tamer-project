@@ -8,6 +8,7 @@ const logout = require('./logout');
 const { isLoggedIn } = require('./is_logged_in.js');
 const websiteHomePage = require('./website_homepage');
 const error = require('./error');
+const singleBook = require('./single_book');
 
 const router = express.Router();
 
@@ -33,6 +34,9 @@ router.post('/admin/books/', books.addBook);
 router.post('/admin/books/:bookId/library', books.addLibraryBook);
 router.get('/admin/borrow', borrow.get);
 router.post('/admin/borrow/', borrow.post);
+router.post('/admin/books/:bookId/store', books.addStoreBook);
+router.get('/admin/books/library/book/:libraryId', singleBook.getSingleLibraryBook);
+router.get('/admin/books/store/book/:storeId', singleBook.getSingleStoreBook);
 
 router.use(error.client);
 router.use(error.server);
