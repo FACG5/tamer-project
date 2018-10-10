@@ -37,6 +37,7 @@ router.post('/admin/borrow/', borrow.post);
 router.post('/admin/books/:bookId/store', books.addStoreBook);
 router.get('/admin/books/library/book/:libraryId', singleBook.getSingleLibraryBook);
 router.get('/admin/books/store/book/:storeId', singleBook.getSingleStoreBook);
+router.post('/admin/user/', borrow.addUser);
 
 router.use(error.client);
 router.use(error.server);
