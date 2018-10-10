@@ -463,9 +463,9 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
 // test for delete library book
 test('test for delete library book - with cookie and auth ', (t) => {
   supertest(app)
-    .delete('/admin/books/delete/1')
+    .delete('/admin/books/library/1')
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
