@@ -465,7 +465,7 @@ test('test for delete library book - with cookie and auth ', (t) => {
   supertest(app)
     .delete('/admin/books/delete/1')
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
@@ -541,7 +541,7 @@ test('test for delete store book - with cookie and auth ', (t) => {
   supertest(app)
     .delete('/admin/books/store/1')
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
