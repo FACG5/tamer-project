@@ -1,6 +1,7 @@
 const numberCopiesStore = document.getElementById('numberCopiesStore');
 const numberCopiesStoreError = document.getElementById('numberCopiesStoreError');
 const addBookStore = document.getElementById('addBookStore');
+const deleteStoreBookButton = document.querySelectorAll('.delete');
 
 numberCopiesStore.addEventListener('focusout', (e) => {
   check(numberCopiesStore, numberCopiesStoreError, 'هذا الحقل مطلوب');
@@ -30,4 +31,12 @@ addBookStore.addEventListener('click', (e) => {
       })
       .catch(error => swal('Error while adding book in store !', error.errorMessage, 'error'));
   }
+});
+
+deleteStoreBookButton.forEach((button) => {
+  const idStore = button.getAttribute('id');
+  const deleteData = { idStore };
+  const route = `/admin/books/store/${idStore}`;
+  const routeToRedirect = '/admin/books/store';
+  deleteButtonFunction(button, route, routeToRedirect, deleteData);
 });
