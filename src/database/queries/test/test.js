@@ -245,7 +245,9 @@ test('Test deleteLibraryBook', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
-      const id = 2;
+      const id = {
+        idLibrary: 2,
+      };
       deleteLibraryBook(id)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, becouase its empty array');
