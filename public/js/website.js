@@ -44,8 +44,8 @@ submitSearch.addEventListener('click', (e) => {
           for (let i = 0; i < respons.result.length; i++) {
             const div = document.createElement('div');
             const img = document.createElement('img');
-            if (respons.result.imgURL) {
-              img.src = respons.result.imgURL;
+            if (respons.result[i].imgURL) {
+              img.src = respons.result[i].imgURL;
             } else {
               img.src = 'https://edition-medali.tn/img/p/ar-default.jpg';
             }

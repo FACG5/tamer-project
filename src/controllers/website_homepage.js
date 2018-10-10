@@ -22,6 +22,7 @@ exports.post = (request, response, next) => {
           nameAuthor: res.nameAuthor,
           caseBook: res.caseBook,
           serialNumber,
+          imgURL: res.imageUrl,
         };
         array.push(data);
       });
