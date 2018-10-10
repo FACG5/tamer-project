@@ -6,9 +6,13 @@ const { getCategory } = require('../get_category');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
-const { getUsers } = require('../view_user');
+const { getUsers, getBorrower } = require('../view_user');
+const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
+const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
 const { getSearchedBook } = require('../website');
+const { getUser } = require('../get_user');
+const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -206,6 +210,99 @@ test('Test getSearchedBook', (t) => {
           t.equal(response.length, 4, 'getSearchedBook length returns 4 ');
           t.equal(response[0].nameBook, 'ليلى الحمقاء', 'getSearchedBook length returns \'ليلى الحمقاء\' ');
           t.equal(response[1].nameAuthor, 'أحلام كمال', 'getSearchedBook length returns \'أحلام كمال\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getBorrower', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrower()
+        .then((response) => {
+          t.equal(response.length, 4, 'getBorrower length returns 3 ');
+          t.equal(response[0].nameUser, 'أسماء', 'getBorrower returns \'أسماء\' ');
+          t.equal(response[3].mobileNumber, '0599778899', 'getBorrower returns \'0599778899\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getSingleBookByLibraryId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        libraryId: 2,
+      };
+      getSingleBookByLibraryId(data)
+        .then((response) => {
+          t.equal(response[0].nameBook, 'سرير جدي', 'nameBook returns \'سرير جدي\' ');
+          t.equal(response[0].nameAuthor, 'أحلام كمال', 'nameAuthor returns \'أحلام كمال\' ');
+          t.equal(response[0].categorySerial, '502', 'category returns \'502\' ');
+          t.equal(response[0].section, 10, 'section returns 10 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getSingleBookByStoreId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        storeId: 2,
+      };
+      getSingleBookByStoreId(data)
+        .then((response) => {
+          t.equal(response[0].nameBook, 'مذكرات أطفال البحر', 'nameBook returns \'مذكرات أطفال البحر\' ');
+          t.equal(response[0].nameAuthor, 'لبنى طه', 'nameAuthor returns \'لبنى طه\' ');
+          t.equal(response[0].categorySerial, '501', 'category returns \'501\' ');
+          t.equal(response[0].copyNumber, 20, 'section returns 20 ');
+          t.equal(response[0].categoryName, 'أطفال', 'nameAuthor returns \'أطفال\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getUser', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        mobileNumberVal: '0599112233',
+      };
+      getUser(data)
+        .then((response) => {
+          t.equal(response[0].name, 'أسماء', 'name returns \'أسماء\' ');
+          t.equal(response[0].address, 'غزة - النصر', 'address returns \' غزة - النصر\' ');
+          t.equal(response[0].userId === 1, true, 'id returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getBorrowedBooksByUserId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrowedBooksByUserId(1)
+        .then((response) => {
+          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'name returns \'ليلى الحمقاء\' ');
+          t.equal(response[0].category, '501', 'category returns \'501\' ');
+          t.equal(response[0].bookshelf, 1, 'bookshelf returns 1 ');
+          t.equal(response[0].section, 5, 'bookshelf returns 1 ');
           t.end();
         })
         .catch(error => t.error(error));

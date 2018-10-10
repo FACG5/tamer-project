@@ -37,12 +37,12 @@
   </div>
   <div id="borower" class="main__conten--user" {{#if viewUser}} style="display: none" {{/if}}>
     <div class="main__conten--user-search">
-      <input type="text" placeholder="بحث" name="search">
+      <input type="text" placeholder="بحث" name="search" id="input-search-borower">
       <button type="submit">
         <img src="/img/search.png">
       </button>
     </div>
-    <table class="main__content--table">
+    <table class="main__content--table" id="table-borower">
       <tr>
         <th>اسم المستعير </th>
         <th>رقم الجوال</th>
@@ -51,14 +51,16 @@
         <th>تاريخ البداية</th>
         <th>تاريخ النهاية</th>
       </tr>
-      <tr>
-        <td>لبنى عبد الجواد</td>
-        <td>0597346023</td>
-        <td> عنوان عنوان عنوان</td>
-        <td>ليلى الحمقاء</td>
-        <td>20/9/2018</td>
-        <td>1/10/2018</td>
-      </tr>
+        {{#each res}}
+          <tr id="{{idBorrow}}">
+            <td>{{nameUser}}</td>
+            <td>{{mobileNumber}}</td>
+            <td>{{address}}</td>
+            <td>{{namebook}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+          </tr>
+        {{/each}}
     </table>
   </div>
 </section>
