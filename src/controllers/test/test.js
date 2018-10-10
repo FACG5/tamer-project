@@ -536,4 +536,20 @@ test('test for add user page route  - with cookie and auth ', (t) => {
     });
 });
 
+// test for delete store book
+test('test for delete store book - with cookie and auth ', (t) => {
+  supertest(app)
+    .delete('/admin/books/store/1')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
