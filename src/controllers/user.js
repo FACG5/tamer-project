@@ -1,4 +1,4 @@
-const { getUsers } = require('../database/queries/view_user');
+const { getUsers, getBorrower } = require('../database/queries/view_user');
 
 exports.getViewUser = (request, response, next) => {
   getUsers()
@@ -17,14 +17,19 @@ exports.getViewUser = (request, response, next) => {
     .catch(error => next(error));
 };
 
-exports.getBorrowedUser = (request, response) => {
-  response.render('view_user',
-    {
-      borrowedUser: 'active',
-      user: 'active',
-      layout: 'admin',
-      title: 'اﻷعضاء',
-      style: ['user'],
-      js: ['user'],
-    });
+exports.getBorrowedUser = (request, response, next) => {
+  getBorrower()
+    .then((res) => {
+      response.render('view_user',
+        {
+          borrowedUser: 'active',
+          user: 'active',
+          layout: 'admin',
+          title: 'المستعيرين',
+          style: ['user'],
+          js: ['user'],
+          res,
+        });
+    })
+    .catch(error => next(error));
 };
