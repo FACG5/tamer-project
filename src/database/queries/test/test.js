@@ -270,7 +270,7 @@ test('Test getBorrowedBooksByUserId', (t) => {
           t.equal(response[0].nameBook, 'ليلى الحمقاء', 'name returns \'ليلى الحمقاء\' ');
           t.equal(response[0].category, '501', 'category returns \'501\' ');
           t.equal(response[0].bookshelf, 1, 'bookshelf returns 1 ');
-          t.equal(response[0].section, 5, 'section returns 1 ');
+          t.equal(response[0].section, 5, 'bookshelf returns 1 ');
           t.end();
         })
         .catch(error => t.error(error));
