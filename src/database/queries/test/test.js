@@ -6,9 +6,9 @@ const { getCategory } = require('../get_category');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../view_book');
 const getAdmin = require('../checkAdmin');
 const { setLibraryBook } = require('../set_libraryBook');
+const { getUsers, getBorrower } = require('../view_user');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
-const { getUsers } = require('../view_user');
 const { setStoreBook } = require('../set_storeBook');
 const { getUser } = require('../get_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowedBooksByUserId');
@@ -200,6 +200,21 @@ test('Test getUsers', (t) => {
   });
 });
 
+test('Test getBorrower', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getBorrower()
+        .then((response) => {
+          t.equal(response.length, 4, 'getBorrower length returns 3 ');
+          t.equal(response[0].nameUser, 'أسماء', 'getBorrower returns \'أسماء\' ');
+          t.equal(response[3].mobileNumber, '0599778899', 'getBorrower returns \'0599778899\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
 
 test('Test getSingleBookByLibraryId', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
