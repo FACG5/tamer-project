@@ -10,6 +10,7 @@ const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id')
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { getUsers } = require('../view_user');
 const { setStoreBook } = require('../set_storeBook');
+const { deleteLibraryBook } = require('../delete_library_book');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -239,5 +240,22 @@ test('Test getSingleBookByStoreId', (t) => {
     });
   });
 });
+
+test('Test deleteLibraryBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = 2;
+      deleteLibraryBook(id)
+        .then((response) => {
+          // console.log(response);
+          t.equal(response.length === 0, true, 'should return true, becouase its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
 
 test.onFinish(() => { process.exit(0); });
