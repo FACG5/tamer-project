@@ -16,7 +16,7 @@ exports.getLibraryBooks = (request, response, next) => {
           layout: 'admin',
           title: 'عرض المكتبة',
           style: ['book'],
-          js: ['book'],
+          js: ['book', 'book_library'],
           resLibraryBooks,
           status,
         });
@@ -34,7 +34,7 @@ exports.getStoreBooks = (request, response, next) => {
           layout: 'admin',
           title: 'عرض المخزن',
           style: ['book'],
-          js: ['book'],
+          js: ['book', 'book_store'],
           admin: 'admin',
           resStoreBooks,
         });

@@ -455,6 +455,40 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
+// test for delete library book
+test('test for delete library book - with cookie and auth ', (t) => {
+  supertest(app)
+    .delete('/admin/books/delete/1')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
+test('test for add borrowpage page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/borrow/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      mobileNumberVal: '0599112233',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
       const response = JSON.parse(res.text);
       t.equal(response.resultUser[0].userId, 1, 'id should return 1');
       t.equal(response.resultUser[0].name, 'أسماء', 'name should return أسماء');
