@@ -502,5 +502,4 @@ test('test for add user page route  - with cookie and auth ', (t) => {
     });
 });
 
-
 test.onFinish(() => { process.exit(0); });
