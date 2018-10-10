@@ -13,6 +13,7 @@ const router = express.Router();
 
 // unsecure routes
 router.get('/', websiteHomePage.get);
+router.post('/', websiteHomePage.post);
 router.get('/admin/login', login.get);
 router.post('/admin/login', login.post);
 
