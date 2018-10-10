@@ -248,7 +248,6 @@ test('Test deleteLibraryBook', (t) => {
       const id = 2;
       deleteLibraryBook(id)
         .then((response) => {
-          // console.log(response);
           t.equal(response.length === 0, true, 'should return true, becouase its empty array');
           t.end();
         })
