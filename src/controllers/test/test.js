@@ -379,4 +379,24 @@ test('test for users view page route - with cookie and auth ', (t) => {
     });
 });
 
+test('test for search website page route', (t) => {
+  supertest(app)
+    .post('/')
+    .send({
+      string: 'صندوق',
+    })
+    .expect(200)
+    .expect('Content-Type', 'application/json; charset=utf-8')
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.body.result[0].idLibrary, 4, 'post of return 4 ');
+      t.equal(res.body.result[0].nameBook, 'صندوق العجب', 'post of return \'صندوق العجب\' ');
+      t.equal(res.body.result[0].serialNumber, '503.4.8.1', 'post of return \'503.4.8.1\' ');
+      t.end();
+    });
+});
+
+
 test.onFinish(() => { process.exit(0); });
