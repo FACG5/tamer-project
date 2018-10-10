@@ -43,11 +43,9 @@ exports.getSingleStoreBook = (request, response, next) => {
 };
 
 exports.deleteBookFromLibrary = (request, response, next) => {
-  console.log(5454);
   const id = request.body;
   deleteLibraryBook(id)
     .then(() => {
-      // console.log(res);
       const result = { message: 'Book is Deleted !' };
       response.send(JSON.stringify(result));
     })
