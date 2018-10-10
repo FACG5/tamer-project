@@ -1,4 +1,4 @@
-const { getBorrowedBooksByUserId } = require('../database/queries/get_borrowedBooksByUserId');
+const { getBorrowedBooksByUserId } = require('../database/queries/get_borrowed_books_by_user_id');
 const { getUser } = require('../database/queries/get_user');
 
 exports.get = (request, response) => {

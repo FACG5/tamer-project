@@ -11,7 +11,7 @@ const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id')
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
 const { getUser } = require('../get_user');
-const { getBorrowedBooksByUserId } = require('../get_borrowedBooksByUserId');
+const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
