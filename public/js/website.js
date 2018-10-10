@@ -52,6 +52,7 @@ submitSearch.addEventListener('click', (e) => {
             div.appendChild(img);
             creatElement('اسم الكتاب :  ', respons.result[i].nameBook, div);
             creatElement('اسم الكاتب :  ', respons.result[i].nameAuthor, div);
+            creatElement('الرقم التسلسلي :  ', respons.result[i].serialNumber , div);
             caseBook(respons.result[i].caseBook, div);
             search.appendChild(div);
           }
