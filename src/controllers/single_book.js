@@ -42,7 +42,7 @@ exports.getSingleStoreBook = (request, response, next) => {
     });
 };
 
-exports.deleteBookFromLibrary = (request, response, next) => {
+exports.deleteBookFromLibrary = (request, response) => {
   const id = request.body;
   deleteLibraryBook(id)
     .then(() => {
@@ -50,9 +50,6 @@ exports.deleteBookFromLibrary = (request, response, next) => {
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
-      if (err) {
-        response.send(JSON.stringify({ err }));
-      }
-      next(err);
+      response.send(JSON.stringify({ err }));
     });
 };
