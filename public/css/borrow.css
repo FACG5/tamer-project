@@ -1,17 +1,17 @@
-.main__conten--borrow-search > input {
+.main__conten--borrow-search .form--input {
   font-family: Cairo;
   background: #fff;
   text-align: right;
   color: #525865;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 0.5rem;
   border: 1px solid #d1d1d1;
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
   font-size: 1em;
   line-height: 1.45;
   outline: none;
   margin: 0px;
-  padding: 8px;
+  padding: 12px;
+  width: 15rem;
   margin-left: -5px;
 }
 
@@ -23,7 +23,7 @@
   display: block;
 }
 
-.main__content--table-invisible{
+.main__content--table-invisible {
   display: none;
 }
 
@@ -32,12 +32,12 @@
   margin-left: 20rem;
 }
 
-.main__conten--borrow-search > input:hover {
+.main__conten--borrow-search .form--input:hover {
   font-family: Cairo;
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
 }
 
-.main__conten--borrow-search > input:focus {
+.main__conten--borrow-search .form--input:focus {
   font-family: Cairo;
   color: #4b515d;
   border: 1px solid #b8b6b6;
@@ -45,18 +45,21 @@
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
-.main__conten--borrow-search button {
+.main__conten--borrow-search .btninput {
   border: 1px solid #d1d1d1;
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
   background-color: #0878b0;
-  height: 42px;
+  font-size: 18px;
+  text-align: center;
+  padding: 0.3rem;
+  width: 5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  font-family: Cairo;
   outline: none;
   cursor: pointer;
+  color: white;
   vertical-align: middle;
-}
-
-.main__conten--borrow-search > button > img {
-  padding: 8px;
 }
 
 .main__content--borrow-div {
@@ -77,6 +80,10 @@
 
 .main__search--result-visible {
   display: block;
+}
+
+.main__search--result--invisible {
+  display: none;
 }
 
 .main__content--addUser > div {

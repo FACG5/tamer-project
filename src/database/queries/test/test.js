@@ -12,6 +12,7 @@ const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
 const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
+const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 
 test('Test for the getCategory function', (t) => {
@@ -287,6 +288,26 @@ test('Test getBorrowedBooksByUserId', (t) => {
           t.equal(response[0].category, '501', 'category returns \'501\' ');
           t.equal(response[0].bookshelf, 1, 'bookshelf returns 1 ');
           t.equal(response[0].section, 5, 'bookshelf returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test for the setUser function', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        nameUserVal: 'محمد',
+        mobileNumberUserVal: '0597346023',
+        addressVal: 'غزة',
+      };
+      setUser(data)
+        .then((response) => {
+          t.equal(response[0].mobileNumber === '0597346023', true, 'mobileNumber returns data successfully ');
+          t.equal(response[0].name === 'محمد', true, 'name returns data successfully ');
           t.end();
         })
         .catch(error => t.error(error));
