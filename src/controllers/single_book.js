@@ -2,6 +2,7 @@ const { getSingleBookByLibraryId } = require('../database/queries/get_single_boo
 const { getSingleBookByStoreId } = require('../database/queries/get_single_book_by_store_id');
 const { deleteLibraryBook } = require('../database/queries/delete_library_book');
 const { deleteStoreBook } = require('../database/queries/delete_store_book');
+const { editBookInfo, editLibraryInfo } = require('../database/queries/edit_book');
 
 exports.getSingleLibraryBook = (request, response, next) => {
   const id = request.params;
@@ -80,6 +81,27 @@ exports.editSingleLibraryBookView = (request, response, next) => {
           js: ['edit_library_book'],
           admin: 'admin',
           results,
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.editSingleLibraryBook = (request, response, next) => {
+  const data = request.body;
+  editBookInfo(data)
+    .then(() => {
+      editLibraryInfo(data)
+        .then(() => {
+          const result = { message: 'Edit Successfully!' };
+          response.json(result);
+        }).catch((err) => {
+          if (err.code === '22003') {
+            const result = { errorMessage: 'لا يجب ان يتجاوز الرقم 8 خانات' };
+            return response.json(result);
+          }
+          next(err);
         });
     })
     .catch((err) => {
