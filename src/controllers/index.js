@@ -39,6 +39,7 @@ router.post('/admin/books/:bookId/store', books.addStoreBook);
 router.get('/admin/books/library/book/:libraryId', singleBook.getSingleLibraryBook);
 router.get('/admin/books/store/book/:storeId', singleBook.getSingleStoreBook);
 router.post('/admin/user/', borrow.addUser);
+router.post('/admin/user/book', borrow.addBookToUser);
 router.delete('/admin/books/library/:idLibrary', singleBook.deleteBookFromLibrary);
 router.delete('/admin/books/store/:idStore', singleBook.deleteBookFromStore);
 router.get('/admin/books/library/book/edit/:libraryId', singleBook.editSingleLibraryBookView);

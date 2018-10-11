@@ -536,4 +536,63 @@ test('test edit library book PUT method', (t) => {
     });
 });
 
+test('test for add book To user route  - without cookie and auth', (t) => {
+  supertest(app)
+    .post('/admin/user/book')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test foradd book To user route   - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/user/book')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      bookshelfVal: 1,
+      copyIdVal: 2,
+      sectionsVal: 5,
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      const response = JSON.parse(res.text);
+      t.equal(response.message, ' هذا الكتاب مستعار ', ' should return هذا الكتاب مستعار');
+      t.equal(response.resultborrow[0].id, 1, ' should return 1');
+      t.end();
+    });
+});
+
+test('test foradd book To user route   - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/user/book')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      bookshelfVal: 5,
+      copyIdVal: 1,
+      sectionsVal: 4,
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      const response = JSON.parse(res.text);
+      t.equal(response.message, 'الكتاب غير موجود', ' should return الكتاب غير موجود');
+      t.equal(response.resultLibrary.length, 0, ' should return 0');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
