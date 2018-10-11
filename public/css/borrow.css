@@ -62,7 +62,25 @@
   vertical-align: middle;
 }
 
+.input {
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 4px solid #d1d1d1 !important;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+  width: 5%;
+  margin-right: 0.5rem;
+}
+
+.main__conten--borrow-search > button > img {
+  padding: 8px;
+}
+
 .main__content--borrow-div {
+  width: 80%;
   padding-top: 5rem;
 }
 
@@ -89,20 +107,21 @@
 .main__content--addUser > div {
   padding: 1rem;
 }
-.main__content--addUser > div > input {
+.main__content--addUser > form > div > input {
   padding: 0.5rem;
   width: 20rem;
+  margin: 2%;
   font-family: cairo;
   border: 2px solid #ccc;
   border-radius: 5px;
   outline: none;
 }
 
-.main__content--addUser > input :focus {
+.main__content--addUser > form > input :focus {
   border-color: #333;
 }
 
-.main__content--addUser > div > label {
+.main__content--addUser > form > div > label {
   padding: 2rem;
 }
 

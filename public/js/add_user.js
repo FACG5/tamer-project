@@ -19,6 +19,7 @@ address.addEventListener('focusout', (e) => {
 });
 
 addUsers.addEventListener('click', (e) => {
+  e.preventDefault();
   const checkName = check(name, nameError, 'هذا الحقل مطلوب');
   const checkMobileNumberUser = check(mobileNumberUser, mobileNumberUserError, 'هذا الحقل مطلوب');
   const checkAddress = check(address, addressError, 'هذا الحقل مطلوب');
@@ -44,9 +45,8 @@ addUsers.addEventListener('click', (e) => {
           const mobileNumber = response.mobileNumberUser;
           window.location = `/admin/borrow?data=${mobileNumber}`;
           JSON.stringify({ response, mobileNumber });
-          JSON.stringify(response);
         });
       })
-      .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
+      .catch(error => swal('Error while adding User !', error.errorMessage, 'error'));
   }
 });
