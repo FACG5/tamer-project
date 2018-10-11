@@ -21,7 +21,9 @@
     {{#each results}}
     <div class="main__content__viewBook--img">
       <img src="{{img}}">
-      <button class="editbtn">تعديل الكتاب</button>
+      <a href="/admin/books/library/book/edit/{{libraryId}}">
+        <button class="editbtn">تعديل الكتاب</button>
+      </a>
     </div>
     <div class="main__content__viewBook--information">
       <h3>اسم الكتاب</h3>
@@ -30,14 +32,14 @@
       <p>{{nameAuthor}}</p>
       <h3>الوصف</h3>
       <p>{{description}}</p>
-        <h3>التصنيف</h3>
-        <p>{{categoryName}}</p>
-        <h3>الرف</h3>
-        <p>{{bookShelf}}</p>
-        <h3> القسم</h3>
-        <p>{{section}}</p>
-        <h3> الرقم التسلسلي  </h3>
-        <p>{{categorySerial}}.{{bookShelf}}.{{section}}.{{copyId}}</p>
+      <h3>التصنيف</h3>
+      <p>{{categoryName}}</p>
+      <h3>الرف</h3>
+      <p>{{bookShelf}}</p>
+      <h3> القسم</h3>
+      <p>{{section}}</p>
+      <h3> الرقم التسلسلي </h3>
+      <p>{{categorySerial}}.{{bookShelf}}.{{section}}.{{copyId}}</p>
     </div>
     {{/each}}
   </div>
