@@ -11,7 +11,9 @@ const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id')
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
 const { getSearchedBook } = require('../website');
+const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
+const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 
 test('Test for the getCategory function', (t) => {
@@ -208,8 +210,8 @@ test('Test getSearchedBook', (t) => {
       getSearchedBook('س')
         .then((response) => {
           t.equal(response.length, 4, 'getSearchedBook length returns 4 ');
-          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'getSearchedBook length returns \'ليلى الحمقاء\' ');
-          t.equal(response[1].nameAuthor, 'أحلام كمال', 'getSearchedBook length returns \'أحلام كمال\' ');
+          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'getSearchedBook returns \'ليلى الحمقاء\' ');
+          t.equal(response[1].nameAuthor, 'أحلام كمال', 'getSearchedBook returns \'أحلام كمال\' ');
           t.end();
         })
         .catch(error => t.error(error));
@@ -303,6 +305,43 @@ test('Test getBorrowedBooksByUserId', (t) => {
           t.equal(response[0].category, '501', 'category returns \'501\' ');
           t.equal(response[0].bookshelf, 1, 'bookshelf returns 1 ');
           t.equal(response[0].section, 5, 'bookshelf returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test for the setUser function', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        nameUserVal: 'محمد',
+        mobileNumberUserVal: '0597346023',
+        addressVal: 'غزة',
+      };
+      setUser(data)
+        .then((response) => {
+          t.equal(response[0].mobileNumber === '0597346023', true, 'mobileNumber returns data successfully ');
+          t.equal(response[0].name === 'محمد', true, 'name returns data successfully ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test deleteLibraryBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idLibrary: 2,
+      };
+      deleteLibraryBook(id)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, becouase its empty array');
           t.end();
         })
         .catch(error => t.error(error));

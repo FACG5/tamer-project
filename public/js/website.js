@@ -66,6 +66,6 @@ submitSearch.addEventListener('click', (e) => {
       })
       .catch(err => swal(err, ' ', 'error'));
   } else {
-    swal('Error !', 'أرجوا أن تدخل النص', 'error');
+    swal('خطأ !', 'أرجوا أن تدخل النص', 'error');
   }
 });

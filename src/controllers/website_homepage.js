@@ -11,7 +11,7 @@ exports.get = (request, response) => {
 
 exports.post = (request, response, next) => {
   const { string } = request.body;
-  getSearchedBook(string, string)
+  getSearchedBook(string)
     .then((responseArray) => {
       const array = [];
       responseArray.forEach((res) => {

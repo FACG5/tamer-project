@@ -5,6 +5,7 @@ const bookshelfError = document.getElementById('bookshelfError');
 const section = document.getElementById('section');
 const sectionError = document.getElementById('sectionError');
 const addLibraryBook = document.getElementById('addLibraryBook');
+const deleteLibraryBookButton = document.querySelectorAll('.delete');
 
 numberCopies.addEventListener('focusout', (e) => {
   check(numberCopies, numberCopiesError, 'هذا الحقل مطلوب');
@@ -47,4 +48,12 @@ addLibraryBook.addEventListener('click', (e) => {
       })
       .catch(error => swal('Error while adding library !', error, 'error'));
   }
+});
+
+deleteLibraryBookButton.forEach((button) => {
+  const idLibrary = button.getAttribute('id');
+  const deleteData = { idLibrary };
+  const route = `/admin/books/delete/${idLibrary}`;
+  const routeToRedirect = '/admin/books/library';
+  deleteButtonFunction(button, route, routeToRedirect, deleteData);
 });

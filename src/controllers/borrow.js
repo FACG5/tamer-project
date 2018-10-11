@@ -1,5 +1,6 @@
 const { getBorrowedBooksByUserId } = require('../database/queries/get_borrowed_books_by_user_id');
 const { getUser } = require('../database/queries/get_user');
+const { setUser } = require('../database/queries/set_user');
 
 exports.get = (request, response) => {
   response.render('view_borrow',
@@ -9,7 +10,7 @@ exports.get = (request, response) => {
       layout: 'admin',
       title: 'اﻹعارة',
       style: ['borrow'],
-      js: ['borrow'],
+      js: ['borrow', 'add_user'],
     });
 };
 
@@ -36,6 +37,31 @@ exports.post = (request, response, next) => {
       } else {
         response.send(JSON.stringify({ resultUser, resultBorrowedBooksByUserId }));
       }
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.addUser = (req, response, next) => {
+  const userData = req.body;
+  setUser(userData)
+    .then((results) => {
+      const result = { message: 'User Added !' };
+      response.send(JSON.stringify(result));
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.addUser = (req, response, next) => {
+  const userData = req.body;
+  setUser(userData)
+    .then((results) => {
+      const mobileNumberUser = results[0].mobileNumber;
+      const result = { message: 'User Added !', mobileNumberUser };
+      response.send(JSON.stringify(result));
     })
     .catch((err) => {
       next(err);
