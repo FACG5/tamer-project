@@ -47,9 +47,9 @@ exports.deleteBookFromLibrary = (request, response) => {
   deleteLibraryBook(id)
     .then(() => {
       const result = { message: 'Book is Deleted !' };
-      response.send(JSON.stringify(result));
+      return response.json(result);
     })
     .catch((err) => {
-      response.send(JSON.stringify({ err }));
+      response.json(err);
     });
 };
