@@ -474,4 +474,20 @@ test('test for add user page route  - with cookie and auth ', (t) => {
     });
 });
 
+test('test for admin route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .get('/admin/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.equal(res.text.includes('<h1>4</h1>'), true, 'the number of book borrower equal 4');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
