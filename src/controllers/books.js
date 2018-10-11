@@ -3,7 +3,7 @@ const { setCategory } = require('../database/queries/set_category');
 const { setLibraryBook } = require('../database/queries/set_libraryBook');
 const { setBook } = require('../database/queries/set_book');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../database/queries/view_book');
-const { status } = require('../views/helpers/index');
+const { status, compare } = require('../views/helpers/index');
 const { setStoreBook } = require('../database/queries/set_storeBook');
 
 exports.getLibraryBooks = (request, response, next) => {
@@ -55,6 +55,7 @@ exports.getBorrowedBooks = (request, response, next) => {
           js: ['book'],
           admin: 'admin',
           resBorrowBooks,
+          compare,
         });
     })
     .catch(err => next(err));
