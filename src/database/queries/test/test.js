@@ -15,6 +15,8 @@ const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
+const { deleteStoreBook } = require('../delete_store_book');
+const { getStatistics } = require('../get_statistics');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -342,6 +344,44 @@ test('Test deleteLibraryBook', (t) => {
       deleteLibraryBook(id)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, becouase its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test deleteLibraryBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idStore: 1,
+      };
+      deleteStoreBook(id)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStatistics', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idLibrary: 2,
+      };
+      getStatistics(id)
+        .then((response) => {
+          t.equal(response.length, 1, 'getStatistics return length 1');
+          t.equal(response[0].countBook, '6', 'getStatistics return 6 book');
+          t.equal(response[0].countUser, '3', 'getStatistics return 6 user');
+          t.equal(response[0].borrowedBook, '6', 'getStatistics return 5 borrowed book');
+          t.equal(response[0].countBorrowing, '4', 'getStatistics return 3 count Borrowing');
           t.end();
         })
         .catch(error => t.error(error));

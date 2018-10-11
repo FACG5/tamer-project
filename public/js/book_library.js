@@ -53,7 +53,7 @@ addLibraryBook.addEventListener('click', (e) => {
 deleteLibraryBookButton.forEach((button) => {
   const idLibrary = button.getAttribute('id');
   const deleteData = { idLibrary };
-  const route = `/admin/books/delete/${idLibrary}`;
+  const route = `/admin/books/library/${idLibrary}`;
   const routeToRedirect = '/admin/books/library';
   deleteButtonFunction(button, route, routeToRedirect, deleteData);
 });

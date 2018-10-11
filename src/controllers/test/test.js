@@ -402,9 +402,9 @@ test('test for search website page route', (t) => {
 // test for delete library book
 test('test for delete library book - with cookie and auth ', (t) => {
   supertest(app)
-    .delete('/admin/books/delete/1')
+    .delete('/admin/books/library/1')
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
     .end((err, res) => {
       if (err) {
@@ -470,6 +470,38 @@ test('test for add user page route  - with cookie and auth ', (t) => {
         t.error(err);
       }
       t.equal(JSON.parse(response.text).message, 'User Added !', 'Message should return User Added !');
+      t.end();
+    });
+});
+
+// test for delete store book
+test('test for delete store book - with cookie and auth ', (t) => {
+  supertest(app)
+    .delete('/admin/books/store/1')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
+test('test admin homepage that have statistics', (t) => {
+  supertest(app)
+    .get('/admin/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.equal(res.text.includes('<h1>4</h1>'), true, 'the number of book borrower equal 4');
       t.end();
     });
 });
