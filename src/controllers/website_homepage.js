@@ -1,12 +1,17 @@
-const { getSearchedBook } = require('../database/queries/website');
+const { getSearchedBook, getMostBooks } = require('../database/queries/website');
 
-exports.get = (request, response) => {
-  response.render('website_homepage',
-    {
-      layout: 'website',
-      title: 'الرئيسية',
-      js: 'website',
-    });
+exports.get = (request, response, next) => {
+  getMostBooks()
+    .then((res) => {
+      response.render('website_homepage',
+        {
+          layout: 'website',
+          title: 'الرئيسية',
+          js: 'website',
+          res,
+        });
+    })
+    .catch(error => next(error));
 };
 
 exports.post = (request, response, next) => {
