@@ -10,6 +10,7 @@ const { getUsers, getBorrower } = require('../view_user');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
+const { getSearchedBook } = require('../website');
 const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
@@ -195,6 +196,22 @@ test('Test getUsers', (t) => {
           t.equal(response[0].nameUser, 'أسماء', 'getUsers returns \'أسماء\' ');
           t.equal(response[1].address, 'الوسطى', 'getUsers returns \'الوسطى\'');
           t.equal(response[2].mobileNumber, '0599778899', 'getUsers returns \'0599778899\'');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getSearchedBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getSearchedBook('س')
+        .then((response) => {
+          t.equal(response.length, 4, 'getSearchedBook length returns 4 ');
+          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'getSearchedBook returns \'ليلى الحمقاء\' ');
+          t.equal(response[1].nameAuthor, 'أحلام كمال', 'getSearchedBook returns \'أحلام كمال\' ');
           t.end();
         })
         .catch(error => t.error(error));

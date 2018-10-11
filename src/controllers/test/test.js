@@ -379,82 +379,21 @@ test('test for users view page route - with cookie and auth ', (t) => {
     });
 });
 
-// borrower view page
-test('test for users view page route - with cookie and auth ', (t) => {
+test('test for search website page route', (t) => {
   supertest(app)
-    .get('/admin/users/borrower')
-    .expect(200)
-    .expect('Content-Type', /html/)
-    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.text.includes('<title>المستعيرين</title>'), true, 'the page should have title \'المستعيرين\'');
-      t.end();
-    });
-});
-
-// test for single library book
-test('test for single library book - with cookie and auth ', (t) => {
-  supertest(app)
-    .get('/admin/books/library/book/1')
-    .expect(200)
-    .expect('Content-Type', /html/)
-    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.text.includes('<title>عرض كتاب</title>'), true, 'the page should have title \'عرض كتاب\'');
-      t.end();
-    });
-});
-
-// test for single store book
-test('test for single store book - with cookie and auth ', (t) => {
-  supertest(app)
-    .get('/admin/books/store/book/4')
-    .expect(200)
-    .expect('Content-Type', /html/)
-    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.text.includes('<title>عرض كتاب</title>'), true, 'the page should have title \'عرض كتاب\'');
-      t.end();
-    });
-});
-
-test('test for add borrowpage route  - without cookie and auth', (t) => {
-  supertest(app)
-    .post('/admin/borrow/')
-    .expect(302)
-    .expect('Content-Type', /text/)
-    .end((err, res) => {
-      if (err) {
-        t.error(err);
-      }
-      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
-      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
-      t.end();
-    });
-});
-
-test('test for add borrowpage page route  - with cookie and auth ', (t) => {
-  supertest(app)
-    .post('/admin/borrow/')
-    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .post('/')
     .send({
-      mobileNumberVal: '0599112233',
+      string: 'صندوق',
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', 'application/json; charset=utf-8')
     .end((err, res) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.body.result[0].idLibrary, 4, 'post of return 4 ');
+      t.equal(res.body.result[0].nameBook, 'صندوق العجب', 'post of return \'صندوق العجب\' ');
+      t.equal(res.body.result[0].serialNumber, '503.4.8.1', 'post of return \'503.4.8.1\' ');
       t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.end();
     });
@@ -471,7 +410,6 @@ test('test for delete library book - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
       t.end();
     });
 });
