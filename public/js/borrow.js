@@ -1,5 +1,4 @@
 const addNewUser = document.getElementById('addNewUser');
-const addBookUser = document.getElementById('addBookUser');
 const mobileNumber = document.getElementById('mobileNumber');
 const searchUserbtn = document.getElementById('searchUser');
 const mobileNumberError = document.getElementById('mobileNumberError');
@@ -8,6 +7,9 @@ const tableUser = document.getElementById('tabelUser');
 const viewAddUser = document.getElementById('viewAddUser');
 const tableBorrowedBook = document.getElementById('ViewBorrowedBook');
 const result = document.getElementById('result');
+const addBookForUser = document.getElementById('addBookForUser');
+const addBookUser = document.getElementById('addBookUser');
+
 
 mobileNumber.addEventListener('focusout', (e) => {
   check(mobileNumber, mobileNumberError, 'الرجاء ادخال رقم الجوال');
@@ -19,9 +21,10 @@ const addUser = () => {
   result.classList.add('main__search--result--invisible');
 };
 
-const addBookForUser = () => {
+addBookForUser.addEventListener('click', (e) => {
   addBookUser.classList.add('main__content--addBookForUser-visible');
-};
+  addBookForUser.value = document.getElementsByClassName('trUser')[0].id;
+});
 
 const addBook = () => {
   addBookUser.classList.remove('main__content--addBookForUser-visible');
@@ -63,6 +66,7 @@ const fetchData = () => {
         main.classList.add('main__content--viewUser-visible');
         Object.keys(userData[0]).forEach((key, index) => {
           trUser.id = userData[0].userId;
+          trUser.classList.add('trUser');
           if (index === 0) {
             return;
           }
@@ -116,7 +120,8 @@ const fetchData = () => {
         viewAddUser.classList.add('addNewUser-visible');
       }
     })
-    .catch(error => swal(error, 'error', 'error'));
+    .catch(error => console.log(error)
+    );
 };
 
 const href = window.location.href;
@@ -127,6 +132,7 @@ if (mobileNum) {
 }
 
 searchUserbtn.addEventListener('click', (e) => {
+  e.preventDefault();
   const checkMobileNumber = check(mobileNumber, mobileNumberError, 'هذا الحقل مطلوب');
   if (checkMobileNumber) {
     fetchData();
