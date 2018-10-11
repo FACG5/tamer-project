@@ -395,7 +395,7 @@ test('Test getStatistics', (t) => {
     return runDbBuild('fake_data.sql', () => {
       getMostBooks()
         .then((response) => {
-          t.equal(response.length, 4, 'getMostBooks return length 1');
+          t.equal(response.length, 4, 'getMostBooks return length 4');
           t.equal(response[0].count, '1', 'getMostBooks return 1');
           t.equal(response[0].name, 'مذكرات أطفال البحر', 'getMostBooks return \'مذكرات أطفال البحر\' ');
           t.end();
