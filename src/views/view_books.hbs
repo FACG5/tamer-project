@@ -82,7 +82,7 @@
             <td>
               <a href="/admin/books/store/book/{{idStore}}" class="link link--view">تفاصيل</a>
             </td>
-            <td> 
+            <td>
               <a id = "{{idStore}}" class="link link--delete delete" href="javascript:;">حذف</a>
             </td>
           </tr>
@@ -110,7 +110,7 @@
         <th>تذكير</th>
       </tr>
         {{#each resBorrowBooks}}
-          <tr id="{{idBorrow}}">
+          <tr id="{{idBorrow}}" class="{{compare endDate}}">
             <td>{{nameBook}}</td>
             <td>{{nameUser}}</td>
             <td>{{startDate}}</td>
