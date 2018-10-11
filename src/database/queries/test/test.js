@@ -17,6 +17,7 @@ const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 const { deleteStoreBook } = require('../delete_store_book');
 const { getStatistics } = require('../get_statistics');
+const { editBookInfo, editLibraryInfo } = require('../edit_book');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -397,7 +398,46 @@ test('Test getStatistics', (t) => {
         .then((response) => {
           t.equal(response.length, 4, 'getMostBooks return length 4');
           t.equal(response[0].count, '1', 'getMostBooks return 1');
-          t.equal(response[0].name, 'مذكرات أطفال البحر', 'getMostBooks return \'مذكرات أطفال البحر\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test editBookInfo', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const bookData = {
+        nameBookVal: 'ali',
+        nameAuthorVal: 'ahmed',
+        descriptionVal: 'test query',
+        imgVal: '',
+        bookId: 1,
+      };
+      editBookInfo(bookData)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test editLibraryInfo', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const libraryData = {
+        bookShelfVal: 100,
+        sectionVal: 2,
+        libraryId: 3,
+      };
+      editLibraryInfo(libraryData)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
           t.end();
         })
         .catch(error => t.error(error));
