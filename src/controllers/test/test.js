@@ -455,6 +455,40 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
+// test for delete library book
+test('test for delete library book - with cookie and auth ', (t) => {
+  supertest(app)
+    .delete('/admin/books/delete/1')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.res.statusMessage, 'OK', 'statusMessage should return OK');
+      t.end();
+    });
+});
+
+test('test for add borrowpage page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/borrow/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      mobileNumberVal: '0599112233',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
       const response = JSON.parse(res.text);
       t.equal(response.resultUser[0].userId, 1, 'id should return 1');
       t.equal(response.resultUser[0].name, 'أسماء', 'name should return أسماء');
@@ -466,4 +500,40 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
       t.end();
     });
 });
+
+test('test for add User  route - without cookie and auth', (t) => {
+  supertest(app)
+    .post('/admin/user/')
+    .expect(302)
+    .expect('Content-Type', /text/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.header.location, '/admin/login', 'should return the redirect location "/admin/login"');
+      t.equal(res.res.statusMessage, 'Found', 'statusMessage should return Found');
+      t.end();
+    });
+});
+
+test('test for add user page route  - with cookie and auth ', (t) => {
+  supertest(app)
+    .post('/admin/user/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      nameUserVal: 'محمد',
+      mobileNumberUserVal: '0597346023',
+      addressVal: 'غزة',
+    })
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, response) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(JSON.parse(response.text).message, 'User Added !', 'Message should return User Added !');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });

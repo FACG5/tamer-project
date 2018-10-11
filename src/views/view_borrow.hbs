@@ -2,11 +2,12 @@
   <div class="main__content--borrow-div">
     <div class="main__conten--borrow-search">
       <label>رقم الجوال :</label>
-      <input type="text" placeholder=" بحث" name="search" id="mobileNumber">
-      <button type="submit" id="searchUser">
-        <img src="/img/search.png">
-      </button>
+      <form>
+      <input type="text" placeholder=" بحث" class="form--input"name="search" id="mobileNumber">
+      <input type="submit" id="searchUser" value="بحث" class="btninput">
+      </input>
       <p id="mobileNumberError" class="errorValid"></p>
+      </form>
     </div>
     <div class="main__content--result" id="main">
       <table class="main__content--table" id="tabelUser">
@@ -34,7 +35,7 @@
       </div>
     </div>
     <div class="addNewUser" id="viewAddUser">
-      <div class="main__search--result" id="search">
+      <div class="main__search--result" id="result">
         <label>العضو غير موجود معنا</label>
         <button class="addbtn" type="submit" onclick="addUser()"> إضافة عضو</button>
       </div>
@@ -46,13 +47,13 @@
           <p id="nameError" class="errorValid"></p>
         </div>
         <div>
-          <label>رقم الجوال</label>
-          <input type="text" placeholder="رقم الجوال" id="mobileNumberUser" />
+          <label>عنوان العضو</label>
+          <input type="text" placeholder="العنوان" id="mobileNumberUser" />
           <p id="mobileNumberUserError" class="errorValid"></p>
         </div>
         <div>
-          <label>عنوان العضو</label>
-          <input type="text" placeholder="العنوان " id="address" />
+          <label>رقم الجوال</label>
+          <input type="text" placeholder="رقم الجوال  " id="address" />
           <p id="addressError" class="errorValid"></p>
         </div>
         <button class="main__content--addUser-btn addbtn" id="addUsers" type="submit"> إضافة </button>
