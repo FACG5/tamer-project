@@ -14,27 +14,12 @@
   <section>
     <h1 class="search__h1">أكثر الكتب استعارة</h1>
     <div class="main__elem--book">
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
-      <div>
-        <img src="/img/2.png">
-        <h5>ليلى الحمقاء </h5>
-      </div>
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
-      <div>
-        <img src="/img/2.png">
-        <h5>ليلى الحمقاء </h5>
-      </div>
-
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
+      {{#each res}}
+        <div id="{{bookLibraryId}}">
+          <img src="{{imageUrl}}">
+          <h5>{{name}}</h5>
+        </div>
+      {{/each}}
     </div>
   </section>
 </section>
