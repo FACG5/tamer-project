@@ -490,4 +490,20 @@ test('test for delete store book - with cookie and auth ', (t) => {
     });
 });
 
+test('test admin homepage that have statistics', (t) => {
+  supertest(app)
+    .get('/admin/')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
+      t.equal(res.text.includes('<h1>4</h1>'), true, 'the number of book borrower equal 4');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
