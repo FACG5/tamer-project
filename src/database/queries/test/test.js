@@ -10,7 +10,7 @@ const { getUsers, getBorrower } = require('../view_user');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
-const { getSearchedBook } = require('../website');
+const { getSearchedBook, getMostBooks } = require('../website');
 const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
@@ -382,6 +382,22 @@ test('Test getStatistics', (t) => {
           t.equal(response[0].countUser, '3', 'getStatistics return 6 user');
           t.equal(response[0].borrowedBook, '6', 'getStatistics return 5 borrowed book');
           t.equal(response[0].countBorrowing, '4', 'getStatistics return 3 count Borrowing');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStatistics', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getMostBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'getMostBooks return length 1');
+          t.equal(response[0].count, '1', 'getMostBooks return 1');
+          t.equal(response[0].name, 'مذكرات أطفال البحر', 'getMostBooks return \'مذكرات أطفال البحر\' ');
           t.end();
         })
         .catch(error => t.error(error));
