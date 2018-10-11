@@ -76,7 +76,7 @@ exports.editSingleLibraryBookView = (request, response, next) => {
         {
           book: 'active',
           layout: 'admin',
-          title: 'عرض كتاب',
+          title: 'تعديل كتاب',
           style: ['book', 'single_book'],
           js: ['edit_library_book'],
           admin: 'admin',
