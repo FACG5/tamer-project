@@ -14,6 +14,9 @@ const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
+const { getLibraryId } = require('../get_library_id');
+const { setBorrowBook } = require('../set_borrow_book');
+const { checkLibraryId } = require('../check_library_id');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -325,6 +328,58 @@ test('Test deleteLibraryBook', (t) => {
       deleteLibraryBook(id)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, becouase its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getLibraryId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        bookshelfVal: 1,
+        copyIdVal: 2,
+        sectionsVal: 5,
+      };
+      getLibraryId(data)
+        .then((response) => {
+          t.equal(response[0].LibraryId, 1, 'LibraryId returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test checkLibraryId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      checkLibraryId(1)
+        .then((response) => {
+          t.equal(response[0].id, 1, 'id returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test setBorrowBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        userIdVal: 1,
+        LibraryIdVal: 1,
+      };
+      setBorrowBook(data)
+        .then((response) => {
+          t.equal(response[0].startDate, '2018-10-11', 'startDate returns 2018-10-11 ');
+          t.equal(response[0].endDate, '2018-10-21', 'endDate returns 2018-10-21 ');
           t.end();
         })
         .catch(error => t.error(error));
