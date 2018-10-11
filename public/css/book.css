@@ -293,3 +293,7 @@ input[type="checkbox"] {
   width: 0;
   height: 0;
 }
+
+.late {
+  background-color: #FA8072 !important;
+}
