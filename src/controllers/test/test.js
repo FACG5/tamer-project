@@ -521,4 +521,19 @@ test('test edit library book view', (t) => {
     });
 });
 
+test('test edit library book PUT method', (t) => {
+  supertest(app)
+    .put('/admin/books/library/book/edit/1')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.body.message, 'Edit Successfully!', 'shoud return Edit Successfully! when update correctly');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
