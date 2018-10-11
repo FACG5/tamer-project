@@ -1,0 +1,62 @@
+<section class="main__header">
+  <ul class="main__header--nav">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/library">
+      <li onclick="viewUser(event,'library')" class="main__header--nav-tablink">المكتبة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/store">
+      <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">المخزن</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowed">
+      <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">الكتب المستعارة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/add">
+      <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
+    </a>
+  </ul>
+</section>
+
+<h1 class="viewBook">تعديل الكتاب</h1>
+<section class="main__content">
+  <div class="main__content__editBook">
+    {{#each results}}
+    <div class="main__content__viewBook--img">
+      <img src="{{img}}">
+      <a href="/admin/books/library/book/edit/{{libraryId}}">
+        <button id="editbtn" class="editbtn">تعديل الكتاب</button>
+      </a>
+    </div>
+    <form id="{{bookId}}" class="form">
+      <div class="main__content__editBook--information">
+
+        <label for="nameBook"> اسم الكتاب</label>
+        <input type="text" id="nameBook" name="nameBook" placeholder="اسم الكتاب" value="{{nameBook}}" required>
+        <span id="nameBookError" class="errorValid"></span>
+
+        <label for="nameAuthor">اسم الكاتب</label>
+        <input type="text" id="nameAuthor" name="nameAuthor" placeholder="اسم الكاتب" value="{{nameAuthor}}" required>
+        <span id="nameAuthorError" class="errorValid"></span>
+
+        <label for="description">الوصف</label>
+        <input type="text" id="description" name="description" placeholder="الوصف" value="{{description}}" required>
+        <span id="descriptionError" class="errorValid"></span>
+
+        <label for="img">الصورة</label>
+        <input type="text" id="img" name="img" placeholder="الصورة" value="{{img}}" required>
+        <span id="imgError" class="errorValid"></span>
+
+        <label for="section">القسم</label>
+        <input type="number" id="section" name="section" placeholder="القسم" value="{{section}}" required>
+        <span id="sectionError" class="errorValid"></span>
+
+        <label for="bookShelf">الرف</label>
+        <input type="number" id="bookShelf" name="bookShelf" placeholder="الرف" value="{{bookShelf}}" required>
+        <span id="bookShelfError" class="errorValid"></span>
+
+        <h3> الرقم التسلسلي </h3>
+        <p>{{categorySerial}}.{{section}}.{{bookShelf}}.{{copyId}}</p>
+
+      </div>
+    </form>
+    {{/each}}
+  </div>
+</section>
