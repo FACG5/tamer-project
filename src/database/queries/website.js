@@ -12,7 +12,7 @@ const getSearchedBook = str => new Promise((resolve, reject) => {
 });
 
 const getMostBooks = () => new Promise((resolve, reject) => {
-  const sql = 'SELECT book.image_url AS "imageUrl", book.name_book AS "name" , "countBook".*  FROM library JOIN (SELECT COUNT(Id), book_library_id AS "bookLibraryId" FROM borrow GROUP BY book_library_id )AS "countBook" on library.id = "countBook"."bookLibraryId" JOIN book on library.book_id = book.id ORDER BY "countBook".count DESC LIMIT 4';
+  const sql = 'SELECT count.*, book.name_book, book.image_url AS "imageUrl" FROM library JOIN (SELECT COUNT(borrow.id), library.book_id AS "bookLibraryId" FROM borrow JOIN library on borrow.book_library_id = library.id GROUP BY library.book_id)AS "count" on library.id = "count"."bookLibraryId" JOIN book on library.book_id = book.id LIMIT 4';
   dbConnection.query(sql, (error, res) => {
     if (error) return reject(error);
     return resolve(res.rows);
