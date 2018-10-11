@@ -15,6 +15,7 @@ const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
+const { deleteStoreBook } = require('../delete_store_book');
 const { getStatistics } = require('../get_statistics');
 
 test('Test for the getCategory function', (t) => {
@@ -351,6 +352,23 @@ test('Test deleteLibraryBook', (t) => {
 });
 
 test('Test deleteLibraryBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idStore: 1,
+      };
+      deleteStoreBook(id)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStatistics', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
