@@ -3,7 +3,6 @@ const { getSearchedBook, getMostBooks } = require('../database/queries/website')
 exports.get = (request, response, next) => {
   getMostBooks()
     .then((res) => {
-      console.log(res);
       response.render('website_homepage',
         {
           layout: 'website',
