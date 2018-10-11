@@ -10,6 +10,7 @@ const { getUsers, getBorrower } = require('../view_user');
 const { getSingleBookByLibraryId } = require('../get_single_book_by_library_id');
 const { getSingleBookByStoreId } = require('../get_single_book_by_store_id');
 const { setStoreBook } = require('../set_storeBook');
+const { getSearchedBook, getMostBooks } = require('../website');
 const { deleteLibraryBook } = require('../delete_library_book');
 const { getUser } = require('../get_user');
 const { setUser } = require('../set_user');
@@ -17,6 +18,8 @@ const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id')
 const { getLibraryId } = require('../get_library_id');
 const { setBorrowBook } = require('../set_borrow_book');
 const { checkLibraryId } = require('../check_library_id');
+const { deleteStoreBook } = require('../delete_store_book');
+const { getStatistics } = require('../get_statistics');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -205,6 +208,22 @@ test('Test getUsers', (t) => {
   });
 });
 
+test('Test getSearchedBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getSearchedBook('س')
+        .then((response) => {
+          t.equal(response.length, 4, 'getSearchedBook length returns 4 ');
+          t.equal(response[0].nameBook, 'ليلى الحمقاء', 'getSearchedBook returns \'ليلى الحمقاء\' ');
+          t.equal(response[1].nameAuthor, 'أحلام كمال', 'getSearchedBook returns \'أحلام كمال\' ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
 test('Test getBorrower', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
@@ -347,6 +366,61 @@ test('Test getLibraryId', (t) => {
       getLibraryId(data)
         .then((response) => {
           t.equal(response[0].LibraryId, 1, 'LibraryId returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+
+test('Test deleteStoreBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idStore: 1,
+      };
+      deleteStoreBook(id)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getStatistics', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idLibrary: 2,
+      };
+      getStatistics(id)
+        .then((response) => {
+          t.equal(response.length, 1, 'getStatistics return length 1');
+          t.equal(response[0].countBook, '6', 'getStatistics return 6 book');
+          t.equal(response[0].countUser, '3', 'getStatistics return 6 user');
+          t.equal(response[0].borrowedBook, '6', 'getStatistics return 5 borrowed book');
+          t.equal(response[0].countBorrowing, '4', 'getStatistics return 3 count Borrowing');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getMostBooks', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      getMostBooks()
+        .then((response) => {
+          t.equal(response.length, 4, 'getMostBooks return length 4');
+          t.equal(response[0].count, '1', 'getMostBooks return 1');
+          t.equal(response[0].name, 'مذكرات أطفال البحر', 'getMostBooks return \'مذكرات أطفال البحر\' ');
           t.end();
         })
         .catch(error => t.error(error));

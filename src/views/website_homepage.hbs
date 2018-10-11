@@ -5,45 +5,21 @@
 <section class="main__elem">
   <section class="main__search">
     <h1 class="search__h1">ابحث فى المكتبة</h1>
-    <input type="text" placeholder="بحث" name="search">
-    <button type="submit" onclick="searchBook()">
-      <img src="/img/search.png">
-    </button>
-    <div class="main__search--book" id="search">
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
-      <div>
-        <img src="/img/2.png">
-        <h5>ليلى الحمقاء </h5>
-      </div>
-    </div>
+    <form>
+      <input type="text" placeholder="بحث" name="search" id="input-search" class="input--search">
+      <input type="submit" class="submit" id="submit-search" value="بحث">
+    </form>
+    <div class="main__search--book" id="search"></div>
   </section>
   <section>
     <h1 class="search__h1">أكثر الكتب استعارة</h1>
     <div class="main__elem--book">
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
-      <div>
-        <img src="/img/2.png">
-        <h5>ليلى الحمقاء </h5>
-      </div>
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
-      <div>
-        <img src="/img/2.png">
-        <h5>ليلى الحمقاء </h5>
-      </div>
-
-      <div>
-        <img src="/img/1.png">
-        <h5> قصة أولها واخرهاخيال</h5>
-      </div>
+      {{#each res}}
+        <div id="{{bookLibraryId}}">
+          <img src="{{imageUrl}}">
+          <h5>{{name}}</h5>
+        </div>
+      {{/each}}
     </div>
   </section>
 </section>

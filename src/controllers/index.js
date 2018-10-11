@@ -14,6 +14,7 @@ const router = express.Router();
 
 // unsecure routes
 router.get('/', websiteHomePage.get);
+router.post('/', websiteHomePage.post);
 router.get('/admin/login', login.get);
 router.post('/admin/login', login.post);
 
@@ -40,6 +41,8 @@ router.get('/admin/books/store/book/:storeId', singleBook.getSingleStoreBook);
 router.post('/admin/user/', borrow.addUser);
 router.delete('/admin/books/delete/:idLibrary', singleBook.deleteBookFromLibrary);
 router.post('/admin/user/book', borrow.addBookToUser);
+router.delete('/admin/books/library/:idLibrary', singleBook.deleteBookFromLibrary);
+router.delete('/admin/books/store/:idStore', singleBook.deleteBookFromStore);
 
 router.use(error.client);
 router.use(error.server);
