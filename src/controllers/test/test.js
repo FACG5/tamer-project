@@ -555,14 +555,37 @@ test('test edit store book PUT method', (t) => {
   supertest(app)
     .put('/admin/books/store/book/edit/1')
     .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      nameBookVal: 'كتاب حياتي يا عين ',
+      nameAuthorVal: 'علي',
+      descriptionVal: 'مذكراتي',
+      imgVal: '',
+      bookId: 1,
+      copyNumberVal: 1000,
+      storeId: 1,
+
+    })
     .expect(200)
     .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) {
         t.error(err);
+      } else if (res) {
+        supertest(app)
+          .get('/admin/books/store/book/edit/1')
+          .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+          .expect(200)
+          .expect('Content-Type', /html/)
+          .end((error, response) => {
+            if (error) {
+              t.error(error);
+            }
+            t.equal(response.text.includes('value="كتاب حياتي يا عين "'), true, 'shoud have the updated book name كتاب حياتي يا عين ');
+            t.equal(response.text.includes('value="علي"'), true, 'shoud have the updated book Author  علي ');
+            t.equal(response.text.includes('value="مذكراتي"'), true, 'shoud have the updated description  مذكراتي ');
+            t.end();
+          });
       }
-      t.equal(res.body.message, 'تم التعديل بنجاح', 'shoud return تم التعديل بنجاح when update correctly');
-      t.end();
     });
 });
 
