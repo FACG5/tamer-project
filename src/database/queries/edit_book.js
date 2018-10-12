@@ -32,4 +32,19 @@ const editLibraryInfo = libraryData => new Promise((resolve, reject) => {
   });
 });
 
-module.exports = { editBookInfo, editLibraryInfo };
+const editStoreInfo = storeData => new Promise((resolve, reject) => {
+  const { copyNumberVal, storeId } = storeData;
+  const sql = {
+    text: 'UPDATE store SET copy_number=$1 where id =$2',
+    values: [copyNumberVal, storeId],
+  };
+  dbconnection.query(sql, (err, res) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(res.rows);
+    }
+  });
+});
+
+module.exports = { editBookInfo, editLibraryInfo, editStoreInfo };
