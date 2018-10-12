@@ -2,7 +2,7 @@ const { getSingleBookByLibraryId } = require('../database/queries/get_single_boo
 const { getSingleBookByStoreId } = require('../database/queries/get_single_book_by_store_id');
 const { deleteLibraryBook } = require('../database/queries/delete_library_book');
 const { deleteStoreBook } = require('../database/queries/delete_store_book');
-const { editBookInfo, editLibraryInfo } = require('../database/queries/edit_book');
+const { editBookInfo, editLibraryInfo, editStoreInfo } = require('../database/queries/edit_book');
 
 exports.getSingleLibraryBook = (request, response, next) => {
   const id = request.params;
@@ -95,7 +95,7 @@ exports.editSingleLibraryBook = (request, response, next) => {
       editLibraryInfo(data)
         .then(() => {
           const result = { message: 'Edit Successfully!' };
-          response.json(result);
+          return response.json(result);
         }).catch((err) => {
           if (err.code === '22003') {
             const result = { errorMessage: 'لا يجب ان يتجاوز الرقم 8 خانات' };
@@ -122,6 +122,27 @@ exports.editSingleStoreBookView = (request, response, next) => {
           js: ['edit_store_book'],
           admin: 'admin',
           results,
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.editSingleStoreBook = (request, response, next) => {
+  const data = request.body;
+  editBookInfo(data)
+    .then(() => {
+      editStoreInfo(data)
+        .then(() => {
+          const result = { message: 'تم التعديل بنجاح' };
+          return response.json(result);
+        }).catch((err) => {
+          if (err.code === '22003') {
+            const result = { errorMessage: 'لا يجب ان يتجاوز الرقم 8 خانات' };
+            return response.json(result);
+          }
+          next(err);
         });
     })
     .catch((err) => {
