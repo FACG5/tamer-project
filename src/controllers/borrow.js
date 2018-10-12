@@ -50,18 +50,6 @@ exports.addUser = (req, response, next) => {
   const userData = req.body;
   setUser(userData)
     .then((results) => {
-      const result = { message: 'User Added !' };
-      response.send(JSON.stringify(result));
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
-
-exports.addUser = (req, response, next) => {
-  const userData = req.body;
-  setUser(userData)
-    .then((results) => {
       const mobileNumberUser = results[0].mobileNumber;
       const result = { message: 'User Added !', mobileNumberUser };
       response.send(JSON.stringify(result));
