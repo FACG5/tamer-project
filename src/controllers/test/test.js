@@ -464,7 +464,7 @@ test('test for add user page route  - with cookie and auth ', (t) => {
       addressVal: 'غزة',
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, response) => {
       if (err) {
         t.error(err);
@@ -545,7 +545,7 @@ test('test for add book To user route   - with cookie and auth ', (t) => {
       sectionsVal: 5,
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) {
         t.error(err);
@@ -567,7 +567,7 @@ test('test for add book To user route   - with cookie and auth ', (t) => {
       sectionsVal: 4,
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) {
         t.error(err);
