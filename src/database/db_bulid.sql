@@ -49,7 +49,7 @@ CREATE TABLE borrow (
     user_id integer NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE,
     book_library_id integer NOT NULL REFERENCES library(id) ON DELETE CASCADE,
     start_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    end_date DATE NOT NULL
+    end_date DATE NOT NULL DEFAULT CURRENT_DATE + integer '10'
 );
 
 COMMIT ;
