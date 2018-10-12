@@ -51,7 +51,7 @@ editBook.addEventListener('click', (e) => {
       storeId,
       bookId,
     };
-    fetch(`/admin/books/library/book/edit/${storeId}`, {
+    fetch(`/admin/books/store/book/edit/${storeId}`, {
       method: 'PUT',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
@@ -61,7 +61,7 @@ editBook.addEventListener('click', (e) => {
       .then((response) => {
         if (response.errorMessage) return swal('خطأ', response.errorMessage, 'error');
         swal('OK!', response.message, 'success').then((value) => {
-          window.location = `/admin/books/library/book/${storeId}`;
+          window.location = `/admin/books/store/book/${storeId}`;
           JSON.stringify(response);
         });
       })
