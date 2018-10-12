@@ -3,10 +3,10 @@
     <div class="main__conten--borrow-search">
       <label>رقم الجوال :</label>
       <form>
-      <input type="text" placeholder=" بحث" class="form--input"name="search" id="mobileNumber">
-      <input type="submit" id="searchUser" value="بحث" class="btninput">
-      </input>
-      <p id="mobileNumberError" class="errorValid"></p>
+        <input type="text" placeholder=" بحث" class="form--input" name="search" id="mobileNumber">
+        <input type="submit" id="searchUser" value="بحث" class="btninput">
+        </input>
+        <p id="mobileNumberError" class="errorValid"></p>
       </form>
     </div>
     <div class="main__content--result" id="main">
@@ -24,9 +24,16 @@
       </div>
       <div class="main__content--addBookForUser" id="addBookUser">
         <h3>إضافة كتاب جديد</h3>
-        <label>الرقم التسلسلى</label>
-        <input type="text" placeholder="الرقم التسلسلى " />
-        <button class="main__content--addUser-btn addbtn" type="submit" onclick="addBook()"> إضافة </button>
+        <form>
+          <div class="borderSerial">
+            <label>الرقم التسلسلى</label>
+            <input class="input" placeholder="00" maxlength="2" id="copyId" required/>.
+            <input class="input" placeholder="000" maxlength="3" id="bookshelf" required/>.
+            <input class="input" placeholder="000" maxlength="3" id="section" required />.
+            <input class="input" placeholder="0000" maxlength="4" />
+          </div>
+          <input class="main__content--addUser-btn addbtn" value="إضافة" type="submit" id="addBookToUser"> </input>
+        </form>
       </div>
     </div>
     <div class="addNewUser" id="viewAddUser">
@@ -36,22 +43,24 @@
       </div>
       <div class="main__content--addUser" id="addNewUser">
         <h1>إضافة عضو جديد</h1>
-        <div>
-          <label>اسم العضو</label>
-          <input type="text" placeholder="اسم العضو" id="name" />
-          <p id="nameError" class="errorValid"></p>
-        </div>
-        <div>
-          <label>عنوان العضو</label>
-          <input type="text" placeholder="العنوان" id="mobileNumberUser" />
-          <p id="mobileNumberUserError" class="errorValid"></p>
-        </div>
-        <div>
-          <label>رقم الجوال</label>
-          <input type="text" placeholder="رقم الجوال  " id="address" />
-          <p id="addressError" class="errorValid"></p>
-        </div>
-        <button class="main__content--addUser-btn addbtn" id="addUsers" type="submit"> إضافة </button>
+        <form>
+          <div>
+            <label>اسم العضو</label>
+            <input type="text" placeholder="اسم العضو" id="name" />
+            <p id="nameError" class="errorValid"></p>
+          </div>
+          <div>
+            <label>رقم الجوال</label>
+            <input type="text" placeholder="رقم الجوال" id="mobileNumberUser" />
+            <p id="mobileNumberUserError" class="errorValid"></p>
+          </div>
+          <div>
+            <label>عنوان العضو</label>
+            <input type="text" placeholder="عنوان العضو" id="address" />
+            <p id="addressError" class="errorValid"></p>
+          </div>
+          <input class="main__content--addUser-btn addbtn" value="إضافة" id="addUsers" type="submit">
+        </form>
       </div>
     </div>
   </div>

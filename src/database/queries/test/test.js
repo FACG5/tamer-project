@@ -18,6 +18,9 @@ const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id')
 const { deleteStoreBook } = require('../delete_store_book');
 const { getStatistics } = require('../get_statistics');
 const { editBookInfo, editLibraryInfo, editStoreInfo } = require('../edit_book');
+const { getLibraryId } = require('../get_library_id');
+const { setBorrowBook } = require('../set_borrow_book');
+const { checkLibraryId } = require('../check_library_id');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -178,10 +181,10 @@ test('Test getBorrowBooks', (t) => {
       getBorrowBooks()
         .then((response) => {
           t.equal(response.length, 4, 'successfully');
-          t.equal(response[0].nameUser, 'علي', 'StoreBooks returns \'علي\' ');
-          t.equal(response[1].nameBook, 'قلبي غابة', 'StoreBooks returns \'قلبي غابة\' ');
-          t.equal(response[2].startDate, '2018-09-20', 'StoreBooks returns 2018-09-20');
-          t.equal(response[3].endDate, '2018-09-25', 'StoreBooks returns 2018-09-25 ');
+          t.equal(response[3].nameUser, 'علي', 'StoreBooks returns \'علي\' ');
+          t.equal(response[2].nameBook, 'قلبي غابة', 'StoreBooks returns \'قلبي غابة\' ');
+          t.equal(response[1].startDate, '2018-09-20', 'StoreBooks returns 2018-09-20');
+          t.equal(response[0].endDate, '2018-09-25', 'StoreBooks returns 2018-09-25 ');
           t.end();
         })
         .catch(error => t.error(error));
@@ -390,7 +393,7 @@ test('Test getStatistics', (t) => {
   });
 });
 
-test('Test getStatistics', (t) => {
+test('Test getMostBooks', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
     t.notOk(err);
     return runDbBuild('fake_data.sql', () => {
@@ -438,6 +441,58 @@ test('Test editLibraryInfo', (t) => {
       editLibraryInfo(libraryData)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test getLibraryId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        bookshelfVal: 1,
+        copyIdVal: 2,
+        sectionsVal: 5,
+      };
+      getLibraryId(data)
+        .then((response) => {
+          t.equal(response[0].LibraryId, 1, 'LibraryId returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test checkLibraryId', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      checkLibraryId(1)
+        .then((response) => {
+          t.equal(response[0].id, 1, 'id returns 1 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test setBorrowBook', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const data = {
+        userIdVal: 1,
+        LibraryIdVal: 1,
+      };
+      setBorrowBook(data)
+        .then((response) => {
+          t.equal(response[0].startDate, '2018-10-12', 'startDate returns 2018-10-11 ');
+          t.equal(response[0].endDate, '2018-10-22', 'endDate returns 2018-10-21 ');
           t.end();
         })
         .catch(error => t.error(error));
