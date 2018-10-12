@@ -536,4 +536,19 @@ test('test edit library book PUT method', (t) => {
     });
 });
 
+test('test edit store book view', (t) => {
+  supertest(app)
+    .get('/admin/books/store/book/edit/1')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>تعديل كتاب</title>'), true, 'the page should have title \'تعديل كتاب\'');
+      t.end();
+    });
+});
+
 test.onFinish(() => { process.exit(0); });
