@@ -108,3 +108,23 @@ exports.editSingleLibraryBook = (request, response, next) => {
       next(err);
     });
 };
+
+exports.editSingleStoreBookView = (request, response, next) => {
+  const id = request.params;
+  getSingleBookByStoreId(id)
+    .then((results) => {
+      response.render('edit_store_book',
+        {
+          book: 'active',
+          layout: 'admin',
+          title: 'تعديل كتاب',
+          style: ['book', 'single_book'],
+          js: ['edit_store_book'],
+          admin: 'admin',
+          results,
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
