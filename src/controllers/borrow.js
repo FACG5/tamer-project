@@ -52,10 +52,10 @@ exports.addUser = (req, response, next) => {
     .then((results) => {
       const mobileNumberUser = results[0].mobileNumber;
       const result = { message: 'User Added !', mobileNumberUser };
-      response.send(JSON.stringify(result));
+      return response.json(result);
     })
     .catch((err) => {
-      next(err);
+      response.json(err);
     });
 };
 
@@ -78,19 +78,19 @@ exports.addBookToUser = (request, response, next) => {
               setBorrowBook(dataBorrow)
                 .then((resultBorrow) => {
                   const result = { message: 'تمت الإضافة بنجاح', resultLibrary, resultBorrow };
-                  return response.send(JSON.stringify(result));
+                  return response.json(result);
                 });
             } else {
               const message = { message: ' هذا الكتاب مستعار ', resultborrow };
-              return response.send(JSON.stringify(message));
+              return response.json(message);
             }
           });
       } else {
         const result = { message: 'الكتاب غير موجود', resultLibrary };
-        return response.send(JSON.stringify(result));
+        return response.json(result);
       }
     })
     .catch((err) => {
-      next(err);
+      response.json(err);
     });
 };
