@@ -25,21 +25,16 @@ addBookToUser.addEventListener('click', (e) => {
     .then((response) => {
       if (response.message === ' هذا الكتاب مستعار ') {
         swal('خطأ !', response.message, 'error').then((value) => {
-          JSON.stringify({ response });
+        });
+      } else if (response.resultLibrary.length > 0) {
+        const href = window.location.href;
+        const mobileNum = href.split('=')[1];
+        swal('إضافة', response.message, 'success').then((value) => {
+          window.location = `/admin/borrow?data=${mobileNum}`;
         });
       } else {
-        console.log(response);
-        if (response.resultLibrary.length > 0) {
-          const href = window.location.href;
-          const mobileNum = href.split('=')[1];
-          swal('إضافة', response.message, 'success').then((value) => {
-            window.location = `/admin/borrow?data=${mobileNum}`;
-          });
-        } else {
-          swal('خطأ !', response.message, 'error').then((value) => {
-            JSON.stringify({ response });
-          });
-        }
+        swal('خطأ !', response.message, 'error').then(() => {
+        });
       }
     })
     .catch(error => swal('Error', '', 'error'));
