@@ -24,8 +24,7 @@ addBookToUser.addEventListener('click', (e) => {
     .then(result => result.json())
     .then((response) => {
       if (response.message === ' هذا الكتاب مستعار ') {
-        swal('خطأ !', response.message, 'error').then((value) => {
-        });
+        swal('خطأ !', response.message, 'error');
       } else if (response.resultLibrary.length > 0) {
         const href = window.location.href;
         const mobileNum = href.split('=')[1];
@@ -33,8 +32,7 @@ addBookToUser.addEventListener('click', (e) => {
           window.location = `/admin/borrow?data=${mobileNum}`;
         });
       } else {
-        swal('خطأ !', response.message, 'error').then(() => {
-        });
+        swal('خطأ !', response.message, 'error');
       }
     })
     .catch(error => swal('Error', '', 'error'));
