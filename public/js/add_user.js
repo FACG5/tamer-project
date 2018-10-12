@@ -19,6 +19,7 @@ address.addEventListener('focusout', (e) => {
 });
 
 addUsers.addEventListener('click', (e) => {
+  e.preventDefault();
   const checkName = check(name, nameError, 'هذا الحقل مطلوب');
   const checkMobileNumberUser = check(mobileNumberUser, mobileNumberUserError, 'هذا الحقل مطلوب');
   const checkAddress = check(address, addressError, 'هذا الحقل مطلوب');
