@@ -17,7 +17,7 @@ const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 const { deleteStoreBook } = require('../delete_store_book');
 const { getStatistics } = require('../get_statistics');
-const { editBookInfo, editLibraryInfo } = require('../edit_book');
+const { editBookInfo, editLibraryInfo, editStoreInfo } = require('../edit_book');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -436,6 +436,24 @@ test('Test editLibraryInfo', (t) => {
         libraryId: 3,
       };
       editLibraryInfo(libraryData)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test editStoreInfo', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const storeData = {
+        copyNumberVal: 23568,
+        stored: 3,
+      };
+      editStoreInfo(storeData)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, because its empty array');
           t.end();
