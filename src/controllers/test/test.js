@@ -464,7 +464,7 @@ test('test for add user page route  - with cookie and auth ', (t) => {
       addressVal: 'غزة',
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, response) => {
       if (err) {
         t.error(err);
@@ -545,7 +545,7 @@ test('test for add book To user route   - with cookie and auth ', (t) => {
       sectionsVal: 5,
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) {
         t.error(err);
@@ -567,7 +567,7 @@ test('test for add book To user route   - with cookie and auth ', (t) => {
       sectionsVal: 4,
     })
     .expect(200)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) {
         t.error(err);
@@ -576,6 +576,59 @@ test('test for add book To user route   - with cookie and auth ', (t) => {
       t.equal(response.message, 'الكتاب غير موجود', ' should return الكتاب غير موجود');
       t.equal(response.resultLibrary.length, 0, ' should return 0');
       t.end();
+    });
+});
+
+test('test edit store book view', (t) => {
+  supertest(app)
+    .get('/admin/books/store/book/edit/1')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(res.text.includes('<title>تعديل كتاب</title>'), true, 'the page should have title \'تعديل كتاب\'');
+      t.end();
+    });
+});
+
+test('test edit store book PUT method', (t) => {
+  supertest(app)
+    .put('/admin/books/store/book/edit/1')
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .send({
+      nameBookVal: 'كتاب حياتي يا عين ',
+      nameAuthorVal: 'علي',
+      descriptionVal: 'مذكراتي',
+      imgVal: '',
+      bookId: 1,
+      copyNumberVal: 1000,
+      storeId: 1,
+
+    })
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      } else if (res) {
+        supertest(app)
+          .get('/admin/books/store/book/edit/1')
+          .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+          .expect(200)
+          .expect('Content-Type', /html/)
+          .end((error, response) => {
+            if (error) {
+              t.error(error);
+            }
+            t.equal(response.text.includes('value="كتاب حياتي يا عين "'), true, 'shoud have the updated book name كتاب حياتي يا عين ');
+            t.equal(response.text.includes('value="علي"'), true, 'shoud have the updated book Author  علي ');
+            t.equal(response.text.includes('value="مذكراتي"'), true, 'shoud have the updated description  مذكراتي ');
+            t.end();
+          });
+      }
     });
 });
 

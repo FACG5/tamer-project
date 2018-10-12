@@ -17,7 +17,7 @@ const { setUser } = require('../set_user');
 const { getBorrowedBooksByUserId } = require('../get_borrowed_books_by_user_id');
 const { deleteStoreBook } = require('../delete_store_book');
 const { getStatistics } = require('../get_statistics');
-const { editBookInfo, editLibraryInfo } = require('../edit_book');
+const { editBookInfo, editLibraryInfo, editStoreInfo } = require('../edit_book');
 const { getLibraryId } = require('../get_library_id');
 const { setBorrowBook } = require('../set_borrow_book');
 const { checkLibraryId } = require('../check_library_id');
@@ -493,6 +493,24 @@ test('Test setBorrowBook', (t) => {
         .then((response) => {
           t.equal(response[0].startDate, '2018-10-12', 'startDate returns 2018-10-11 ');
           t.equal(response[0].endDate, '2018-10-22', 'endDate returns 2018-10-21 ');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test editStoreInfo', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const storeData = {
+        copyNumberVal: 23568,
+        stored: 3,
+      };
+      editStoreInfo(storeData)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
           t.end();
         })
         .catch(error => t.error(error));
