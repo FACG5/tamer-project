@@ -21,6 +21,7 @@ const addUser = () => {
 
 const addBookForUser = () => {
   addBookUser.classList.add('main__content--addBookForUser-visible');
+  addBookForUser.value = document.getElementsByClassName('trUser')[0].id;
 };
 
 const addBook = () => {
@@ -63,6 +64,7 @@ const fetchData = () => {
         main.classList.add('main__content--viewUser-visible');
         Object.keys(userData[0]).forEach((key, index) => {
           trUser.id = userData[0].userId;
+          trUser.classList.add('trUser');
           if (index === 0) {
             return;
           }
