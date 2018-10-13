@@ -21,6 +21,7 @@ const { editBookInfo, editLibraryInfo, editStoreInfo } = require('../edit_book')
 const { getLibraryId } = require('../get_library_id');
 const { setBorrowBook } = require('../set_borrow_book');
 const { checkLibraryId } = require('../check_library_id');
+const { deleteBorrowing } = require('../delete_borrowing');
 
 test('Test for the getCategory function', (t) => {
   runDbBuild('db_bulid.sql', (err, res) => {
@@ -491,8 +492,15 @@ test('Test setBorrowBook', (t) => {
       };
       setBorrowBook(data)
         .then((response) => {
-          t.equal(response[0].startDate, '2018-10-12', 'startDate returns 2018-10-11 ');
-          t.equal(response[0].endDate, '2018-10-22', 'endDate returns 2018-10-21 ');
+          const today = new Date();
+          const dd = today.getDate();
+          const ddE = today.getDate() + 10;
+          const mm = today.getMonth() + 1;
+          const yyyy = today.getFullYear();
+          const startDate = `${yyyy}-${mm}-${dd}`;
+          const endDate = `${yyyy}-${mm}-${ddE}`;
+          t.equal(response[0].startDate, `${startDate}`, `startDate returns ${startDate}`);
+          t.equal(response[0].endDate, `${endDate}`, `endDate returns ${endDate}`);
           t.end();
         })
         .catch(error => t.error(error));
@@ -509,6 +517,23 @@ test('Test editStoreInfo', (t) => {
         stored: 3,
       };
       editStoreInfo(storeData)
+        .then((response) => {
+          t.equal(response.length === 0, true, 'should return true, because its empty array');
+          t.end();
+        })
+        .catch(error => t.error(error));
+    });
+  });
+});
+
+test('Test deleteBorrowing', (t) => {
+  runDbBuild('db_bulid.sql', (err, res) => {
+    t.notOk(err);
+    return runDbBuild('fake_data.sql', () => {
+      const id = {
+        idBorrow: 3,
+      };
+      deleteBorrowing(id)
         .then((response) => {
           t.equal(response.length === 0, true, 'should return true, because its empty array');
           t.end();

@@ -431,7 +431,7 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
       t.equal(response.resultUser[0].userId, 1, 'id should return 1');
       t.equal(response.resultUser[0].name, 'أسماء', 'name should return أسماء');
       t.equal(response.resultUser[0].address, 'غزة - النصر', 'address returns \' غزة - النصر\' ');
-      t.equal(response.resultBorrowedBooksByUserId[0].nameBook, 'ليلى الحمقاء', 'name returns \'ليلى الحمقاء\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].nameBook, 'كتاب حياتي يا عين ', 'nameBook returns \' كتاب حياتي يا عين\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].endDate, '2018-09-25', 'endDate returns \'2018-09-25\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].serialNumber, '501.1.5.2', 'serialNumber returns \'501.1.5.2\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].idBorrow, 1, 'section returns idBorrow ');
@@ -629,6 +629,21 @@ test('test edit store book PUT method', (t) => {
             t.end();
           });
       }
+    });
+});
+
+test('test for Delete book to the user borrowing list- with cookie and auth ', (t) => {
+  supertest(app)
+    .delete('/admin/Borrow/1')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .set('Cookie', ['data = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ImFkbWluIiwiaWF0IjoxNTM4OTExNzQxfQ.gQe7y4oF7wlL4oPAXdzMmNTwGlE2d69FyehJcOyiYLg'])
+    .end((err, res) => {
+      if (err) {
+        t.error(err);
+      }
+      t.equal(JSON.parse(res.text).message, 'تمت عملية الحذف بنجاح !', 'Message should return تمت عملية الحذف بنجاح       !');
+      t.end();
     });
 });
 

@@ -4,6 +4,7 @@ const { setUser } = require('../database/queries/set_user');
 const { getLibraryId } = require('../database/queries/get_library_id');
 const { setBorrowBook } = require('../database/queries/set_borrow_book');
 const { checkLibraryId } = require('../database/queries/check_library_id');
+const { deleteBorrowing } = require('../database/queries/delete_borrowing');
 
 exports.get = (request, response) => {
   response.render('view_borrow',
@@ -89,6 +90,18 @@ exports.addBookToUser = (request, response, next) => {
         const result = { message: 'الكتاب غير موجود', resultLibrary };
         return response.json(result);
       }
+    })
+    .catch((err) => {
+      response.json(err);
+    });
+};
+
+exports.deleteBorrowing = (request, response, next) => {
+  const idBorrow = request.body;
+  deleteBorrowing(idBorrow)
+    .then(() => {
+      const result = { message: 'تمت عملية الحذف بنجاح !' };
+      return response.json(result);
     })
     .catch((err) => {
       response.json(err);

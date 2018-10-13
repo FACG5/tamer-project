@@ -133,6 +133,10 @@
   display: block;
 }
 
+.btnDelete:hover{
+  background-color: #4b515d;
+}
+
 .main__content--viewUser {
   display: none;
 }

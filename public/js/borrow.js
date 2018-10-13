@@ -83,7 +83,7 @@ const fetchData = () => {
           const deleteBorrowed = document.createElement('th');
           nameBook.textContent = 'اسم الكتاب';
           date.textContent = 'تاريخ الانتهاء';
-          deleteBorrowed.textContent = ' الحذف';
+          deleteBorrowed.textContent = ' الإرجاع';
           numSerial.textContent = ' الرقم التسلسلى';
           trBorrowedBookhead.appendChild(nameBook);
           trBorrowedBookhead.appendChild(date);
@@ -97,9 +97,17 @@ const fetchData = () => {
               if (index === Object.keys(borrowedBook[i]).length - 1) {
                 const button = document.createElement('button');
                 button.classList.add('btnDelete');
-                button.textContent = 'حذف';
+                button.textContent = 'إرجاع';
                 button.id = borrowedBook[i].idBorrow;
                 tdBorrowedBook.appendChild(button);
+                button.addEventListener(('click'), () => {
+                  const idBorrow = button.getAttribute('id');
+                  const deleteData = { idBorrow };
+                  const route = `/admin/borrow/${idBorrow}`;
+                  const mobileNum = href.split('=')[1];
+                  const routeToRedirect = `/admin/borrow?data=${mobileNum}`;
+                  deleteButtonFunction(button, route, routeToRedirect, deleteData);
+                });
               } else {
                 tdBorrowedBook.textContent = borrowedBook[i][key];
               }
