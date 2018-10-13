@@ -46,6 +46,7 @@ router.put('/admin/books/library/book/edit/:libraryId', singleBook.editSingleLib
 router.get('/admin/books/store/book/edit/:storeId', singleBook.editSingleStoreBookView);
 router.put('/admin/books/store/book/edit/:storeId', singleBook.editSingleStoreBook);
 router.post('/admin/user/book', borrow.addBookToUser);
+router.delete('/admin/borrow/:borrowId', borrow.deleteBorrowing);
 
 router.use(error.client);
 router.use(error.server);
