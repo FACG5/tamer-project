@@ -5,6 +5,7 @@ const { setBook } = require('../database/queries/set_book');
 const { getLibraryBooks, getStoreBooks, getBorrowBooks } = require('../database/queries/view_book');
 const { status, compare } = require('../views/helpers/index');
 const { setStoreBook } = require('../database/queries/set_storeBook');
+const twilio = require('twilio');
 
 exports.getLibraryBooks = (request, response, next) => {
   getLibraryBooks()
@@ -59,6 +60,26 @@ exports.getBorrowedBooks = (request, response, next) => {
         });
     })
     .catch(err => next(err));
+};
+
+exports.postBorrowedBooks = (request, response, next) => {
+  const { mobileNumber } = request.body;
+  const accountSid = process.env.SID;
+  const authToken = process.env.AUTH;
+  const client = new twilio(accountSid, authToken);
+
+  const number = process.env.MOBILE;
+  client.messages.create({
+    from: number,
+    to: `+97${mobileNumber}`,
+    body: 'تذكير : تأخر موعد تسليم الكتاب  - مكتبة تامر',
+  }, (error, message) => {
+    if (!error) {
+      response.send({ result: message });
+    } else {
+      next(error);
+    }
+  });
 };
 
 exports.getAddBookTab = (request, response, next) => {
