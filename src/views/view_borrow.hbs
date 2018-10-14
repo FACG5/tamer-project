@@ -27,11 +27,16 @@
         <form>
           <div class="borderSerial">
             <label>الرقم التسلسلى</label>
-            <input class="input" placeholder="00" maxlength="2" id="copyId" required/>.
-            <input class="input" placeholder="000" maxlength="3" id="bookshelf" required/>.
-            <input class="input" placeholder="000" maxlength="3" id="section" required />.
-            <input class="input" placeholder="0000" maxlength="4" />
+            <input class="input" placeholder="ن" maxlength="8" id="copyId" required/>.
+            <input class="input" placeholder="ر" maxlength="8" id="bookshelf" required/>.
+            <input class="input" placeholder="ق" maxlength="8" id="section" required />.
+            <input class="input" placeholder="ت" maxlength="8" />
           </div>
+          <br>
+          <h4> ن  :  نسخة الكتاب</h4>
+          <h4> ر   : الرف</h4>
+          <h4> ق    :  القسم </h5>
+          <h4> ت   :  التصنيف</h4>
           <input class="main__content--addUser-btn addbtn" value="إضافة" type="submit" id="addBookToUser"> </input>
         </form>
       </div>
@@ -51,7 +56,7 @@
           </div>
           <div>
             <label>رقم الجوال</label>
-            <input type="text" placeholder="رقم الجوال" id="mobileNumberUser" />
+            <input type="text" placeholder="رقم الجوال" maxlength="8" id="mobileNumberUser" />
             <p id="mobileNumberUserError" class="errorValid"></p>
           </div>
           <div>

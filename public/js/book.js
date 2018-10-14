@@ -93,7 +93,7 @@ addBook.addEventListener('click', (e) => {
     })
       .then(result => result.json())
       .then((response) => {
-        swal('Good job!', response.message, 'success').then((value) => {
+        swal('', response.message, 'success').then((value) => {
           next.classList.add('btn__next--visible');
           next.value = response.bookId;
           JSON.stringify(response);
@@ -121,13 +121,13 @@ addCategory.addEventListener('click', (e) => {
     })
       .then(result => result.json())
       .then((response) => {
-        if (response.errorMessage) return swal('Error !', response.errorMessage, 'error');
-        swal('Good job!', response.message, 'success').then((value) => {
+        if (response.errorMessage) return swal('خطأ !', response.errorMessage, 'error');
+        swal('', response.message, 'success').then((value) => {
           window.location = '/admin/books/add/';
           JSON.stringify(response);
         });
       })
-      .catch(error => swal('Error while adding category !', error.errorMessage, 'error'));
+      .catch(error => swal('خطأ!', error.errorMessage, 'error'));
   }
 });
 

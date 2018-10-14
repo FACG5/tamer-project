@@ -19,7 +19,7 @@ loginButton.addEventListener('click', (e) => {
     .then(result => result.json())
     .then((result) => {
       if (result.err) return swal('Error !', result.err, 'error');
-      return swal('Welcome', ' ', 'success').then((value) => {
+      return swal('أهلا وسهلا', ' ', 'success').then((value) => {
         window.location = '/admin';
       });
     })

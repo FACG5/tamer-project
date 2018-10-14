@@ -35,5 +35,5 @@ addBookToUser.addEventListener('click', (e) => {
         swal('خطأ !', response.message, 'error');
       }
     })
-    .catch(error => swal('Error', '', 'error'));
+    .catch(error => swal('خطأ !', '', 'error'));
 });

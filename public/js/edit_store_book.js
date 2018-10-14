@@ -60,7 +60,7 @@ editBook.addEventListener('click', (e) => {
       .then(response => response.json())
       .then((response) => {
         if (response.errorMessage) return swal('خطأ', response.errorMessage, 'error');
-        swal('OK!', response.message, 'success').then((value) => {
+        swal('', response.message, 'success').then((value) => {
           window.location = `/admin/books/store/book/${storeId}`;
         });
       })

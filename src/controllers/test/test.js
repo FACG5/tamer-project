@@ -119,7 +119,7 @@ test('test login post with correct password  ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(res.text.includes('"message":"Welcome"'), true, 'should return a welcome massage');
+      t.equal(res.text.includes('"message":"أهلا وسهلا"'), true, 'should return a أهلا وسهلا massage');
       t.end();
     });
 });
@@ -133,7 +133,7 @@ test('test login post wrong password to login ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(res.text.includes('"Wrong Password !"'), true, 'should return a wrong password massage');
+      t.equal(res.text.includes('"خطأفى  كلمة السر !"'), true, 'should return a خطأفى  كلمة السر ! massage');
       t.end();
     });
 });
@@ -324,7 +324,7 @@ test('test for add bookStore page route  - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(JSON.parse(res.text).message, 'storeBook Added !', 'Message should return storeBook Added !');
+      t.equal(JSON.parse(res.text).message, 'تمت إضافة الكتاب الى المخزن بنجاح!', 'Message should return تمت إضافة الكتاب الى المخزن بنجاح!');
       t.end();
     });
 });
@@ -433,7 +433,7 @@ test('test for add borrowpage page route  - with cookie and auth ', (t) => {
       t.equal(response.resultUser[0].address, 'غزة - النصر', 'address returns \' غزة - النصر\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].nameBook, 'كتاب حياتي يا عين ', 'nameBook returns \' كتاب حياتي يا عين\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].endDate, '2018-09-25', 'endDate returns \'2018-09-25\' ');
-      t.equal(response.resultBorrowedBooksByUserId[0].serialNumber, '501.1.5.2', 'serialNumber returns \'501.1.5.2\' ');
+      t.equal(response.resultBorrowedBooksByUserId[0].serialNumber, '501.5.1.2', 'serialNumber returns \'501.1.5.2\' ');
       t.equal(response.resultBorrowedBooksByUserId[0].idBorrow, 1, 'section returns idBorrow ');
       t.end();
     });
@@ -469,7 +469,7 @@ test('test for add user page route  - with cookie and auth ', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(JSON.parse(response.text).message, 'User Added !', 'Message should return User Added !');
+      t.equal(JSON.parse(response.text).message, 'تمت إضافة العضو بنجاح !', 'Message should return  تمت إضافة العضو بنجاح !');
       t.end();
     });
 });
@@ -501,7 +501,7 @@ test('test admin homepage that have statistics', (t) => {
         t.error(err);
       }
       t.equal(res.text.includes('<title>الرئيسية</title>'), true, 'the page should have title \'الرئيسية\'');
-      t.equal(res.text.includes('<h1>4</h1>'), true, 'the number of book borrower equal 4');
+      t.equal(res.text.includes('<h1>3</h1>'), true, 'the number of book borrower equal 4');
       t.end();
     });
 });
@@ -531,7 +531,7 @@ test('test edit library book PUT method', (t) => {
       if (err) {
         t.error(err);
       }
-      t.equal(res.body.message, 'Edit Successfully!', 'shoud return Edit Successfully! when update correctly');
+      t.equal(res.body.message, ' تم التعديل بنجاح!', 'shoud return تم التعديل بنجاح! when update correctly');
       t.end();
     });
 });

@@ -28,6 +28,10 @@ const addBook = () => {
   addBookUser.classList.remove('main__content--addBookForUser-visible');
 };
 
+const deleteButtons = (button, route, routeToRedirect, deleteData) => {
+  deleteButtonFunction(button, route, routeToRedirect, deleteData);
+};
+
 const fetchData = () => {
   const mobileNumberVal = mobileNumber.value;
   const data = {
@@ -106,7 +110,7 @@ const fetchData = () => {
                   const route = `/admin/borrow/${idBorrow}`;
                   const mobileNum = href.split('=')[1];
                   const routeToRedirect = `/admin/borrow?data=${mobileNum}`;
-                  deleteButtonFunction(button, route, routeToRedirect, deleteData);
+                  deleteButtons(button, route, routeToRedirect, deleteData);
                 });
               } else {
                 tdBorrowedBook.textContent = borrowedBook[i][key];
