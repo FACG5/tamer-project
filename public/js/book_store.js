@@ -24,12 +24,12 @@ addBookStore.addEventListener('click', (e) => {
     })
       .then(result => result.json())
       .then((response) => {
-        if (response.errorMessage) return swal('Error !', response.errorMessage, 'error');
-        swal('Good job!', response.message, 'success').then((value) => {
+        if (response.errorMessage) return swal('خطأ !', response.errorMessage, 'error');
+        swal('', response.message, 'success').then((value) => {
           JSON.stringify(response);
         });
       })
-      .catch(error => swal('Error while adding book in store !', error.errorMessage, 'error'));
+      .catch(error => swal('خطأ!', error.errorMessage, 'error'));
   }
 });
 

@@ -104,13 +104,13 @@ exports.addCategory = (req, response, next) => {
   const categoryData = req.body;
   setCategory(categoryData)
     .then((results) => {
-      const result = { errorMessage: null, message: 'category Added !' };
+      const result = { errorMessage: null, message: 'تمت إضافة التصنيف بنجاح!' };
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
       const errorMessage = err.detail;
       if (err.code === '23505') {
-        const result = { errorMessage: 'This category is Already Exists' };
+        const result = { errorMessage: 'هذا التصنيف موجود فعلا' };
         return response.send(JSON.stringify(result));
       }
       next(err);
@@ -123,7 +123,7 @@ exports.addBook = (req, response, next) => {
     .then((results) => {
       const bookId = results[0].id;
       const categorySerials = results[0].categorySerial;
-      const result = { message: 'Book Added !', bookId, categorySerials };
+      const result = { message: 'تمت إضافة الكتاب بنجاح !', bookId, categorySerials };
       response.send(JSON.stringify(result));
     })
     .catch((err) => {
@@ -149,7 +149,7 @@ exports.addLibraryBook = (req, response, next) => {
         next(err);
       });
   }
-  const result = { message: 'Book Library Added !' };
+  const result = { message: 'تمت إضافة الكتاب الى المكتبة بنجاح!' };
   response.send(JSON.stringify(result));
 };
 
@@ -157,7 +157,7 @@ exports.addStoreBook = (req, response, next) => {
   const storeBookData = req.body;
   setStoreBook(storeBookData)
     .then((results) => {
-      const result = { message: 'storeBook Added !' };
+      const result = { message: 'تمت إضافة الكتاب الى المخزن بنجاح!' };
       response.send(JSON.stringify(result));
     })
     .catch((err) => {

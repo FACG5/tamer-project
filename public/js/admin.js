@@ -55,8 +55,8 @@ const deleteButtonFunction = (
 ) => {
   button.addEventListener('click', (e) => {
     swal({
-      title: 'Are you sure ?',
-      text: 'Once deleted, you will not be able to recover this!',
+      title: 'هل أنت متأكد ؟',
+      text: 'إذا تم الحذف لن تستطيع استرجاع بياناتك!',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
@@ -70,7 +70,7 @@ const deleteButtonFunction = (
         })
           .then(result => result.json())
           .then((result) => {
-            if (result.err) return swal('Error', '', 'error');
+            if (result.err) return swal('خطأ', '', 'error');
             return swal(result.message, {
               icon: 'success',
             }).then((value) => {

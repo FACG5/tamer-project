@@ -27,7 +27,7 @@ exports.post = (request, response, next) => {
         getBorrowedBooksByUserId(userId)
           .then((resarr) => {
             resarr.forEach((res) => {
-              const serialNumber = `${res.category}.${res.bookshelf}.${res.section}.${res.copyId}`;
+              const serialNumber = `${res.category}.${res.section}.${res.bookshelf}.${res.copyId}`;
               const data = {
                 nameBook: res.nameBook,
                 endDate: res.endDate,
@@ -52,7 +52,7 @@ exports.addUser = (req, response, next) => {
   setUser(userData)
     .then((results) => {
       const mobileNumberUser = results[0].mobileNumber;
-      const result = { message: 'User Added !', mobileNumberUser };
+      const result = { message: 'تمت إضافة العضو بنجاح !', mobileNumberUser };
       return response.json(result);
     })
     .catch((err) => {
