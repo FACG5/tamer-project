@@ -48,7 +48,7 @@ exports.deleteBookFromLibrary = (request, response) => {
   const id = request.body;
   deleteLibraryBook(id)
     .then(() => {
-      const result = { message: 'Book is Deleted !' };
+      const result = { message: ' تم حذف الكتاب  !' };
       return response.json(result);
     })
     .catch((err) => {
@@ -60,7 +60,7 @@ exports.deleteBookFromStore = (request, response) => {
   const id = request.body;
   deleteStoreBook(id)
     .then(() => {
-      const result = { message: 'Book is Deleted !' };
+      const result = { message: '  تم حذف الكتاب !' };
       return response.json(result);
     })
     .catch((err) => {
@@ -94,7 +94,7 @@ exports.editSingleLibraryBook = (request, response, next) => {
     .then(() => {
       editLibraryInfo(data)
         .then(() => {
-          const result = { message: 'Edit Successfully!' };
+          const result = { message: ' تم التعديل بنجاح!' };
           return response.json(result);
         }).catch((err) => {
           if (err.code === '22003') {

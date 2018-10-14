@@ -42,11 +42,11 @@ addLibraryBook.addEventListener('click', (e) => {
     })
       .then(result => result.json())
       .then((response) => {
-        swal('Good job!', response.message, 'success').then(() => {
+        swal('', response.message, 'success').then(() => {
           JSON.stringify(response);
         });
       })
-      .catch(error => swal('Error while adding library !', error, 'error'));
+      .catch(error => swal('خطأ ! !', error, 'error'));
   }
 });
 
