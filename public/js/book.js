@@ -134,3 +134,21 @@ addCategory.addEventListener('click', (e) => {
 search(searchLibrary, library);
 search(searchBorrow, borrow);
 search(searchStore, store);
+
+function remind(element) {
+  const object = {
+    mobileNumber: element.id,
+  };
+
+  fetch('/admin/books/borrowed', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(object),
+  })
+    .then(response => response.json())
+    .then((response) => {
+      console.log(swal('نجاح', 'تمت ارسال الرسالة بنجاح', 'success'));
+    })
+    .catch((error) => { swal('خطأ', 'حدث خطأ أثناء العملية', 'error'); });
+}
