@@ -148,7 +148,7 @@ function remind(element) {
   })
     .then(response => response.json())
     .then((response) => {
-      console.log(swal('نجاح', 'تمت ارسال الرسالة بنجاح', 'success'));
+      swal('نجاح', 'تمت ارسال الرسالة بنجاح', 'success');
     })
     .catch((error) => { swal('خطأ', 'حدث خطأ أثناء العملية', 'error'); });
 }
