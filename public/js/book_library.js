@@ -6,6 +6,7 @@ const section = document.getElementById('section');
 const sectionError = document.getElementById('sectionError');
 const addLibraryBook = document.getElementById('addLibraryBook');
 const deleteLibraryBookButton = document.querySelectorAll('.delete');
+const pass = document.getElementById('pass');
 
 numberCopies.addEventListener('focusout', (e) => {
   check(numberCopies, numberCopiesError, 'هذا الحقل مطلوب');
@@ -43,7 +44,7 @@ addLibraryBook.addEventListener('click', (e) => {
       .then(result => result.json())
       .then((response) => {
         swal('', response.message, 'success').then(() => {
-          JSON.stringify(response);
+          pass.textContent = 'الى المخزن';
         });
       })
       .catch(error => swal('خطأ ! !', error, 'error'));
