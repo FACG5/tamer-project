@@ -29,6 +29,7 @@ router.get('/admin/users/borrower', user.getBorrowedUser);
 router.get('/admin/books/library', books.getLibraryBooks);
 router.get('/admin/books/store', books.getStoreBooks);
 router.get('/admin/books/borrowed', books.getBorrowedBooks);
+router.post('/admin/books/borrowed', books.postBorrowedBooks);
 router.get('/admin/books/add', books.getAddBookTab);
 router.post('/admin/books/category', books.addCategory);
 router.post('/admin/books/', books.addBook);
