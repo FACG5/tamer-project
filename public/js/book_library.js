@@ -8,6 +8,7 @@ const addLibraryBook = document.getElementById('addLibraryBook');
 const deleteLibraryBookButton = document.querySelectorAll('.delete');
 const pass = document.getElementById('pass');
 
+
 numberCopies.addEventListener('focusout', (e) => {
   check(numberCopies, numberCopiesError, 'هذا الحقل مطلوب');
 });

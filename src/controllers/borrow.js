@@ -5,16 +5,21 @@ const { getLibraryId } = require('../database/queries/get_library_id');
 const { setBorrowBook } = require('../database/queries/set_borrow_book');
 const { checkLibraryId } = require('../database/queries/check_library_id');
 const { deleteBorrowing } = require('../database/queries/delete_borrowing');
+const { getCategory } = require('../database/queries/get_category');
 
 exports.get = (request, response) => {
-  response.render('view_borrow',
-    {
-      viewBorrow: 'active',
-      borrow: 'active',
-      layout: 'admin',
-      title: 'اﻹعارة',
-      style: ['borrow'],
-      js: ['borrow', 'add_user', 'add_book_to_user'],
+  getCategory()
+    .then((res) => {
+      response.render('view_borrow',
+        {
+          res,
+          viewBorrow: 'active',
+          borrow: 'active',
+          layout: 'admin',
+          title: 'اﻹعارة',
+          style: ['borrow'],
+          js: ['borrow', 'add_user', 'add_book_to_user'],
+        });
     });
 };
 
