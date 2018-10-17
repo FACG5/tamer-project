@@ -29,8 +29,8 @@
     </div>
     <table class="main__content--table" id="table-library">
       <tr>
-        <th>اسم الكاتب</th>
-        <th>اسم الكاتب</th>
+        <th>اسم الكتاب</th>
+        <th>اسم المؤلف</th>
         <th>الرقم التسلسلي</th>
         <th>الحالة</th>
         <th>الوصف</th>
@@ -66,8 +66,8 @@
     </div>
     <table id="table-store" class="main__content--table">
       <tr>
-        <th>اسم الكاتب</th>
-        <th>اسم الكاتب</th>
+        <th>اسم الكتاب</th>
+        <th>اسم المؤلف</th>
         <th>التصنيف</th>
         <th>عدد النسخ</th>
         <th>الوصف</th>
@@ -103,7 +103,7 @@
     </div>
     <table id="table-borrow" class="main__content--table">
       <tr>
-        <th>اسم الكاتب</th>
+        <th>اسم الكتاب</th>
         <th>اسم المستعير</th>
         <th>تاريخ البداية</th>
         <th>تاريخ النهاية</th>
@@ -116,7 +116,7 @@
             <td>{{startDate}}</td>
             <td>{{endDate}}</td>
             <td>
-              <button id="{{idBorrow}}" class="button button--remind">تذكير</button>
+              <button id="{{mobileNumber}}" class="button button--remind" onclick="remind(this)">تذكير</button>
             </td>
           </tr>
         {{/each}}
@@ -137,20 +137,20 @@
             <h3 class="panel-title">اضافة كتاب</h3>
           </div>
           <div class="panel-content">
-            <label for="nameBook">اسم الكاتب : </label>
+            <label for="nameBook">اسم الكتاب : </label>
             <div>
-              <input type="text" id="nameBook" class="form-control" placeholder="اسم الكاتب">
+              <input type="text" id="nameBook" class="form-control" placeholder="اسم الكتاب">
               <p id="nameBookError" class="errorValid"></p>
             </div>
-            <label for="image">صورة الكتاب : </label>
-            <input type="text" id="image" class="form-control" placeholder="صورة الكتاب">
-            <label for="description">تفاصيل الكتاب : </label>
-            <input type="text" id="description" class="form-control" placeholder="تفاصيل الكتاب">
             <label for="name-author">اسم المؤلف : </label>
             <div>
               <input type="text" id="name-author" class="form-control" placeholder="اسم المؤلف">
               <p id="nameAuthorError" class="errorValid"></p>
             </div>
+            <label for="image">صورة الكتاب : </label>
+            <input type="text" id="image" class="form-control" placeholder="صورة الكتاب">
+            <label for="description">تفاصيل الكتاب : </label>
+            <input type="text" id="description" class="form-control" placeholder="تفاصيل الكتاب">
             <div>
               <label for="category">التصنيف :
             </div>
@@ -220,7 +220,7 @@
               <div class="button button--delete" role="button">السابق</div>
             </label>
             <label for='step3' id="continue-step3" class="continue">
-              <div class="button button--view" role="button">تخطى</div>
+              <div id= "pass" class="button button--view" role="button">تخطي الى المخزن</div>
             </label>
           </div>
         </div>
