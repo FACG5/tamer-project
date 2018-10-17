@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test-routes": "node src/controllers/test/test.js | tap-spec",
+    "test-routes": "NODE_ENV=test node src/controllers/test/test.js | tap-spec",
     "test-db": "NODE_ENV=test node src/database/queries/test/test.js | tap-spec",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
