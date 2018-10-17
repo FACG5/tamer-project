@@ -7,6 +7,7 @@ const sectionError = document.getElementById('sectionError');
 const addLibraryBook = document.getElementById('addLibraryBook');
 const deleteLibraryBookButton = document.querySelectorAll('.delete');
 
+
 numberCopies.addEventListener('focusout', (e) => {
   check(numberCopies, numberCopiesError, 'هذا الحقل مطلوب');
 });
