@@ -1,4 +1,6 @@
-const { getBorrowedBooksByUserId } = require('../database/queries/get_borrowed_books_by_user_id');
+const {
+  getBorrowedBooksByUserId,
+} = require('../database/queries/get_borrowed_books_by_user_id');
 const { getUser } = require('../database/queries/get_user');
 const { setUser } = require('../database/queries/set_user');
 const { getLibraryId } = require('../database/queries/get_library_id');
@@ -8,19 +10,17 @@ const { deleteBorrowing } = require('../database/queries/delete_borrowing');
 const { getCategory } = require('../database/queries/get_category');
 
 exports.get = (request, response) => {
-  getCategory()
-    .then((res) => {
-      response.render('view_borrow',
-        {
-          res,
-          viewBorrow: 'active',
-          borrow: 'active',
-          layout: 'admin',
-          title: 'اﻹعارة',
-          style: ['borrow'],
-          js: ['borrow', 'add_user', 'add_book_to_user'],
-        });
+  getCategory().then((res) => {
+    response.render('view_borrow', {
+      res,
+      viewBorrow: 'active',
+      borrow: 'active',
+      layout: 'admin',
+      title: 'اﻹعارة',
+      style: ['borrow'],
+      js: ['borrow', 'add_user', 'add_book_to_user'],
     });
+  });
 };
 
 exports.post = (request, response, next) => {
@@ -29,22 +29,27 @@ exports.post = (request, response, next) => {
       const resultBorrowedBooksByUserId = [];
       if (resultUser.length) {
         const { userId } = resultUser[0];
-        getBorrowedBooksByUserId(userId)
-          .then((resarr) => {
-            resarr.forEach((res) => {
-              const serialNumber = `${res.category}.${res.section}.${res.bookshelf}.${res.copyId}`;
-              const data = {
-                nameBook: res.nameBook,
-                endDate: res.endDate,
-                serialNumber,
-                idBorrow: res.idBorrow,
-              };
-              resultBorrowedBooksByUserId.push(data);
-            });
-            response.send(JSON.stringify({ resultUser, resultBorrowedBooksByUserId }));
+        getBorrowedBooksByUserId(userId).then((resarr) => {
+          resarr.forEach((res) => {
+            const serialNumber = `${res.category}.${res.section}.${
+              res.bookshelf
+            }.${res.copyId}`;
+            const data = {
+              nameBook: res.nameBook,
+              endDate: res.endDate,
+              serialNumber,
+              idBorrow: res.idBorrow,
+            };
+            resultBorrowedBooksByUserId.push(data);
           });
+          response.send(
+            JSON.stringify({ resultUser, resultBorrowedBooksByUserId }),
+          );
+        });
       } else {
-        response.send(JSON.stringify({ resultUser, resultBorrowedBooksByUserId }));
+        response.send(
+          JSON.stringify({ resultUser, resultBorrowedBooksByUserId }),
+        );
       }
     })
     .catch((err) => {
@@ -72,25 +77,28 @@ exports.addBookToUser = (request, response, next) => {
     copyIdVal: data.copyIdVal,
     bookshelfVal: data.bookshelfVal,
     sectionsVal: data.sectionsVal,
+    libraryIdVal: data.libraryIdVal,
   };
   getLibraryId(object)
     .then((resultLibrary) => {
       if (resultLibrary.length > 0) {
         const LibraryIdVal = resultLibrary[0].LibraryId;
-        checkLibraryId(LibraryIdVal)
-          .then((resultborrow) => {
-            if (resultborrow.length === 0) {
-              const dataBorrow = { userIdVal, LibraryIdVal };
-              setBorrowBook(dataBorrow)
-                .then((resultBorrow) => {
-                  const result = { message: 'تمت الإضافة بنجاح', resultLibrary, resultBorrow };
-                  return response.json(result);
-                });
-            } else {
-              const message = { message: ' هذا الكتاب مستعار ', resultborrow };
-              return response.json(message);
-            }
-          });
+        checkLibraryId(LibraryIdVal).then((resultborrow) => {
+          if (resultborrow.length === 0) {
+            const dataBorrow = { userIdVal, LibraryIdVal };
+            setBorrowBook(dataBorrow).then((resultBorrow) => {
+              const result = {
+                message: 'تمت الإضافة بنجاح',
+                resultLibrary,
+                resultBorrow,
+              };
+              return response.json(result);
+            });
+          } else {
+            const message = { message: ' هذا الكتاب مستعار ', resultborrow };
+            return response.json(message);
+          }
+        });
       } else {
         const result = { message: 'الكتاب غير موجود', resultLibrary };
         return response.json(result);
