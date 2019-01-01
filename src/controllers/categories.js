@@ -1,5 +1,6 @@
 const { getCategory } = require('../database/queries/get_category');
 const { getSingleCategory } = require('../database/queries/get_single_category');
+const { editCategory } = require('../database/queries/edit_category');
 
 exports.getCategoryTab = (request, response, next) => {
   getCategory()
@@ -32,6 +33,18 @@ exports.editSingleCategoryView = (request, response, next) => {
           js: ['edit_category'],
           results,
         });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.editSingleCategory = (request, response, next) => {
+  const data = request.body;
+  editCategory(data)
+    .then(() => {
+      const result = { message: ' تم التعديل بنجاح!' };
+      return response.json(result);
     })
     .catch((err) => {
       next(err);
