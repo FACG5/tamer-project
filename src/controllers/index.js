@@ -9,6 +9,7 @@ const { isLoggedIn } = require('./is_logged_in.js');
 const websiteHomePage = require('./website_homepage');
 const error = require('./error');
 const singleBook = require('./single_book');
+const categories = require('./categories');
 
 const router = express.Router();
 
@@ -48,6 +49,8 @@ router.get('/admin/books/store/book/edit/:storeId', singleBook.editSingleStoreBo
 router.put('/admin/books/store/book/edit/:storeId', singleBook.editSingleStoreBook);
 router.post('/admin/user/book', borrow.addBookToUser);
 router.delete('/admin/borrow/:borrowId', borrow.deleteBorrowing);
+
+router.get('/admin/books/category', categories.getCategoryTab);
 
 router.use(error.client);
 router.use(error.server);
