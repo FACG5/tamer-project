@@ -31,7 +31,7 @@ exports.post = (request, response, next) => {
         const { userId } = resultUser[0];
         getBorrowedBooksByUserId(userId).then((resarr) => {
           resarr.forEach((res) => {
-            const serialNumber = `${res.category}.${res.section}.${
+            const serialNumber = `${res.category}.${res.libraryId}.${res.section}.${
               res.bookshelf
             }.${res.copyId}`;
             const data = {
