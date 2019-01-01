@@ -52,7 +52,7 @@ router.delete('/admin/borrow/:borrowId', borrow.deleteBorrowing);
 
 router.get('/admin/books/category', categories.getCategoryTab);
 router.get('/admin/books/category/edit/:categoryId', categories.editSingleCategoryView);
-
+router.put('/admin/books/category/edit/:categoryId', categories.editSingleCategory);
 
 router.use(error.client);
 router.use(error.server);
