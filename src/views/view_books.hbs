@@ -12,6 +12,9 @@
       <a data-toggle="tab" aria-expanded="false" href="/admin/books/add">
         <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
       </a>
+      <a data-toggle="tab" aria-expanded="false" href="/admin/books/category">
+        <li onclick="viewUser(event,'category')" class="main__header--nav-tablink">التصنيفات</li>
+      </a>
   </ul>
 </section>
 <section class="main__content">
@@ -20,6 +23,8 @@
   {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
+  {{/if}}
+  {{#if categoryTab}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-library" class="input--seach" placeholder="بحث">
@@ -57,6 +62,8 @@
   {{#if libraryBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
+  {{/if}}
+  {{#if categoryTab}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-store" class="input--seach" placeholder="بحث">
@@ -94,6 +101,8 @@
   {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if libraryBooks}} style="display: none"
+  {{/if}}
+  {{#if categoryTab}} style="display: none"
   {{/if}}>
     <div class="main__conten--book-search">
       <input type="search" id="input-search-borrow" class="input--seach" placeholder="بحث">
@@ -127,6 +136,8 @@
   {{#if storeBooks}} style="display: none"
   {{/if}}
   {{#if borrowedBooks}} style="display: none"
+  {{/if}}
+  {{#if categoryTab}} style="display: none"
   {{/if}}>
     <div class="form-container">
       <input id='step2' type='checkbox'>
@@ -247,4 +258,36 @@
       </div>
     </div>
   </div>
+
+
+<div class="main__conten--book" id="category" {{#if addBookTab }} style="display: none"
+  {{/if}}
+  {{#if storeBooks}} style="display: none"
+  {{/if}}
+  {{#if borrowedBooks}} style="display: none"
+  {{/if}}
+  {{#if libraryBooks}} style="display: none"
+  {{/if}}>
+    <table class="main__content--table" id="table-library">
+      <tr>
+        <th>اسم التصنيف</th>
+        <th>الرقم التسلسلي</th>
+        <th>تعديل</th>
+        <th>حذف</th>
+      </tr>
+        {{#each resCategory}}
+          <tr id="{{id}}">
+            <td>{{name}}</td>
+            <td>{{categorySerial}}</td>
+            <td>
+              <a href="" class="link link--view">تعديل</a>
+            </td>
+            <td>
+              <a id = "{{id}}" class="link link--delete delete" href="javascript:;"  >حذف</a>
+            </td>
+          </tr>
+        {{/each}}
+    </table>
+  </div>
+
 </section>
