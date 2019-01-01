@@ -1,6 +1,7 @@
 const copyId = document.getElementById('copyId');
 const bookshelf = document.getElementById('bookshelf');
 const section = document.getElementById('section');
+const libraryId = document.getElementById('libraryId');
 const addBookToUser = document.getElementById('addBookToUser');
 
 addBookToUser.addEventListener('click', (e) => {
@@ -8,12 +9,14 @@ addBookToUser.addEventListener('click', (e) => {
   const copyIdVal = copyId.value;
   const bookshelfVal = bookshelf.value;
   const sectionsVal = section.value;
+  const libraryIdVal = libraryId.value;
   const userId = addBookForUser.value;
   const data = {
     copyIdVal,
     bookshelfVal,
     sectionsVal,
     userId,
+    libraryIdVal,
   };
   fetch('/admin/user/book', {
     method: 'POST',
