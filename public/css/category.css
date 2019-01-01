@@ -58,3 +58,8 @@
   margin-right: -2rem;
   margin-bottom: 0.8rem;
 }
+
+.categoryErrorValid {
+  color: red;
+  margin-right: -12rem;
+}
