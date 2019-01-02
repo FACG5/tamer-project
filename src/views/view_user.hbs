@@ -25,12 +25,16 @@
         <th>اسم العضو </th>
         <th>رقم الجوال</th>
         <th>العنوان</th>
+        <th>حذف</th>
       </tr>
       {{#each res}}
         <tr id="{{idUser}}">
           <td>{{nameUser}}</td>
           <td>{{mobileNumber}}</td>
           <td>{{address}}</td>
+          <td>
+            <a id = "{{idUser}}" class="link link--delete delete" href="javascript:;"  >حذف</a>
+          </td>
         </tr>
       {{/each}}
     </table>
