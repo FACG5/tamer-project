@@ -1,0 +1,65 @@
+.main__title{
+  margin-right:20rem;
+  font-size: 1.5rem;
+}
+
+.main__content--category{
+  margin-right: 20rem;
+  position: relative;
+  background-color: #fff;
+}
+
+.main__content__editCategory {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.main__content__editCategory--information{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns:1fr 4fr 1fr;
+}
+
+
+.editbtn {
+  margin-top: 1.5rem;
+  color: white;
+  text-align: center;
+  background-color: #ff8d19;
+  padding: 0.5rem;
+  font-family: cairo;
+  border: 0px;
+  border-radius: 5px;
+  width: 8rem;
+  font-size: 1rem;
+  box-shadow: 1px 28px 35px -20px rgba(0, 0, 0, 0.75);
+  cursor:pointer;
+}
+
+.main__content__editCategory--information input {
+  font-family: Cairo;
+  width: 24rem;
+  background: #fff;
+  text-align: right;
+  color: #525865;
+  border: 1px solid #d1d1d1;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  font-size: 1em;
+  line-height: 1.45;
+  outline: none;
+  margin: 0px;
+  padding: 8px;
+  margin-left: -1rem;
+  margin-bottom: 0.8rem;
+}
+
+.main__content__editCategory--information label h3 {
+  font-family: Cairo;
+  margin-right: -2rem;
+  margin-bottom: 0.8rem;
+}
+
+.categoryErrorValid {
+  color: red;
+  margin-right: -12rem;
+}

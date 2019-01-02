@@ -1,0 +1,44 @@
+<section class="main__header">
+  <ul class="main__header--nav">
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/library">
+      <li onclick="viewUser(event,'library')" class="main__header--nav-tablink">المكتبة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/store">
+      <li onclick="viewUser(event,'store')" class="main__header--nav-tablink">المخزن</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/borrowed">
+      <li onclick="viewUser(event,'borrow')" class="main__header--nav-tablink">الكتب المستعارة</li>
+    </a>
+    <a data-toggle="tab" aria-expanded="false" href="/admin/books/add">
+      <li onclick="viewUser(event,'add')" class="main__header--nav-tablink">إضافة كتاب</li>
+    </a>
+      <a data-toggle="tab" aria-expanded="false" href="/admin/books/category">
+        <li onclick="viewUser(event,'category')" class="main__header--nav-tablink">التصنيفات</li>
+      </a>    
+  </ul>
+</section>
+
+<h1 class="main__title">تعديل التصنيف</h1>
+<section class="main__content--category">
+  <div class="main__content__editCategory">
+    {{#each results}}
+    </div>
+    <form id="{{categoryId}}" class="form">
+      <div class="main__content__editCategory--information">
+
+        <label for="categoryName">اسم التصنيف</label>
+        <input type="text" id="categoryName" name="categoryName" placeholder="اسم التصنيف" value="{{categoryName}}" required>
+        <span id="categoryNameError" class="categoryErrorValid"></span>
+
+        <label for="categorySerial">  الرقم التسلسلي</label>
+        <input type="number" id="categorySerial" name="categorySerial" placeholder="الرقم التسلسلي" value="{{categorySerial}}" required>
+        <span id="categorySerialError" class="categoryErrorValid"></span>
+
+      </div>
+    </form>
+      <a href="">
+        <button id="editbtn" class="editbtn">تعديل التصنيف</button>
+      </a>
+    {{/each}}
+  </div>
+</section>
