@@ -47,6 +47,10 @@ exports.editSingleCategory = (request, response, next) => {
       return response.json(result);
     })
     .catch((err) => {
+      if (err.code === '23505') {
+        const result = { errorMessage: 'اسم التصنيف / الرقم التسلسلي موجود حاليا' };
+        return response.json(result);
+      }
       next(err);
     });
 };
