@@ -90,6 +90,6 @@ TAMER Institute for Community Education is an educational non-governmental non f
 - Javascript
 
 ### Team
-- Ali
-- Lubna
-- Asmaa
+- [Lubna Abd Al Jawwad](https://github.com/lubnaabd)
+- [Asmaa Al-Madhoun](https://github.com/asmaa-ezz)
+- [Ali Haj Ahmed](https://github.com/ali-7)
