@@ -9,7 +9,7 @@ exports.getViewUser = (request, response, next) => {
           user: 'active',
           layout: 'admin',
           title: 'اﻷعضاء',
-          style: ['user'],
+          style: ['user', 'book'],
           js: ['user'],
           res,
         });
