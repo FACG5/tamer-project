@@ -1,4 +1,5 @@
 const { getUsers, getBorrower } = require('../database/queries/view_user');
+const { deleteUser } = require('../database/queries/delete_user');
 
 exports.getViewUser = (request, response, next) => {
   getUsers()
@@ -9,7 +10,7 @@ exports.getViewUser = (request, response, next) => {
           user: 'active',
           layout: 'admin',
           title: 'اﻷعضاء',
-          style: ['user'],
+          style: ['user', 'book'],
           js: ['user'],
           res,
         });
@@ -32,4 +33,20 @@ exports.getBorrowedUser = (request, response, next) => {
         });
     })
     .catch(error => next(error));
+};
+
+exports.deleteUsers = (request, response, next) => {
+  const userId = request.body;
+  deleteUser(userId)
+    .then(() => {
+      const result = { message: ' تم حذف العضو  !' };
+      return response.json(result);
+    })
+    .catch((err) => {
+      if (err.code === '23503') {
+        const result = { message: 'هذا العضو من المستعيرين حاليا، لايمكن حذفه. بأمكانك ازالة الكتب التي استعارها العضو من قسم الاستعارة ومن ثم حذفه ...' };
+        return response.json(result);
+      }
+      next(err);
+    });
 };
